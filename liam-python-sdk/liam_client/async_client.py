@@ -1,8 +1,8 @@
 """
-XDB API Client - Asynchronous Version
+LIAM API Client - Asynchronous Version
 
-This module provides the XDBClientAsync class for high-performance
-asynchronous interactions with the LIAM XDB Memory Management API.
+This module provides the LIAMClientAsync class for high-performance
+asynchronous interactions with the LIAM Memory Management API.
 
 Requires: pip install aiohttp
 """
@@ -17,16 +17,16 @@ from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.backends import default_backend
 
-from .client import XDBClientError, XDBAuthenticationError, XDBAPIError
+from .client import LIAMClientError, LIAMAuthenticationError, LIAMAPIError
 
 
-class XDBClientAsync:
+class LIAMClientAsync:
     """
-    Asynchronous client for the XDB Memory Management API.
+    Asynchronous client for the LIAM Memory Management API.
     
     Best used as an async context manager for connection pooling:
     
-        async with XDBClientAsync(api_key, private_key) as client:
+        async with LIAMClientAsync(api_key, private_key) as client:
             result = await client.create_memory(...)
     
     Args:
@@ -59,9 +59,9 @@ class XDBClientAsync:
                 backend=default_backend()
             )
         except Exception as e:
-            raise XDBAuthenticationError(f"Failed to load private key: {e}")
+            raise LIAMAuthenticationError(f"Failed to load private key: {e}")
     
-    async def __aenter__(self) -> "XDBClientAsync":
+    async def __aenter__(self) -> "LIAMClientAsync":
         """Async context manager entry - creates session."""
         self._session = aiohttp.ClientSession(timeout=self.timeout)
         return self
@@ -114,7 +114,7 @@ class XDBClientAsync:
             API response as dictionary
             
         Raises:
-            XDBAPIError: On API errors
+            LIAMAPIError: On API errors
             aiohttp.ClientError: On network errors
         """
         url = f"{self.base_url}/{endpoint}"
@@ -133,10 +133,10 @@ class XDBClientAsync:
                     data = await response.json()
                 except json.JSONDecodeError:
                     text = await response.text()
-                    raise XDBAPIError(f"Invalid JSON response: {text}", response.status)
+                    raise LIAMAPIError(f"Invalid JSON response: {text}", response.status)
                 
                 if response.status >= 400:
-                    raise XDBAPIError(
+                    raise LIAMAPIError(
                         data.get('message', 'Unknown error'),
                         response.status,
                         data
@@ -149,10 +149,10 @@ class XDBClientAsync:
                         data = await response.json()
                     except json.JSONDecodeError:
                         text = await response.text()
-                        raise XDBAPIError(f"Invalid JSON response: {text}", response.status)
+                        raise LIAMAPIError(f"Invalid JSON response: {text}", response.status)
                     
                     if response.status >= 400:
-                        raise XDBAPIError(
+                        raise LIAMAPIError(
                             data.get('message', 'Unknown error'),
                             response.status,
                             data

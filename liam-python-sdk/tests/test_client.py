@@ -1,5 +1,5 @@
 """
-XDB Client Tests
+LIAM Client Tests
 
 Run with: pytest tests/
 """
@@ -8,8 +8,8 @@ import pytest
 import json
 from unittest.mock import Mock, patch, MagicMock
 
-from xdb_client import XDBClient, generate_key_pair
-from xdb_client.client import XDBClientError, XDBAuthenticationError, XDBAPIError
+from liam_client import LIAMClient, generate_key_pair
+from liam_client.client import LIAMClientError, LIAMAuthenticationError, LIAMAPIError
 
 
 # =============================================================================
@@ -26,7 +26,7 @@ def key_pair():
 def client(key_pair):
     """Create a test client."""
     private_key, _ = key_pair
-    return XDBClient(
+    return LIAMClient(
         api_key="test-api-key",
         private_key_pem=private_key
     )
@@ -63,20 +63,20 @@ def test_client_initialization(key_pair):
     """Test client initialization."""
     private_key, _ = key_pair
     
-    client = XDBClient(
+    client = LIAMClient(
         api_key="test-key",
         private_key_pem=private_key
     )
     
     assert client.api_key == "test-key"
-    assert client.base_url == XDBClient.DEFAULT_BASE_URL
+    assert client.base_url == LIAMClient.DEFAULT_BASE_URL
 
 
 def test_client_custom_base_url(key_pair):
     """Test client with custom base URL."""
     private_key, _ = key_pair
     
-    client = XDBClient(
+    client = LIAMClient(
         api_key="test-key",
         private_key_pem=private_key,
         base_url="https://custom.api.com"
@@ -87,8 +87,8 @@ def test_client_custom_base_url(key_pair):
 
 def test_client_invalid_private_key():
     """Test client with invalid private key."""
-    with pytest.raises(XDBAuthenticationError):
-        XDBClient(
+    with pytest.raises(LIAMAuthenticationError):
+        LIAMClient(
             api_key="test-key",
             private_key_pem="invalid-key"
         )
@@ -135,7 +135,7 @@ def test_sign_payload_different_for_different_data(client):
 # API Request Tests (Mocked)
 # =============================================================================
 
-@patch('xdb_client.client.requests.post')
+@patch('liam_client.client.requests.post')
 def test_health_check(mock_post, client):
     """Test health check endpoint."""
     mock_response = Mock()
@@ -149,7 +149,7 @@ def test_health_check(mock_post, client):
     mock_post.assert_called_once()
 
 
-@patch('xdb_client.client.requests.post')
+@patch('liam_client.client.requests.post')
 def test_create_memory(mock_post, client):
     """Test memory creation."""
     mock_response = Mock()
@@ -177,7 +177,7 @@ def test_create_memory(mock_post, client):
     assert request_body["tag"] == "test"
 
 
-@patch('xdb_client.client.requests.post')
+@patch('liam_client.client.requests.post')
 def test_list_memories(mock_post, client):
     """Test listing memories."""
     mock_response = Mock()
@@ -194,7 +194,7 @@ def test_list_memories(mock_post, client):
     assert len(result["data"]) == 1
 
 
-@patch('xdb_client.client.requests.post')
+@patch('liam_client.client.requests.post')
 def test_api_error_handling(mock_post, client):
     """Test API error handling."""
     mock_response = Mock()
@@ -205,7 +205,7 @@ def test_api_error_handling(mock_post, client):
     }
     mock_post.return_value = mock_response
     
-    with pytest.raises(XDBAPIError) as exc_info:
+    with pytest.raises(LIAMAPIError) as exc_info:
         client.health_check()
     
     assert "Invalid request" in str(exc_info.value)
@@ -216,7 +216,7 @@ def test_api_error_handling(mock_post, client):
 # Tag Operations Tests (Mocked)
 # =============================================================================
 
-@patch('xdb_client.client.requests.post')
+@patch('liam_client.client.requests.post')
 def test_list_tags(mock_post, client):
     """Test listing tags."""
     mock_response = Mock()
@@ -233,7 +233,7 @@ def test_list_tags(mock_post, client):
     assert "work" in result["data"]
 
 
-@patch('xdb_client.client.requests.post')
+@patch('liam_client.client.requests.post')
 def test_change_tag(mock_post, client):
     """Test changing tag."""
     mock_response = Mock()
@@ -262,21 +262,21 @@ def test_change_tag(mock_post, client):
 
 def test_from_env_missing_api_key(key_pair, monkeypatch):
     """Test from_env with missing API key."""
-    monkeypatch.delenv("XDB_API_KEY", raising=False)
+    monkeypatch.delenv("LIAM_API_KEY", raising=False)
     
-    with pytest.raises(XDBClientError) as exc_info:
-        XDBClient.from_env()
+    with pytest.raises(LIAMClientError) as exc_info:
+        LIAMClient.from_env()
     
-    assert "XDB_API_KEY" in str(exc_info.value)
+    assert "LIAM_API_KEY" in str(exc_info.value)
 
 
 def test_from_env_missing_private_key(monkeypatch):
     """Test from_env with missing private key."""
-    monkeypatch.setenv("XDB_API_KEY", "test-key")
-    monkeypatch.delenv("XDB_PRIVATE_KEY_PATH", raising=False)
-    monkeypatch.delenv("XDB_PRIVATE_KEY", raising=False)
+    monkeypatch.setenv("LIAM_API_KEY", "test-key")
+    monkeypatch.delenv("LIAM_PRIVATE_KEY_PATH", raising=False)
+    monkeypatch.delenv("LIAM_PRIVATE_KEY", raising=False)
     
-    with pytest.raises(XDBClientError) as exc_info:
-        XDBClient.from_env()
+    with pytest.raises(LIAMClientError) as exc_info:
+        LIAMClient.from_env()
     
-    assert "XDB_PRIVATE_KEY" in str(exc_info.value)
+    assert "LIAM_PRIVATE_KEY" in str(exc_info.value)

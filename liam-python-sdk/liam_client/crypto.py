@@ -1,11 +1,11 @@
 """
-XDB Cryptographic Utilities
+LIAM Cryptographic Utilities
 
 This module provides key generation and management utilities for the
-ECDSA P-256 keys required by the XDB API.
+ECDSA P-256 keys required by the LIAM API.
 
 Usage:
-    from xdb_client.crypto import generate_key_pair, save_key_pair
+    from liam_client.crypto import generate_key_pair, save_key_pair
     
     # Generate keys
     private_pem, public_pem = generate_key_pair()
@@ -14,9 +14,9 @@ Usage:
     save_key_pair('private_key.pem', 'public_key.pem')
 
 Command Line:
-    python -m xdb_client.crypto
+    python -m liam_client.crypto
     # or
-    xdb-keygen
+    liam-keygen
 """
 
 from cryptography.hazmat.primitives import serialization
@@ -135,7 +135,7 @@ def main():
     import argparse
     
     parser = argparse.ArgumentParser(
-        description='Generate ECDSA P-256 key pairs for XDB API authentication'
+        description='Generate ECDSA P-256 key pairs for LIAM API authentication'
     )
     parser.add_argument(
         '--private', '-p',
@@ -171,7 +171,7 @@ def main():
     
     print()
     print("=" * 50)
-    print("XDB Key Pair Generator")
+    print("LIAM Key Pair Generator")
     print("=" * 50)
     print()
     

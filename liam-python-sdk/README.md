@@ -1,6 +1,6 @@
-# XDB Python SDK
+# LIAM Python SDK
 
-Official Python SDK for the **LIAM XDB Memory Management API**.
+Official Python SDK for the **LIAM Memory Management API**.
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -16,14 +16,14 @@ Official Python SDK for the **LIAM XDB Memory Management API**.
 ## Installation
 
 ```bash
-pip install xdb-client
+pip install liam-client
 ```
 
 Or install from source:
 
 ```bash
-git clone https://github.com/anthropic-ai/xdb-python-sdk.git
-cd xdb-python-sdk
+git clone https://github.com/netsys-usa/liam-agent.git
+cd liam-python-sdk
 pip install -e .
 ```
 
@@ -32,7 +32,7 @@ pip install -e .
 ### 1. Generate Key Pair
 
 ```python
-from xdb_client import generate_key_pair, save_key_pair
+from liam_client import generate_key_pair, save_key_pair
 
 # Generate and save keys
 save_key_pair('private_key.pem', 'public_key.pem')
@@ -41,24 +41,24 @@ save_key_pair('private_key.pem', 'public_key.pem')
 Or via command line:
 
 ```bash
-python -m xdb_client.crypto
+python -m liam_client.crypto
 ```
 
 ### 2. Register Your Connector
 
-Use the generated `public_key.pem` to register your connector with the XDB API. You'll receive an API key.
+Use the generated `public_key.pem` to register your connector with the LIAM API. You'll receive an API key.
 
 ### 3. Initialize Client
 
 ```python
-from xdb_client import XDBClient
+from liam_client import LIAMClient
 
 # Load private key
 with open('private_key.pem', 'r') as f:
     private_key = f.read()
 
 # Create client
-client = XDBClient(
+client = LIAMClient(
     api_key="your-api-key",
     private_key_pem=private_key
 )
@@ -95,10 +95,10 @@ For high-performance applications:
 
 ```python
 import asyncio
-from xdb_client import XDBClientAsync
+from liam_client import LIAMClientAsync
 
 async def main():
-    async with XDBClientAsync(
+    async with LIAMClientAsync(
         api_key="your-api-key",
         private_key_pem=private_key
     ) as client:
@@ -157,21 +157,21 @@ See the [examples](./examples) directory for more detailed usage:
 ### Environment Variables
 
 ```bash
-export XDB_API_KEY="your-api-key"
-export XDB_PRIVATE_KEY_PATH="/path/to/private_key.pem"
+export LIAM_API_KEY="your-api-key"
+export LIAM_PRIVATE_KEY_PATH="/path/to/private_key.pem"
 ```
 
 ```python
 import os
-from xdb_client import XDBClient
+from liam_client import LIAMClient
 
-client = XDBClient.from_env()  # Reads from environment variables
+client = LIAMClient.from_env()  # Reads from environment variables
 ```
 
 ### Custom Base URL
 
 ```python
-client = XDBClient(
+client = LIAMClient(
     api_key="your-api-key",
     private_key_pem=private_key,
     base_url="https://custom-api.example.com/api"
@@ -190,8 +190,8 @@ client = XDBClient(
 ### Setup
 
 ```bash
-git clone https://github.com/anthropic-ai/xdb-python-sdk.git
-cd xdb-python-sdk
+git clone https://github.com/anthropic-ai/liam-python-sdk.git
+cd liam-python-sdk
 pip install -e ".[dev]"
 ```
 
@@ -204,8 +204,8 @@ pytest tests/
 ### Code Style
 
 ```bash
-black xdb_client/
-flake8 xdb_client/
+black liam_client/
+flake8 liam_client/
 ```
 
 ## Requirements
@@ -223,7 +223,7 @@ Full API documentation: [https://liam.netxd.com/#/developers](https://liam.netxd
 
 - 📧 Email: support@netxd.com
 - 📖 Docs: [API Documentation](https://liam.netxd.com/#/developers)
-- 🐛 Issues: [GitHub Issues](https://github.com/anthropic-ai/xdb-python-sdk/issues)
+- 🐛 Issues: [GitHub Issues](https://github.com/anthropic-ai/liam-python-sdk/issues)
 
 ## License
 

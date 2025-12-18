@@ -1,1 +1,1 @@
-"""XDB Client Tests"""
+"""LIAM Client Tests"""

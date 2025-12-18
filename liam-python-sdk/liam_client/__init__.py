@@ -1,12 +1,12 @@
 """
-XDB Python SDK
+LIAM Python SDK
 
-Official Python client for the LIAM XDB Memory Management API.
+Official Python client for the LIAM Memory Management API.
 
 Basic Usage:
-    from xdb_client import XDBClient
+    from liam_client import LIAMClient
     
-    client = XDBClient(
+    client = LIAMClient(
         api_key="your-api-key",
         private_key_pem=open('private_key.pem').read()
     )
@@ -18,13 +18,13 @@ Basic Usage:
     )
 
 Async Usage:
-    from xdb_client import XDBClientAsync
+    from liam_client import LIAMClientAsync
     
-    async with XDBClientAsync(api_key, private_key) as client:
+    async with LIAMClientAsync(api_key, private_key) as client:
         result = await client.create_memory(...)
 
 Key Generation:
-    from xdb_client import generate_key_pair, save_key_pair
+    from liam_client import generate_key_pair, save_key_pair
     
     private_pem, public_pem = generate_key_pair()
     save_key_pair('private.pem', 'public.pem')
@@ -34,18 +34,18 @@ __version__ = "1.0.0"
 __author__ = "NetXD"
 __email__ = "support@netxd.com"
 
-from .client import XDBClient
+from .client import LIAMClient
 from .crypto import generate_key_pair, save_key_pair
 
 # Async client is optional (requires aiohttp)
 try:
-    from .async_client import XDBClientAsync
+    from .async_client import LIAMClientAsync
 except ImportError:
-    XDBClientAsync = None  # aiohttp not installed
+    LIAMClientAsync = None  # aiohttp not installed
 
 __all__ = [
-    "XDBClient",
-    "XDBClientAsync",
+    "LIAMClient",
+    "LIAMClientAsync",
     "generate_key_pair",
     "save_key_pair",
     "__version__",

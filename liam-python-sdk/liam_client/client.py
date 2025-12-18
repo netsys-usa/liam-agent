@@ -1,8 +1,8 @@
 """
-XDB API Client - Synchronous Version
+LIAM API Client - Synchronous Version
 
-This module provides the main XDBClient class for interacting with
-the LIAM XDB Memory Management API.
+This module provides the main LIAMClient class for interacting with
+the LIAM Memory Management API.
 """
 
 import os
@@ -16,17 +16,17 @@ from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.backends import default_backend
 
 
-class XDBClientError(Exception):
-    """Base exception for XDB client errors."""
+class LIAMClientError(Exception):
+    """Base exception for LIAM client errors."""
     pass
 
 
-class XDBAuthenticationError(XDBClientError):
+class LIAMAuthenticationError(LIAMClientError):
     """Raised when authentication fails."""
     pass
 
 
-class XDBAPIError(XDBClientError):
+class LIAMAPIError(LIAMClientError):
     """Raised when the API returns an error."""
     
     def __init__(self, message: str, status_code: int = None, response: dict = None):
@@ -35,9 +35,9 @@ class XDBAPIError(XDBClientError):
         self.response = response
 
 
-class XDBClient:
+class LIAMClient:
     """
-    Synchronous client for the XDB Memory Management API.
+    Synchronous client for the LIAM Memory Management API.
     
     Args:
         api_key: Your API key from connector registration
@@ -46,7 +46,7 @@ class XDBClient:
         timeout: Request timeout in seconds (default: 30)
     
     Example:
-        >>> client = XDBClient(
+        >>> client = LIAMClient(
         ...     api_key="your-api-key",
         ...     private_key_pem=open('private_key.pem').read()
         ... )
@@ -76,39 +76,39 @@ class XDBClient:
                 backend=default_backend()
             )
         except Exception as e:
-            raise XDBAuthenticationError(f"Failed to load private key: {e}")
+            raise LIAMAuthenticationError(f"Failed to load private key: {e}")
     
     @classmethod
-    def from_env(cls, base_url: str = None) -> "XDBClient":
+    def from_env(cls, base_url: str = None) -> "LIAMClient":
         """
         Create client from environment variables.
         
         Environment variables:
-            XDB_API_KEY: Your API key
-            XDB_PRIVATE_KEY_PATH: Path to private key file
-            XDB_PRIVATE_KEY: Private key content (alternative to path)
-            XDB_BASE_URL: Optional custom base URL
+            LIAM_API_KEY: Your API key
+            LIAM_PRIVATE_KEY_PATH: Path to private key file
+            LIAM_PRIVATE_KEY: Private key content (alternative to path)
+            LIAM_BASE_URL: Optional custom base URL
         
         Returns:
-            XDBClient instance
+            LIAMClient instance
         """
-        api_key = os.environ.get("XDB_API_KEY")
+        api_key = os.environ.get("LIAM_API_KEY")
         if not api_key:
-            raise XDBClientError("XDB_API_KEY environment variable not set")
+            raise LIAMClientError("LIAM_API_KEY environment variable not set")
         
         # Try path first, then direct key
-        key_path = os.environ.get("XDB_PRIVATE_KEY_PATH")
+        key_path = os.environ.get("LIAM_PRIVATE_KEY_PATH")
         if key_path:
             with open(key_path, 'r') as f:
                 private_key = f.read()
         else:
-            private_key = os.environ.get("XDB_PRIVATE_KEY")
+            private_key = os.environ.get("LIAM_PRIVATE_KEY")
             if not private_key:
-                raise XDBClientError(
-                    "Either XDB_PRIVATE_KEY_PATH or XDB_PRIVATE_KEY must be set"
+                raise LIAMClientError(
+                    "Either LIAM_PRIVATE_KEY_PATH or LIAM_PRIVATE_KEY must be set"
                 )
         
-        base_url = base_url or os.environ.get("XDB_BASE_URL")
+        base_url = base_url or os.environ.get("LIAM_BASE_URL")
         
         return cls(api_key=api_key, private_key_pem=private_key, base_url=base_url)
     
@@ -152,7 +152,7 @@ class XDBClient:
             API response as dictionary
             
         Raises:
-            XDBAPIError: On API errors
+            LIAMAPIError: On API errors
             requests.exceptions.RequestException: On network errors
         """
         url = f"{self.base_url}/{endpoint}"
@@ -175,14 +175,14 @@ class XDBClient:
         try:
             data = response.json()
         except json.JSONDecodeError:
-            raise XDBAPIError(
+            raise LIAMAPIError(
                 f"Invalid JSON response: {response.text}",
                 status_code=response.status_code
             )
         
         # Check for errors
         if response.status_code >= 400:
-            raise XDBAPIError(
+            raise LIAMAPIError(
                 data.get('message', 'Unknown error'),
                 status_code=response.status_code,
                 response=data

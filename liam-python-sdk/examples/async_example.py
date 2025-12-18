@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-XDB API Client - Async Usage Example
+LIAM API Client - Async Usage Example
 
 This example demonstrates high-performance async operations:
 - Concurrent memory creation
@@ -10,7 +10,7 @@ This example demonstrates high-performance async operations:
 Requires: pip install aiohttp
 
 Before running:
-1. Generate keys: python -m xdb_client.crypto
+1. Generate keys: python -m liam_client.crypto
 2. Register your connector with the public key to get an API key
 3. Update the configuration below
 """
@@ -19,7 +19,7 @@ import asyncio
 import time
 from typing import List, Dict
 
-from xdb_client import XDBClientAsync
+from liam_client import LIAMClientAsync
 
 # =============================================================================
 # Configuration - UPDATE THESE VALUES
@@ -52,7 +52,7 @@ async def example_basic_async():
     private_key = load_private_key()
     
     # Use context manager for connection pooling
-    async with XDBClientAsync(
+    async with LIAMClientAsync(
         api_key=API_KEY,
         private_key_pem=private_key
     ) as client:
@@ -94,7 +94,7 @@ async def example_concurrent_creation():
         {"content": "Vacation ideas: Japan, Iceland, New Zealand", "tag": "travel"},
     ]
     
-    async with XDBClientAsync(
+    async with LIAMClientAsync(
         api_key=API_KEY,
         private_key_pem=private_key
     ) as client:
@@ -128,7 +128,7 @@ async def example_parallel_tag_fetch():
     
     tags = ["work", "personal", "health", "shopping", "learning"]
     
-    async with XDBClientAsync(
+    async with LIAMClientAsync(
         api_key=API_KEY,
         private_key_pem=private_key
     ) as client:
@@ -162,7 +162,7 @@ async def example_high_throughput():
     total_count = 50
     batch_size = 10
     
-    async with XDBClientAsync(
+    async with LIAMClientAsync(
         api_key=API_KEY,
         private_key_pem=private_key
     ) as client:
@@ -205,40 +205,6 @@ async def example_high_throughput():
         print(f"📊 Throughput: {total_count/elapsed:.1f} memories/second")
 
 
-async def example_error_handling():
-    """Demonstrate error handling in async operations."""
-    print("\n" + "=" * 50)
-    print("🛡️ Error Handling")
-    print("=" * 50)
-    
-    private_key = load_private_key()
-    
-    async with XDBClientAsync(
-        api_key=API_KEY,
-        private_key_pem=private_key
-    ) as client:
-        # Test with invalid data
-        memories = [
-            {"content": "Valid memory 1", "tag": "test"},
-            {"content": "", "tag": "test"},  # Empty content - might fail
-            {"content": "Valid memory 2", "tag": "test"},
-        ]
-        
-        print("Creating memories (some may fail)...")
-        
-        results = await client.create_memories_batch(USER_KEY, memories)
-        
-        for i, result in enumerate(results):
-            if isinstance(result, Exception):
-                print(f"  Memory {i+1}: ❌ Error - {result}")
-            elif isinstance(result, dict):
-                status = result.get('status', 'Unknown')
-                if status == 'Success':
-                    print(f"  Memory {i+1}: ✓ Success")
-                else:
-                    print(f"  Memory {i+1}: ❌ {result.get('message', 'Failed')}")
-
-
 # =============================================================================
 # Main
 # =============================================================================
@@ -246,7 +212,7 @@ async def example_error_handling():
 async def main():
     """Run all async examples."""
     print("\n" + "=" * 60)
-    print("🚀 XDB API Client - Async Examples")
+    print("🚀 LIAM API Client - Async Examples")
     print("=" * 60)
     
     try:
@@ -254,7 +220,6 @@ async def main():
         await example_concurrent_creation()
         await example_parallel_tag_fetch()
         await example_high_throughput()
-        await example_error_handling()
         
         print("\n" + "=" * 60)
         print("✅ All async examples completed!")
@@ -262,7 +227,7 @@ async def main():
         
     except FileNotFoundError:
         print("\n❌ Error: Private key file not found!")
-        print("Run 'python -m xdb_client.crypto' to generate keys.")
+        print("Run 'python -m liam_client.crypto' to generate keys.")
         
     except Exception as e:
         print(f"\n❌ Error: {e}")

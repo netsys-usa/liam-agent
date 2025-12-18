@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 """
-XDB API Client - Basic Usage Example
+LIAM API Client - Basic Usage Example
 
-This example demonstrates the fundamental operations of the XDB client:
+This example demonstrates the fundamental operations of the LIAM client:
 - Creating memories
 - Listing and searching memories
 - Chatting with memory context
 - Working with tags
 
 Before running:
-1. Generate keys: python -m xdb_client.crypto
+1. Generate keys: python -m liam_client.crypto
 2. Register your connector with the public key to get an API key
 3. Update the configuration below
 """
 
-from xdb_client import XDBClient
+from liam_client import LIAMClient
 
 # =============================================================================
 # Configuration - UPDATE THESE VALUES
@@ -28,12 +28,12 @@ USER_KEY = "example_user_123"  # Your user's unique identifier
 # Initialize Client
 # =============================================================================
 
-def get_client() -> XDBClient:
-    """Create and return the XDB client."""
+def get_client() -> LIAMClient:
+    """Create and return the LIAM client."""
     with open(PRIVATE_KEY_PATH, 'r') as f:
         private_key = f.read()
     
-    return XDBClient(
+    return LIAMClient(
         api_key=API_KEY,
         private_key_pem=private_key
     )
@@ -185,7 +185,7 @@ def example_summarize():
 def main():
     """Run all examples."""
     print("\n" + "=" * 60)
-    print("🚀 XDB API Client - Basic Usage Examples")
+    print("🚀 LIAM API Client - Basic Usage Examples")
     print("=" * 60)
     
     try:
@@ -208,7 +208,7 @@ def main():
         
     except FileNotFoundError:
         print("\n❌ Error: Private key file not found!")
-        print("Run 'python -m xdb_client.crypto' to generate keys.")
+        print("Run 'python -m liam_client.crypto' to generate keys.")
         
     except Exception as e:
         print(f"\n❌ Error: {e}")

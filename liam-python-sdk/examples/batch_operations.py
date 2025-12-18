@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-XDB API Client - Batch Operations Example
+LIAM API Client - Batch Operations Example
 
 This example shows how to efficiently handle bulk operations:
 - Importing memories from files
@@ -8,7 +8,7 @@ This example shows how to efficiently handle bulk operations:
 - Exporting and backup
 
 Before running:
-1. Generate keys: python -m xdb_client.crypto
+1. Generate keys: python -m liam_client.crypto
 2. Register your connector with the public key
 3. Update the configuration below
 """
@@ -19,11 +19,11 @@ import asyncio
 from pathlib import Path
 from typing import List, Dict
 
-from xdb_client import XDBClient
+from liam_client import LIAMClient
 
 # Try to import async client
 try:
-    from xdb_client import XDBClientAsync
+    from liam_client import LIAMClientAsync
     HAS_ASYNC = True
 except ImportError:
     HAS_ASYNC = False
@@ -58,7 +58,7 @@ def import_from_json(file_path: str, user_key: str) -> List[Dict]:
     with open(PRIVATE_KEY_PATH, 'r') as f:
         private_key = f.read()
     
-    client = XDBClient(api_key=API_KEY, private_key_pem=private_key)
+    client = LIAMClient(api_key=API_KEY, private_key_pem=private_key)
     
     results = []
     for i, memory in enumerate(memories):
@@ -101,7 +101,7 @@ def import_from_csv(file_path: str, user_key: str) -> List[Dict]:
     with open(PRIVATE_KEY_PATH, 'r') as f:
         private_key = f.read()
     
-    client = XDBClient(api_key=API_KEY, private_key_pem=private_key)
+    client = LIAMClient(api_key=API_KEY, private_key_pem=private_key)
     
     results = []
     for i, memory in enumerate(memories):
@@ -128,7 +128,7 @@ def export_to_json(user_key: str, output_path: str) -> int:
     with open(PRIVATE_KEY_PATH, 'r') as f:
         private_key = f.read()
     
-    client = XDBClient(api_key=API_KEY, private_key_pem=private_key)
+    client = LIAMClient(api_key=API_KEY, private_key_pem=private_key)
     
     result = client.list_memories(user_key=user_key, limit=1000)
     memories = result.get('data', [])
@@ -147,7 +147,7 @@ def bulk_change_tag(user_key: str, old_tag: str, new_tag: str) -> Dict:
     with open(PRIVATE_KEY_PATH, 'r') as f:
         private_key = f.read()
     
-    client = XDBClient(api_key=API_KEY, private_key_pem=private_key)
+    client = LIAMClient(api_key=API_KEY, private_key_pem=private_key)
     
     result = client.change_tag(
         user_key=user_key,
@@ -176,7 +176,7 @@ if HAS_ASYNC:
         with open(PRIVATE_KEY_PATH, 'r') as f:
             private_key = f.read()
         
-        async with XDBClientAsync(api_key=API_KEY, private_key_pem=private_key) as client:
+        async with LIAMClientAsync(api_key=API_KEY, private_key_pem=private_key) as client:
             # Convert to batch format
             batch = [
                 {"content": m['content'], "tag": m.get('tag')}
@@ -246,7 +246,7 @@ def create_sample_csv(output_path: str = "sample_memories.csv"):
 def main():
     """Demonstrate batch operations."""
     print("\n" + "=" * 60)
-    print("🔄 XDB API Client - Batch Operations")
+    print("🔄 LIAM API Client - Batch Operations")
     print("=" * 60)
     
     print("\nAvailable operations:")

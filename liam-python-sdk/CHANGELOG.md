@@ -8,9 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2025-01-XX
 
 ### Added
-- Initial release of XDB Python SDK
-- Synchronous client (`XDBClient`)
-- Asynchronous client (`XDBClientAsync`)
+- Initial release of LIAM Python SDK
+- Synchronous client (`LIAMClient`)
+- Asynchronous client (`LIAMClientAsync`)
 - ECDSA P-256 key generation utilities
 - Full API coverage for memory operations:
   - `create_memory`
