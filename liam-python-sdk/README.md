@@ -217,13 +217,12 @@ flake8 liam_client/
 
 ## Documentation
 
-Full API documentation: [https://liam.netxd.com/#/developers](https://liam.netxd.com/#/developers)
+Full API documentation: [https://web.askbuddy.ai/brain/#/developers](https://web.askbuddy.ai/brain/#/developers)
 
 ## Support
 
 - 📧 Email: support@netxd.com
-- 📖 Docs: [API Documentation](https://liam.netxd.com/#/developers)
-- 🐛 Issues: [GitHub Issues](https://github.com/anthropic-ai/liam-python-sdk/issues)
+- 📖 Docs: [API Documentation](https://web.askbuddy.ai/brain/#/developers)
 
 ## License
 
