@@ -2,10 +2,7 @@
 # LIAM Python SDK - Git Ignore
 # =============================================================================
 
-# SECURITY: Never commit private keys!
-*.pem
-private_key*
-secret*
+# Environment variables
 .env
 .env.*
 
@@ -88,8 +85,3 @@ site/
 # Distribution
 *.tar.gz
 *.whl
-
-# Sample/test files that may contain sensitive data
-sample_memories.json
-sample_memories.csv
-exported_memories.json

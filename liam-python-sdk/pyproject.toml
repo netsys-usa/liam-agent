@@ -29,7 +29,6 @@ classifiers = [
 ]
 
 dependencies = [
-    "cryptography>=41.0.0",
     "requests>=2.28.0",
 ]
 
@@ -48,11 +47,8 @@ all = ["aiohttp>=3.8.0"]
 [project.urls]
 Homepage = "https://liam.netxd.com"
 Documentation = "https://liam.netxd.com/#/developers"
-Repository = "https://github.com/anthropic-ai/liam-python-sdk"
-Issues = "https://github.com/anthropic-ai/liam-python-sdk/issues"
-
-[project.scripts]
-liam-keygen = "liam_client.crypto:main"
+Repository = "https://github.com/netsys-usa/liam-agent/tree/master/liam-python-sdk"
+Issues = "https://github.com/netsys-usa/liam-agent/issues"
 
 [tool.setuptools.packages.find]
 where = ["."]

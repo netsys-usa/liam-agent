@@ -7,8 +7,8 @@ Official Python SDK for the **LIAM Memory Management API**.
 
 ## Features
 
-- 🔐 **Secure Authentication** - ECDSA P-256 signature-based authentication
-- 🚀 **Async Support** - High-performance async client with aiohttp
+- 🚀 **Simple API** - Easy to use with just an API key
+- ⚡ **Async Support** - High-performance async client with aiohttp
 - 📦 **Batch Operations** - Create multiple memories concurrently
 - 🏷️ **Tag Management** - Organize memories with tags
 - 💬 **Chat Integration** - Query memories with natural language
@@ -23,52 +23,29 @@ Or install from source:
 
 ```bash
 git clone https://github.com/netsys-usa/liam-agent.git
-cd liam-python-sdk
+cd liam-agent/liam-python-sdk
 pip install -e .
 ```
 
 ## Quick Start
 
-### 1. Generate Key Pair
+### 1. Get Your API Key
 
-```python
-from liam_client import generate_key_pair, save_key_pair
+Sign in to LIAM and get your API key from the dashboard.
 
-# Generate and save keys
-save_key_pair('private_key.pem', 'public_key.pem')
-```
-
-Or via command line:
-
-```bash
-python -m liam_client.crypto
-```
-
-### 2. Register Your Connector
-
-Use the generated `public_key.pem` to register your connector with the LIAM API. You'll receive an API key.
-
-### 3. Initialize Client
+### 2. Initialize Client
 
 ```python
 from liam_client import LIAMClient
 
-# Load private key
-with open('private_key.pem', 'r') as f:
-    private_key = f.read()
-
-# Create client
-client = LIAMClient(
-    api_key="your-api-key",
-    private_key_pem=private_key
-)
+client = LIAMClient(api_key="your-api-key")
 
 # Verify connection
 health = client.health_check()
 print(f"API Status: {health['status']}")
 ```
 
-### 4. Create & Query Memories
+### 3. Create & Query Memories
 
 ```python
 # Create a memory
@@ -98,10 +75,7 @@ import asyncio
 from liam_client import LIAMClientAsync
 
 async def main():
-    async with LIAMClientAsync(
-        api_key="your-api-key",
-        private_key_pem=private_key
-    ) as client:
+    async with LIAMClientAsync(api_key="your-api-key") as client:
         # Create memories concurrently
         memories = [
             {"content": "Meeting at 3pm", "tag": "calendar"},
@@ -150,7 +124,6 @@ See the [examples](./examples) directory for more detailed usage:
 
 - [basic_usage.py](./examples/basic_usage.py) - Getting started
 - [async_example.py](./examples/async_example.py) - Async operations
-- [batch_operations.py](./examples/batch_operations.py) - Bulk memory creation
 
 ## Configuration
 
@@ -158,14 +131,12 @@ See the [examples](./examples) directory for more detailed usage:
 
 ```bash
 export LIAM_API_KEY="your-api-key"
-export LIAM_PRIVATE_KEY_PATH="/path/to/private_key.pem"
 ```
 
 ```python
-import os
 from liam_client import LIAMClient
 
-client = LIAMClient.from_env()  # Reads from environment variables
+client = LIAMClient.from_env()  # Reads LIAM_API_KEY from environment
 ```
 
 ### Custom Base URL
@@ -173,65 +144,26 @@ client = LIAMClient.from_env()  # Reads from environment variables
 ```python
 client = LIAMClient(
     api_key="your-api-key",
-    private_key_pem=private_key,
     base_url="https://custom-api.example.com/api"
 )
-```
-
-## Security Best Practices
-
-1. **Never commit private keys** - Add `*.pem` to `.gitignore`
-2. **Use environment variables** - Store credentials securely
-3. **Server-side only** - Never expose private keys to client-side code
-4. **Rotate keys regularly** - Generate new key pairs periodically
-
-## Development
-
-### Setup
-
-```bash
-git clone https://github.com/anthropic-ai/liam-python-sdk.git
-cd liam-python-sdk
-pip install -e ".[dev]"
-```
-
-### Run Tests
-
-```bash
-pytest tests/
-```
-
-### Code Style
-
-```bash
-black liam_client/
-flake8 liam_client/
 ```
 
 ## Requirements
 
 - Python 3.8+
-- cryptography >= 41.0.0
 - requests >= 2.28.0
 - aiohttp >= 3.8.0 (for async client)
 
 ## Documentation
 
-Full API documentation: [https://web.askbuddy.ai/brain/#/developers](https://web.askbuddy.ai/brain/#/developers)
+Full API documentation: [https://liam.netxd.com/#/developers](https://liam.netxd.com/#/developers)
 
 ## Support
 
 - 📧 Email: support@netxd.com
-- 📖 Docs: [API Documentation](https://web.askbuddy.ai/brain/#/developers)
+- 📖 Docs: [API Documentation](https://liam.netxd.com/#/developers)
+- 🐛 Issues: [GitHub Issues](https://github.com/netsys-usa/liam-agent/issues)
 
 ## License
 
 MIT License - see [LICENSE](LICENSE) file for details.
-
-## Changelog
-
-### v1.0.0 (2025-01-XX)
-- Initial release
-- Sync and async clients
-- Full API coverage
-- Key generation utilities

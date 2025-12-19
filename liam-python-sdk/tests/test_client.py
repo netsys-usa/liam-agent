@@ -5,11 +5,10 @@ Run with: pytest tests/
 """
 
 import pytest
-import json
-from unittest.mock import Mock, patch, MagicMock
+from unittest.mock import Mock, patch
 
-from liam_client import LIAMClient, generate_key_pair
-from liam_client.client import LIAMClientError, LIAMAuthenticationError, LIAMAPIError
+from liam_client import LIAMClient
+from liam_client.client import LIAMClientError, LIAMAPIError
 
 
 # =============================================================================
@@ -17,118 +16,38 @@ from liam_client.client import LIAMClientError, LIAMAuthenticationError, LIAMAPI
 # =============================================================================
 
 @pytest.fixture
-def key_pair():
-    """Generate a test key pair."""
-    return generate_key_pair()
-
-
-@pytest.fixture
-def client(key_pair):
+def client():
     """Create a test client."""
-    private_key, _ = key_pair
-    return LIAMClient(
-        api_key="test-api-key",
-        private_key_pem=private_key
-    )
-
-
-# =============================================================================
-# Key Generation Tests
-# =============================================================================
-
-def test_generate_key_pair():
-    """Test key pair generation."""
-    private_pem, public_pem = generate_key_pair()
-    
-    assert private_pem.startswith("-----BEGIN PRIVATE KEY-----")
-    assert private_pem.endswith("-----END PRIVATE KEY-----\n")
-    assert public_pem.startswith("-----BEGIN PUBLIC KEY-----")
-    assert public_pem.endswith("-----END PUBLIC KEY-----\n")
-
-
-def test_key_pair_is_unique():
-    """Test that each key pair is unique."""
-    pair1 = generate_key_pair()
-    pair2 = generate_key_pair()
-    
-    assert pair1[0] != pair2[0]  # Private keys differ
-    assert pair1[1] != pair2[1]  # Public keys differ
+    return LIAMClient(api_key="test-api-key")
 
 
 # =============================================================================
 # Client Initialization Tests
 # =============================================================================
 
-def test_client_initialization(key_pair):
+def test_client_initialization():
     """Test client initialization."""
-    private_key, _ = key_pair
-    
-    client = LIAMClient(
-        api_key="test-key",
-        private_key_pem=private_key
-    )
+    client = LIAMClient(api_key="test-key")
     
     assert client.api_key == "test-key"
     assert client.base_url == LIAMClient.DEFAULT_BASE_URL
 
 
-def test_client_custom_base_url(key_pair):
+def test_client_custom_base_url():
     """Test client with custom base URL."""
-    private_key, _ = key_pair
-    
     client = LIAMClient(
         api_key="test-key",
-        private_key_pem=private_key,
         base_url="https://custom.api.com"
     )
     
     assert client.base_url == "https://custom.api.com"
 
 
-def test_client_invalid_private_key():
-    """Test client with invalid private key."""
-    with pytest.raises(LIAMAuthenticationError):
-        LIAMClient(
-            api_key="test-key",
-            private_key_pem="invalid-key"
-        )
-
-
-# =============================================================================
-# Signature Tests
-# =============================================================================
-
-def test_sign_payload(client):
-    """Test payload signing."""
-    payload = {"test": "data", "number": 123}
+def test_client_custom_timeout():
+    """Test client with custom timeout."""
+    client = LIAMClient(api_key="test-key", timeout=60)
     
-    signature = client._sign_payload(payload)
-    
-    assert isinstance(signature, str)
-    assert len(signature) > 0
-    # Base64 encoded signature should be ASCII
-    assert signature.isascii()
-
-
-def test_sign_payload_consistency(client):
-    """Test that same payload produces same signature."""
-    payload = {"key": "value"}
-    
-    sig1 = client._sign_payload(payload)
-    sig2 = client._sign_payload(payload)
-    
-    assert sig1 == sig2
-
-
-def test_sign_payload_different_for_different_data(client):
-    """Test that different payloads produce different signatures."""
-    payload1 = {"key": "value1"}
-    payload2 = {"key": "value2"}
-    
-    sig1 = client._sign_payload(payload1)
-    sig2 = client._sign_payload(payload2)
-    
-    assert sig1 != sig2
+    assert client.timeout == 60
 
 
 # =============================================================================
@@ -178,6 +97,24 @@ def test_create_memory(mock_post, client):
 
 
 @patch('liam_client.client.requests.post')
+def test_create_memory_without_tag(mock_post, client):
+    """Test memory creation without tag."""
+    mock_response = Mock()
+    mock_response.status_code = 200
+    mock_response.json.return_value = {"status": "Success"}
+    mock_post.return_value = mock_response
+    
+    result = client.create_memory(
+        user_key="user123",
+        content="Test memory"
+    )
+    
+    call_args = mock_post.call_args
+    request_body = call_args[1]["json"]
+    assert "tag" not in request_body
+
+
+@patch('liam_client.client.requests.post')
 def test_list_memories(mock_post, client):
     """Test listing memories."""
     mock_response = Mock()
@@ -192,6 +129,26 @@ def test_list_memories(mock_post, client):
     
     assert result["status"] == "Success"
     assert len(result["data"]) == 1
+
+
+@patch('liam_client.client.requests.post')
+def test_chat(mock_post, client):
+    """Test chat endpoint."""
+    mock_response = Mock()
+    mock_response.status_code = 200
+    mock_response.json.return_value = {
+        "status": "Success",
+        "data": "Based on your memories, you prefer morning meetings."
+    }
+    mock_post.return_value = mock_response
+    
+    result = client.chat(
+        user_key="user123",
+        query="When do I prefer meetings?"
+    )
+    
+    assert result["status"] == "Success"
+    assert "morning" in result["data"]
 
 
 @patch('liam_client.client.requests.post')
@@ -210,6 +167,24 @@ def test_api_error_handling(mock_post, client):
     
     assert "Invalid request" in str(exc_info.value)
     assert exc_info.value.status_code == 400
+
+
+@patch('liam_client.client.requests.post')
+def test_api_error_with_response(mock_post, client):
+    """Test API error includes response data."""
+    mock_response = Mock()
+    mock_response.status_code = 401
+    mock_response.json.return_value = {
+        "status": "Failed",
+        "message": "Unauthorized",
+        "code": "AUTH_ERROR"
+    }
+    mock_post.return_value = mock_response
+    
+    with pytest.raises(LIAMAPIError) as exc_info:
+        client.health_check()
+    
+    assert exc_info.value.response["code"] == "AUTH_ERROR"
 
 
 # =============================================================================
@@ -256,11 +231,33 @@ def test_change_tag(mock_post, client):
     assert request_body["newTag"] == "business"
 
 
+@patch('liam_client.client.requests.post')
+def test_get_by_tag(mock_post, client):
+    """Test getting memories by tag."""
+    mock_response = Mock()
+    mock_response.status_code = 200
+    mock_response.json.return_value = {
+        "status": "Success",
+        "data": [{"id": "1", "content": "Work memory"}]
+    }
+    mock_post.return_value = mock_response
+    
+    result = client.get_by_tag(
+        user_key="user123",
+        tag="work",
+        limit=10,
+        offset=0
+    )
+    
+    assert result["status"] == "Success"
+    assert len(result["data"]) == 1
+
+
 # =============================================================================
 # Environment Variable Tests
 # =============================================================================
 
-def test_from_env_missing_api_key(key_pair, monkeypatch):
+def test_from_env_missing_api_key(monkeypatch):
     """Test from_env with missing API key."""
     monkeypatch.delenv("LIAM_API_KEY", raising=False)
     
@@ -270,13 +267,20 @@ def test_from_env_missing_api_key(key_pair, monkeypatch):
     assert "LIAM_API_KEY" in str(exc_info.value)
 
 
-def test_from_env_missing_private_key(monkeypatch):
-    """Test from_env with missing private key."""
-    monkeypatch.setenv("LIAM_API_KEY", "test-key")
-    monkeypatch.delenv("LIAM_PRIVATE_KEY_PATH", raising=False)
-    monkeypatch.delenv("LIAM_PRIVATE_KEY", raising=False)
+def test_from_env_success(monkeypatch):
+    """Test from_env with valid API key."""
+    monkeypatch.setenv("LIAM_API_KEY", "test-api-key")
     
-    with pytest.raises(LIAMClientError) as exc_info:
-        LIAMClient.from_env()
+    client = LIAMClient.from_env()
     
-    assert "LIAM_PRIVATE_KEY" in str(exc_info.value)
+    assert client.api_key == "test-api-key"
+
+
+def test_from_env_with_base_url(monkeypatch):
+    """Test from_env with custom base URL."""
+    monkeypatch.setenv("LIAM_API_KEY", "test-api-key")
+    monkeypatch.setenv("LIAM_BASE_URL", "https://custom.api.com")
+    
+    client = LIAMClient.from_env()
+    
+    assert client.base_url == "https://custom.api.com"

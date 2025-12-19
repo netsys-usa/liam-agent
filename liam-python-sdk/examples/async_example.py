@@ -10,9 +10,8 @@ This example demonstrates high-performance async operations:
 Requires: pip install aiohttp
 
 Before running:
-1. Generate keys: python -m liam_client.crypto
-2. Register your connector with the public key to get an API key
-3. Update the configuration below
+1. Get your API key from the LIAM dashboard
+2. Update the API_KEY below
 """
 
 import asyncio
@@ -26,18 +25,7 @@ from liam_client import LIAMClientAsync
 # =============================================================================
 
 API_KEY = "your-api-key-here"
-PRIVATE_KEY_PATH = "private_key.pem"
 USER_KEY = "example_user_123"
-
-# =============================================================================
-# Helper Functions
-# =============================================================================
-
-def load_private_key() -> str:
-    """Load private key from file."""
-    with open(PRIVATE_KEY_PATH, 'r') as f:
-        return f.read()
-
 
 # =============================================================================
 # Examples
@@ -49,13 +37,8 @@ async def example_basic_async():
     print("🚀 Basic Async Operations")
     print("=" * 50)
     
-    private_key = load_private_key()
-    
     # Use context manager for connection pooling
-    async with LIAMClientAsync(
-        api_key=API_KEY,
-        private_key_pem=private_key
-    ) as client:
+    async with LIAMClientAsync(api_key=API_KEY) as client:
         # Health check
         health = await client.health_check()
         print(f"API Status: {health.get('status')}")
@@ -79,8 +62,6 @@ async def example_concurrent_creation():
     print("⚡ Concurrent Memory Creation")
     print("=" * 50)
     
-    private_key = load_private_key()
-    
     memories = [
         {"content": "Meeting notes from Monday standup", "tag": "work"},
         {"content": "Grocery list: apples, bananas, oranges", "tag": "shopping"},
@@ -94,10 +75,7 @@ async def example_concurrent_creation():
         {"content": "Vacation ideas: Japan, Iceland, New Zealand", "tag": "travel"},
     ]
     
-    async with LIAMClientAsync(
-        api_key=API_KEY,
-        private_key_pem=private_key
-    ) as client:
+    async with LIAMClientAsync(api_key=API_KEY) as client:
         print(f"Creating {len(memories)} memories concurrently...")
         
         start_time = time.time()
@@ -124,14 +102,9 @@ async def example_parallel_tag_fetch():
     print("🏷️ Parallel Tag Fetching")
     print("=" * 50)
     
-    private_key = load_private_key()
-    
     tags = ["work", "personal", "health", "shopping", "learning"]
     
-    async with LIAMClientAsync(
-        api_key=API_KEY,
-        private_key_pem=private_key
-    ) as client:
+    async with LIAMClientAsync(api_key=API_KEY) as client:
         print(f"Fetching memories for {len(tags)} tags in parallel...")
         
         start_time = time.time()
@@ -151,21 +124,16 @@ async def example_parallel_tag_fetch():
 
 
 async def example_high_throughput():
-    """High-throughput batch operations with rate limiting."""
+    """High-throughput batch operations."""
     print("\n" + "=" * 50)
     print("🔥 High Throughput Example")
     print("=" * 50)
-    
-    private_key = load_private_key()
     
     # Generate test memories
     total_count = 50
     batch_size = 10
     
-    async with LIAMClientAsync(
-        api_key=API_KEY,
-        private_key_pem=private_key
-    ) as client:
+    async with LIAMClientAsync(api_key=API_KEY) as client:
         print(f"Creating {total_count} memories in batches of {batch_size}...")
         
         start_time = time.time()
@@ -184,7 +152,7 @@ async def example_high_throughput():
             results = await client.create_memories_batch(
                 USER_KEY, 
                 memories,
-                concurrency=batch_size  # Limit concurrent requests
+                concurrency=batch_size
             )
             
             success_count = sum(
@@ -195,7 +163,7 @@ async def example_high_throughput():
             
             print(f"  Batch {batch_num // batch_size + 1}: {success_count}/{len(memories)}")
             
-            # Small delay between batches to avoid rate limiting
+            # Small delay between batches
             await asyncio.sleep(0.1)
         
         elapsed = time.time() - start_time
@@ -225,13 +193,9 @@ async def main():
         print("✅ All async examples completed!")
         print("=" * 60)
         
-    except FileNotFoundError:
-        print("\n❌ Error: Private key file not found!")
-        print("Run 'python -m liam_client.crypto' to generate keys.")
-        
     except Exception as e:
         print(f"\n❌ Error: {e}")
-        print("Make sure you've updated API_KEY and USER_KEY.")
+        print("Make sure you've updated API_KEY.")
 
 
 if __name__ == "__main__":

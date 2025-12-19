@@ -9,9 +9,8 @@ This example demonstrates the fundamental operations of the LIAM client:
 - Working with tags
 
 Before running:
-1. Generate keys: python -m liam_client.crypto
-2. Register your connector with the public key to get an API key
-3. Update the configuration below
+1. Get your API key from the LIAM dashboard
+2. Update the API_KEY below
 """
 
 from liam_client import LIAMClient
@@ -21,7 +20,6 @@ from liam_client import LIAMClient
 # =============================================================================
 
 API_KEY = "your-api-key-here"
-PRIVATE_KEY_PATH = "private_key.pem"
 USER_KEY = "example_user_123"  # Your user's unique identifier
 
 # =============================================================================
@@ -30,13 +28,7 @@ USER_KEY = "example_user_123"  # Your user's unique identifier
 
 def get_client() -> LIAMClient:
     """Create and return the LIAM client."""
-    with open(PRIVATE_KEY_PATH, 'r') as f:
-        private_key = f.read()
-    
-    return LIAMClient(
-        api_key=API_KEY,
-        private_key_pem=private_key
-    )
+    return LIAMClient(api_key=API_KEY)
 
 
 # =============================================================================
@@ -206,13 +198,9 @@ def main():
         print("✅ All examples completed successfully!")
         print("=" * 60)
         
-    except FileNotFoundError:
-        print("\n❌ Error: Private key file not found!")
-        print("Run 'python -m liam_client.crypto' to generate keys.")
-        
     except Exception as e:
         print(f"\n❌ Error: {e}")
-        print("Make sure you've updated API_KEY and USER_KEY in this file.")
+        print("Make sure you've updated API_KEY in this file.")
 
 
 if __name__ == "__main__":
