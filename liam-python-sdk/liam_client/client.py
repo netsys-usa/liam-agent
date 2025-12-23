@@ -279,7 +279,7 @@ class LIAMClient:
             payload["tag"] = tag
         if session_id:
             payload["sessionId"] = session_id
-        return self._make_request("memory/create-with-image", payload)
+        return self._make_request("memory/create", payload)
     
     def memory_status(
         self,
@@ -363,7 +363,7 @@ class LIAMClient:
         payload = {"userKey": user_key}
         if memory_id:
             payload["memoryId"] = memory_id
-        return self._make_request("memory/summarize", payload)
+        return self._make_request("memory/summarize-memory", payload)
     
     def forget_memory(
         self,
@@ -384,7 +384,7 @@ class LIAMClient:
         """
         payload = {
             "userKey": user_key,
-            "memoryId": memory_id,
+            "queryHash": memory_id,
             "permanent": permanent
         }
         return self._make_request("memory/forget", payload)
