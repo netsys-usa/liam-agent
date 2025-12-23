@@ -321,7 +321,7 @@ class LIAMClient:
         payload = {"userKey": user_key, "limit": limit}
         if query:
             payload["query"] = query
-        return self._make_request("memory/list", payload)
+        return self._make_request("memory/list-memory", payload)
     
     def chat(
         self,
