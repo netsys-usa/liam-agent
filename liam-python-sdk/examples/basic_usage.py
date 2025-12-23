@@ -10,8 +10,15 @@ This example demonstrates the fundamental operations of the LIAM client:
 
 Before running:
 1. Get your API key from the LIAM dashboard
-2. Update the API_KEY below
+2. Get your private key (PEM format)
+3. Update the configuration below
 """
+
+import sys
+from pathlib import Path
+
+# Add parent directory to path so we can import liam_client without installing
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from liam_client import LIAMClient
 
@@ -19,8 +26,20 @@ from liam_client import LIAMClient
 # Configuration - UPDATE THESE VALUES
 # =============================================================================
 
-API_KEY = "your-api-key-here"
-USER_KEY = "example_user_123"  # Your user's unique identifier
+API_KEY = "api-key"
+USER_KEY = "user-key"  # Your user's unique identifier
+
+# Option 1: Load from file
+PRIVATE_KEY_PATH = "private-key.pem"
+with open(PRIVATE_KEY_PATH, 'r') as f:
+    PRIVATE_KEY = f.read()
+
+# Option 2: Paste your PEM key directly (keep the triple quotes)
+# PRIVATE_KEY = """-----BEGIN EC PRIVATE KEY-----
+# MHQCAQEEIxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+# xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+# xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx==
+# -----END EC PRIVATE KEY-----"""
 
 # =============================================================================
 # Initialize Client
@@ -28,7 +47,7 @@ USER_KEY = "example_user_123"  # Your user's unique identifier
 
 def get_client() -> LIAMClient:
     """Create and return the LIAM client."""
-    return LIAMClient(api_key=API_KEY)
+    return LIAMClient(api_key=API_KEY, private_key=PRIVATE_KEY)
 
 
 # =============================================================================
@@ -38,7 +57,7 @@ def get_client() -> LIAMClient:
 def example_health_check():
     """Verify API connection."""
     print("\n" + "=" * 50)
-    print("🏥 Health Check")
+    print("Health Check")
     print("=" * 50)
     
     client = get_client()
@@ -53,17 +72,17 @@ def example_health_check():
 def example_create_memories():
     """Create some example memories."""
     print("\n" + "=" * 50)
-    print("📝 Creating Memories")
+    print("Creating Memories")
     print("=" * 50)
     
     client = get_client()
     
     memories = [
-        ("I prefer morning meetings before 10am", "preferences"),
-        ("My favorite coffee is a flat white with oat milk", "preferences"),
-        ("Project deadline is next Friday", "work"),
-        ("Doctor appointment on Monday at 2pm", "health"),
-        ("Need to buy: milk, eggs, bread, cheese", "shopping"),
+        ("I prefer morning meetings before 10am", "FOOD_PREFERENCES"),
+        ("My favorite coffee is a flat white with oat milk", "FOOD_PREFERENCES"),
+        ("Project deadline is next Friday", "WORK"),
+        ("Doctor appointment on Monday at 2pm", "HEALTH"),
+        ("Need to buy: milk, eggs, bread, cheese", "SHOPPING"),
     ]
     
     for content, tag in memories:
@@ -72,7 +91,7 @@ def example_create_memories():
             content=content,
             tag=tag
         )
-        status = "✓" if result.get('status') == 'Success' else "✗"
+        status = "[OK]" if result.get('status') == 'Success' else "[FAIL]"
         print(f"  {status} [{tag}] {content[:40]}...")
     
     print(f"\nCreated {len(memories)} memories")
@@ -81,18 +100,17 @@ def example_create_memories():
 def example_list_memories():
     """List all memories for the user."""
     print("\n" + "=" * 50)
-    print("📋 Listing Memories")
+    print("Listing Memories")
     print("=" * 50)
     
     client = get_client()
     result = client.list_memories(user_key=USER_KEY, limit=10)
     
-    print(f"Status: {result.get('status')}")
-    
+    print(f"Status: {result.get('status')}")    
     if result.get('data'):
-        print(f"Found {len(result['data'])} memories:")
-        for i, memory in enumerate(result['data'], 1):
-            print(f"  {i}. {memory}")
+        print(f"Found {len(result['data']['memories'])} memories:")
+        for i, memory in enumerate(result['data']['memories'], 1):
+            print(f"  {i}. {memory['memory']}")
     else:
         print("No memories found")
 
@@ -100,7 +118,7 @@ def example_list_memories():
 def example_search_memories():
     """Search memories with a query."""
     print("\n" + "=" * 50)
-    print("🔍 Searching Memories")
+    print("Searching Memories")
     print("=" * 50)
     
     client = get_client()
@@ -117,33 +135,10 @@ def example_search_memories():
         print(f"  '{query}': {count} results")
 
 
-def example_chat():
-    """Chat with memory context."""
-    print("\n" + "=" * 50)
-    print("💬 Chat with Memory")
-    print("=" * 50)
-    
-    client = get_client()
-    
-    questions = [
-        "What time do I prefer for meetings?",
-        "What kind of coffee do I like?",
-        "When is my doctor appointment?",
-    ]
-    
-    for question in questions:
-        print(f"\nQ: {question}")
-        result = client.chat(
-            user_key=USER_KEY,
-            query=question
-        )
-        print(f"A: {result.get('data', 'No response')}")
-
-
 def example_tags():
     """Work with tags."""
     print("\n" + "=" * 50)
-    print("🏷️ Tag Operations")
+    print("Tag Operations")
     print("=" * 50)
     
     client = get_client()
@@ -153,15 +148,18 @@ def example_tags():
     print(f"All tags: {result.get('data', [])}")
     
     # Get memories by tag
-    result = client.get_by_tag(user_key=USER_KEY, tag="preferences")
-    count = len(result.get('data', []))
+    result = client.get_by_tag(user_key=USER_KEY, tag="FOOD_PREFERENCES")
+    
+    data = result.get('data', [])    
+    
+    count = len(data['memories'])
     print(f"Memories with 'preferences' tag: {count}")
 
 
 def example_summarize():
     """Get a summary of memories."""
     print("\n" + "=" * 50)
-    print("📊 Summarize Memories")
+    print("Summarize Memories")
     print("=" * 50)
     
     client = get_client()
@@ -177,30 +175,30 @@ def example_summarize():
 def main():
     """Run all examples."""
     print("\n" + "=" * 60)
-    print("🚀 LIAM API Client - Basic Usage Examples")
+    print("LIAM API Client - Basic Usage Examples")
     print("=" * 60)
     
     try:
         # Check connection first
         if not example_health_check():
-            print("\n❌ API health check failed. Check your configuration.")
+            print("\n[ERROR] API health check failed. Check your configuration.")
             return
         
         # Run examples
         example_create_memories()
         example_list_memories()
         example_search_memories()
-        example_chat()
         example_tags()
-        example_summarize()
         
         print("\n" + "=" * 60)
-        print("✅ All examples completed successfully!")
+        print("[SUCCESS] All examples completed!")
         print("=" * 60)
         
     except Exception as e:
-        print(f"\n❌ Error: {e}")
-        print("Make sure you've updated API_KEY in this file.")
+        print(f"\n[ERROR] {e}")
+        print("\nMake sure you've configured:")
+        print("  - API_KEY: Your API key from LIAM dashboard")
+        print("  - PRIVATE_KEY: Your PEM-formatted private key")
 
 
 if __name__ == "__main__":

@@ -8,12 +8,17 @@ Requires: pip install aiohttp
 """
 
 import json
+import base64
 import asyncio
 from typing import Optional, Dict, Any, List
 
 import aiohttp
 
-from .client import LIAMClientError, LIAMAPIError
+from cryptography.hazmat.primitives import hashes, serialization
+from cryptography.hazmat.primitives.asymmetric import ec
+from cryptography.hazmat.backends import default_backend
+
+from .client import LIAMClientError, LIAMAuthenticationError, LIAMAPIError
 
 
 class LIAMClientAsync:
@@ -22,11 +27,12 @@ class LIAMClientAsync:
     
     Best used as an async context manager for connection pooling:
     
-        async with LIAMClientAsync(api_key="your-key") as client:
+        async with LIAMClientAsync(api_key="your-key", private_key="base64-key") as client:
             result = await client.create_memory(...)
     
     Args:
         api_key: Your API key from connector registration
+        private_key: Your private key (base64 encoded or PEM format)
         base_url: Optional custom API base URL
         timeout: Request timeout in seconds (default: 30)
     """
@@ -36,6 +42,7 @@ class LIAMClientAsync:
     def __init__(
         self,
         api_key: str,
+        private_key: str,
         base_url: str = None,
         timeout: int = 30
     ):
@@ -43,6 +50,52 @@ class LIAMClientAsync:
         self.base_url = base_url or self.DEFAULT_BASE_URL
         self.timeout = aiohttp.ClientTimeout(total=timeout)
         self._session: Optional[aiohttp.ClientSession] = None
+        
+        # Load private key (supports both base64 and PEM formats)
+        try:
+            self.private_key = self._load_private_key(private_key)
+        except Exception as e:
+            raise LIAMAuthenticationError(f"Failed to load private key: {e}")
+    
+    def _load_private_key(self, key_data: str):
+        """
+        Load private key from base64 or PEM format.
+        
+        Args:
+            key_data: Base64-encoded key or PEM-formatted key
+            
+        Returns:
+            Loaded private key object
+        """
+        key_data = key_data.strip()
+        
+        # Check if it's PEM format
+        if key_data.startswith('-----BEGIN'):
+            key_bytes = key_data.encode()
+        else:
+            # Assume base64 encoded - decode to get PEM or DER
+            try:
+                decoded = base64.b64decode(key_data)
+                # Check if decoded data is PEM
+                if decoded.startswith(b'-----BEGIN'):
+                    key_bytes = decoded
+                else:
+                    # It's DER format, convert to PEM
+                    key_bytes = decoded
+                    return serialization.load_der_private_key(
+                        key_bytes,
+                        password=None,
+                        backend=default_backend()
+                    )
+            except Exception:
+                # Try as raw base64 PEM content
+                key_bytes = key_data.encode()
+        
+        return serialization.load_pem_private_key(
+            key_bytes,
+            password=None,
+            backend=default_backend()
+        )
     
     async def __aenter__(self) -> "LIAMClientAsync":
         """Async context manager entry - creates session."""
@@ -61,13 +114,33 @@ class LIAMClientAsync:
             await self._session.close()
             self._session = None
     
+    def _sign_payload(self, payload: Dict[str, Any]) -> str:
+        """
+        Sign a payload using ECDSA with SHA-256.
+        
+        Args:
+            payload: The request payload to sign
+            
+        Returns:
+            Base64-encoded signature
+        """
+        payload_str = json.dumps(payload, separators=(',', ':'))
+        payload_bytes = payload_str.encode('utf-8')
+        
+        signature = self.private_key.sign(
+            payload_bytes,
+            ec.ECDSA(hashes.SHA256())
+        )
+        
+        return base64.b64encode(signature).decode('utf-8')
+    
     async def _make_request(
         self,
         endpoint: str,
         payload: Dict[str, Any]
     ) -> Dict[str, Any]:
         """
-        Make an async request to the API.
+        Make an authenticated async request to the API.
         
         Args:
             endpoint: API endpoint (e.g., 'memory/create')
@@ -81,10 +154,12 @@ class LIAMClientAsync:
             aiohttp.ClientError: On network errors
         """
         url = f"{self.base_url}/{endpoint}"
+        signature = self._sign_payload(payload)
         
         headers = {
             "Content-Type": "application/json",
-            "apiKey": self.api_key
+            "apiKey": self.api_key,
+            "signature": signature
         }
         
         # Use existing session or create temporary one

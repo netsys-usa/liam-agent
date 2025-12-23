@@ -7,7 +7,7 @@ Official Python SDK for the **LIAM Memory Management API**.
 
 ## Features
 
-- 🚀 **Simple API** - Easy to use with just an API key
+- 🔐 **Secure Authentication** - ECDSA signature-based API authentication
 - ⚡ **Async Support** - High-performance async client with aiohttp
 - 📦 **Batch Operations** - Create multiple memories concurrently
 - 🏷️ **Tag Management** - Organize memories with tags
@@ -29,16 +29,21 @@ pip install -e .
 
 ## Quick Start
 
-### 1. Get Your API Key
+### 1. Get Your Credentials
 
-Sign in to LIAM and get your API key from the dashboard.
+Sign in to LIAM and get:
+- **API Key** - from the dashboard
+- **Private Key** - your base64-encoded ECDSA private key
 
 ### 2. Initialize Client
 
 ```python
 from liam_client import LIAMClient
 
-client = LIAMClient(api_key="your-api-key")
+client = LIAMClient(
+    api_key="your-api-key",
+    private_key="your-base64-encoded-private-key"
+)
 
 # Verify connection
 health = client.health_check()
@@ -75,7 +80,10 @@ import asyncio
 from liam_client import LIAMClientAsync
 
 async def main():
-    async with LIAMClientAsync(api_key="your-api-key") as client:
+    async with LIAMClientAsync(
+        api_key="your-api-key",
+        private_key="your-base64-encoded-private-key"
+    ) as client:
         # Create memories concurrently
         memories = [
             {"content": "Meeting at 3pm", "tag": "calendar"},
@@ -131,12 +139,14 @@ See the [examples](./examples) directory for more detailed usage:
 
 ```bash
 export LIAM_API_KEY="your-api-key"
+export LIAM_PRIVATE_KEY_PATH="/path/to/private_key.pem"
+# Or use LIAM_PRIVATE_KEY for the key content directly
 ```
 
 ```python
 from liam_client import LIAMClient
 
-client = LIAMClient.from_env()  # Reads LIAM_API_KEY from environment
+client = LIAMClient.from_env()  # Reads from environment variables
 ```
 
 ### Custom Base URL
@@ -144,6 +154,7 @@ client = LIAMClient.from_env()  # Reads LIAM_API_KEY from environment
 ```python
 client = LIAMClient(
     api_key="your-api-key",
+    private_key_pem=private_key,
     base_url="https://custom-api.example.com/api"
 )
 ```
@@ -152,6 +163,7 @@ client = LIAMClient(
 
 - Python 3.8+
 - requests >= 2.28.0
+- cryptography >= 41.0.0
 - aiohttp >= 3.8.0 (for async client)
 
 ## Documentation

@@ -7,12 +7,22 @@ the LIAM Memory Management API.
 
 import os
 import json
+import base64
 import requests
 from typing import Optional, Dict, Any, List
+
+from cryptography.hazmat.primitives import hashes, serialization
+from cryptography.hazmat.primitives.asymmetric import ec
+from cryptography.hazmat.backends import default_backend
 
 
 class LIAMClientError(Exception):
     """Base exception for LIAM client errors."""
+    pass
+
+
+class LIAMAuthenticationError(LIAMClientError):
+    """Raised when authentication fails."""
     pass
 
 
@@ -31,26 +41,77 @@ class LIAMClient:
     
     Args:
         api_key: Your API key from connector registration
+        private_key: Your private key (base64 encoded or PEM format)
         base_url: Optional custom API base URL
         timeout: Request timeout in seconds (default: 30)
     
     Example:
-        >>> client = LIAMClient(api_key="your-api-key")
+        >>> client = LIAMClient(
+        ...     api_key="your-api-key",
+        ...     private_key="base64-encoded-key-here"
+        ... )
         >>> client.health_check()
         {'status': 'Success', 'message': 'OK'}
     """
     
-    DEFAULT_BASE_URL = "https://api.liam.netxd.com/api"
+    DEFAULT_BASE_URL = "https://web.askbuddy.ai/devspacexdb/api"
     
     def __init__(
         self,
         api_key: str,
+        private_key: str,
         base_url: str = None,
         timeout: int = 30
     ):
         self.api_key = api_key
         self.base_url = base_url or self.DEFAULT_BASE_URL
         self.timeout = timeout
+        
+        # Load private key (supports both base64 and PEM formats)
+        try:
+            self.private_key = self._load_private_key(private_key)
+        except Exception as e:
+            raise LIAMAuthenticationError(f"Failed to load private key: {e}")
+    
+    def _load_private_key(self, key_data: str):
+        """
+        Load private key from base64 or PEM format.
+        
+        Args:
+            key_data: Base64-encoded key or PEM-formatted key
+            
+        Returns:
+            Loaded private key object
+        """
+        key_data = key_data.strip()
+        
+        # Check if it's PEM format
+        if key_data.startswith('-----BEGIN'):
+            key_bytes = key_data.encode()
+        else:
+            # Assume base64 encoded - decode to get PEM or DER
+            try:
+                decoded = base64.b64decode(key_data)
+                # Check if decoded data is PEM
+                if decoded.startswith(b'-----BEGIN'):
+                    key_bytes = decoded
+                else:
+                    # It's DER format, convert to PEM
+                    key_bytes = decoded
+                    return serialization.load_der_private_key(
+                        key_bytes,
+                        password=None,
+                        backend=default_backend()
+                    )
+            except Exception:
+                # Try as raw base64 PEM content
+                key_bytes = key_data.encode()
+        
+        return serialization.load_pem_private_key(
+            key_bytes,
+            password=None,
+            backend=default_backend()
+        )
     
     @classmethod
     def from_env(cls, base_url: str = None) -> "LIAMClient":
@@ -59,6 +120,8 @@ class LIAMClient:
         
         Environment variables:
             LIAM_API_KEY: Your API key
+            LIAM_PRIVATE_KEY: Private key (base64 or PEM format)
+            LIAM_PRIVATE_KEY_PATH: Path to private key file (alternative)
             LIAM_BASE_URL: Optional custom base URL
         
         Returns:
@@ -68,9 +131,43 @@ class LIAMClient:
         if not api_key:
             raise LIAMClientError("LIAM_API_KEY environment variable not set")
         
+        # Try direct key first, then path
+        private_key = os.environ.get("LIAM_PRIVATE_KEY")
+        if not private_key:
+            key_path = os.environ.get("LIAM_PRIVATE_KEY_PATH")
+            if key_path:
+                with open(key_path, 'r') as f:
+                    private_key = f.read()
+            else:
+                raise LIAMClientError(
+                    "LIAM_PRIVATE_KEY or LIAM_PRIVATE_KEY_PATH environment variable not set"
+                )
+        
         base_url = base_url or os.environ.get("LIAM_BASE_URL")
         
-        return cls(api_key=api_key, base_url=base_url)
+        return cls(api_key=api_key, private_key=private_key, base_url=base_url)
+    
+    def _sign_payload(self, payload: Dict[str, Any]) -> str:
+        """
+        Sign a payload using ECDSA with SHA-256.
+        
+        Args:
+            payload: The request payload to sign
+            
+        Returns:
+            Base64-encoded signature
+        """
+        # Serialize payload to JSON (compact, no spaces)
+        payload_str = json.dumps(payload, separators=(',', ':'))
+        payload_bytes = payload_str.encode('utf-8')
+        
+        # Sign with ECDSA
+        signature = self.private_key.sign(
+            payload_bytes,
+            ec.ECDSA(hashes.SHA256())
+        )
+        
+        return base64.b64encode(signature).decode('utf-8')
     
     def _make_request(
         self,
@@ -79,7 +176,7 @@ class LIAMClient:
         timeout: int = None
     ) -> Dict[str, Any]:
         """
-        Make a request to the API.
+        Make an authenticated request to the API.
         
         Args:
             endpoint: API endpoint (e.g., 'memory/create')
@@ -94,10 +191,12 @@ class LIAMClient:
             requests.exceptions.RequestException: On network errors
         """
         url = f"{self.base_url}/{endpoint}"
+        signature = self._sign_payload(payload)
         
         headers = {
             "Content-Type": "application/json",
-            "apiKey": self.api_key
+            "apiKey": self.api_key,
+            "signature": signature
         }
         
         response = requests.post(
@@ -302,7 +401,7 @@ class LIAMClient:
         Returns:
             API response with list of tags
         """
-        return self._make_request("memory/list-tags", {"userKey": user_key})
+        return self._make_request("memory/list-tag", {"userKey": user_key})
     
     def add_tag(
         self,
@@ -349,7 +448,7 @@ class LIAMClient:
             "limit": limit,
             "offset": offset
         }
-        return self._make_request("memory/get-by-tag", payload)
+        return self._make_request("memory/by-tag", payload)
     
     def change_tag(
         self,
