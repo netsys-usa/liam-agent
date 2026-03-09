@@ -17,6 +17,12 @@ Official Python SDK for the **LIAM Memory Management API**.
 
 ## Installation
 
+### From PyPI
+
+```bash
+pip install liam-client
+```
+
 ### From Source (Latest / Development)
 
 ```bash
