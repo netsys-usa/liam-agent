@@ -13,13 +13,11 @@ Official Python SDK for the **LIAM Memory Management API**.
 - 🏷️ **Tag Management** - Organize memories with tags
 - 💬 **Chat Integration** - Query memories with natural language
 
+---
+
 ## Installation
 
-```bash
-pip install liam-client
-```
-
-Or install from source:
+### From Source (Latest / Development)
 
 ```bash
 git clone https://github.com/netsys-usa/liam-agent.git
@@ -27,22 +25,60 @@ cd liam-agent/liam-python-sdk
 pip install -e .
 ```
 
-## Quick Start
+---
 
-### 1. Get Your Credentials
+## Getting Started
 
-Sign in to LIAM and get:
-- **API Key** - from the dashboard
-- **Private Key** - your base64-encoded ECDSA private key
+### Step 1 — Create Your Account
 
-### 2. Initialize Client
+Sign up at **[https://web.askbuddy.ai/brain/#/login](https://web.askbuddy.ai/brain/#/login)**
+
+After registration, a default workspace will be created automatically for you.
+
+---
+
+### Step 2 — Get Your API Key
+
+1. Log in and navigate to **Workspaces** in the left sidebar
+2. You'll see your workspace listed with a masked **API Key** (e.g., `M7a*****QI2Q`)
+3. Click the **Copy** icon next to your API Key to copy it
+
+> Your workspace also shows its **Status** (must be `ACTIVATED`) and the **Institution Id** assigned to it.
+
+---
+
+### Step 3 — Generate Your Private Key
+
+The LIAM API uses **ECDSA key-pair authentication**. You need to generate a key pair and register the public key.
+
+1. Click on your workspace name to open the workspace detail page
+2. Scroll down to the **Key Pair(s)** section
+3. Click **"Generate New Key"**
+4. Copy and securely store the **Private Key** that is returned — it will only be shown once
+
+> ⚠️ **Keep your private key secret.** Never commit it to version control or share it publicly.
+
+---
+
+### Step 4 — Add an LLM Key
+
+LIAM uses an LLM to power memory chat and summarization. You must connect at least one LLM key.
+
+1. On the workspace detail page, scroll down to the **LLM Keys** section
+2. Click **"Add New Key"** (top right of the section)
+3. Enter your LLM provider API key (e.g., OpenAI) along with the **Identifier** and **Model Name**
+4. Save — the key status will update to **Active**
+
+---
+
+### Step 5 — Initialize the Client
 
 ```python
 from liam_client import LIAMClient
 
 client = LIAMClient(
-    api_key="your-api-key",
-    private_key="your-base64-encoded-private-key"
+    api_key="your-api-key",          # Copied from Workspaces page
+    private_key="your-base64-encoded-private-key"  # Generated in Step 3
 )
 
 # Verify connection
@@ -50,7 +86,11 @@ health = client.health_check()
 print(f"API Status: {health['status']}")
 ```
 
-### 3. Create & Query Memories
+---
+
+## Quick Examples
+
+### Create & Query Memories
 
 ```python
 # Create a memory
@@ -71,6 +111,8 @@ print(response['data'])
 memories = client.list_memories(user_key="user_abc123")
 ```
 
+---
+
 ## Async Client
 
 For high-performance applications:
@@ -84,7 +126,6 @@ async def main():
         api_key="your-api-key",
         private_key="your-base64-encoded-private-key"
     ) as client:
-        # Create memories concurrently
         memories = [
             {"content": "Meeting at 3pm", "tag": "calendar"},
             {"content": "Call dentist", "tag": "health"},
@@ -96,6 +137,36 @@ async def main():
 
 asyncio.run(main())
 ```
+
+---
+
+## Configuration
+
+### Environment Variables
+
+```bash
+export LIAM_API_KEY="your-api-key"
+export LIAM_PRIVATE_KEY_PATH="/path/to/private_key.pem"
+# Or use LIAM_PRIVATE_KEY for the key content directly
+```
+
+```python
+from liam_client import LIAMClient
+
+client = LIAMClient.from_env()  # Reads from environment variables
+```
+
+### Custom Base URL
+
+```python
+client = LIAMClient(
+    api_key="your-api-key",
+    private_key_pem=private_key,
+    base_url="https://custom-api.example.com/api"
+)
+```
+
+---
 
 ## API Reference
 
@@ -126,6 +197,8 @@ asyncio.run(main())
 |--------|-------------|
 | `health_check()` | Check API health |
 
+---
+
 ## Examples
 
 See the [examples](./examples) directory for more detailed usage:
@@ -133,31 +206,7 @@ See the [examples](./examples) directory for more detailed usage:
 - [basic_usage.py](./examples/basic_usage.py) - Getting started
 - [async_example.py](./examples/async_example.py) - Async operations
 
-## Configuration
-
-### Environment Variables
-
-```bash
-export LIAM_API_KEY="your-api-key"
-export LIAM_PRIVATE_KEY_PATH="/path/to/private_key.pem"
-# Or use LIAM_PRIVATE_KEY for the key content directly
-```
-
-```python
-from liam_client import LIAMClient
-
-client = LIAMClient.from_env()  # Reads from environment variables
-```
-
-### Custom Base URL
-
-```python
-client = LIAMClient(
-    api_key="your-api-key",
-    private_key_pem=private_key,
-    base_url="https://custom-api.example.com/api"
-)
-```
+---
 
 ## Requirements
 
@@ -166,15 +215,21 @@ client = LIAMClient(
 - cryptography >= 41.0.0
 - aiohttp >= 3.8.0 (for async client)
 
+---
+
 ## Documentation
 
 Full API documentation: [https://web.askbuddy.ai/brain/#/developers](https://web.askbuddy.ai/brain/#/developers)
+
+---
 
 ## Support
 
 - 📧 Email: support@netxd.com
 - 📖 Docs: [API Documentation](https://web.askbuddy.ai/brain/#/developers)
 - 🐛 Issues: [GitHub Issues](https://github.com/netsys-usa/liam-agent/issues)
+
+---
 
 ## License
 
