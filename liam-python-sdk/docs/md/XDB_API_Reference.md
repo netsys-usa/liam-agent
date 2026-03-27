@@ -85,23 +85,23 @@ Activates a previously registered workspace.
 
 ---
 
-### 1.3 Submit User Public Key
+### 1.3 Workspace Submit Key
 
-**POST** `/api/user/submit-key`
+**POST** `/api/auth/submit-key`
 
-Associates a user's public key (RSA/PEM base64-encoded) with their account for encrypted memory operations.
+Associates a public key (RSA/EC, base64-encoded PEM) with a workspace, enabling signed/encrypted API operations.
 
 **Request Body**
 
 | Field | Type | Required | Description |
 |---|---|---|---|
-| `userKey` | string | ✅ | The user's unique key hash |
+| `apiKey` | string | ✅ | The workspace API key |
 | `publicKey` | string | ✅ | Base64-encoded PEM public key |
 
 **Example Request**
 ```json
 {
-  "userKey": "9b5f195385b58b331c7390a1a013f00ad56130dfbeab59b860ef38a32fc18577",
+  "apiKey": "s5Lh8TFKDRUH59FZ4LwqLu6GoZD6PRlqbD7XpQGS58",
   "publicKey": "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0..."
 }
 ```
@@ -516,7 +516,7 @@ Renames a tag across all memories for a user.
 |---|---|---|
 | Create Workspace | POST | `/api/auth/register` |
 | Activate Workspace | POST | `/api/auth/activate` |
-| Submit Public Key | POST | `/api/user/submit-key` |
+| Workspace Submit Key | POST | `/api/auth/submit-key` |
 | Create User Profile | POST | `/api/auth/create-profile` |
 | Register LLM | POST | `/api/user/register-llm` |
 | Health Check | POST | `/api/memory/health` |
