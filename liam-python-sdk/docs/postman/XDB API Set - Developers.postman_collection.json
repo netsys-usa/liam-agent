@@ -671,7 +671,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"apiKey\":\"s5Lh8TFKDRUH59FZ4LwqLu6GoZD6PRlqbD7XpQGS58\",\n    \"model\":\"gpt-4\",\n    \"identifier\":\"ID123456789\",\n    \"key\":\"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\"\n}",
+							"raw": "{\n    \"apiKey\":\"s5Lh8TFKDRUH59FZ4LwqLu6GoZD6PRlqbD7XpQGS58\",\n    \"model\":\"gpt-4\",\n    \"identifier\":\"ID123456789\",\n    \"key\":\"sk-proj-\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
