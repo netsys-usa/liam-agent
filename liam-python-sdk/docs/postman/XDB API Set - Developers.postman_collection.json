@@ -1,0 +1,2762 @@
+{
+	"info": {
+		"_postman_id": "858009dc-6ae2-4f3c-82cf-69390a816b40",
+		"name": "XDB API Set - Developers",
+		"description": "The XDB Memory Management API Suite provides a robust set of endpoints for efficiently managing and monitoring memory resources in your application or system. Designed for developers and system administrators, these APIs enable precise control over memory allocation, utilization tracking, and cleanup processes, ensuring optimal performance and stability.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34398137",
+		"_collection_link": "https://context-engine-api-850373.postman.co/workspace/Team-Workspace~5e77a115-4e64-450c-8627-641f954633bd/collection/34398137-858009dc-6ae2-4f3c-82cf-69390a816b40?action=share&source=collection_link&creator=34398137"
+	},
+	"item": [
+		{
+			"name": "user-management",
+			"item": [
+				{
+					"name": "create-workspace",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Tech Solutions\",\n    \"institutionId\": \"TSOL\",\n    \"institutionName\": \"Tech Solutions\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						},
+						"description": "### Register User\n\nThis endpoint is used to register a new user with the provided institution details.\n\n#### Request Parameters\n\n- `name`: The name of the institution.\n    \n- `institutionId`: The unique ID of the institution.\n    \n- `institutionName`: The name of the institution.\n    \n\n#### Expected Response\n\nThe response will contain the following fields:\n\n- `status`: The status of the registration process.\n    \n- `message`: A message related to the registration status.\n    \n- `data`: An object containing the registered user's details including `name`, `apiKey`, and `status`.\n    \n- `timestamp`: The timestamp of the registration process.\n    \n- `process_id`: The process ID of the registration request.\n    \n\nExample Request:\n\n``` json\n{\n  \"name\": \"Tech Solutions\",\n  \"institutionId\": \"TSOL\",\n  \"institutionName\": \"Tech Solutions\"\n}\n\n ```\n\nExample Response:\n\n``` json\n{\n  \"status\": \"\",\n  \"message\": \"\",\n  \"data\": {\n    \"name\": \"\",\n    \"apiKey\": \"\",\n    \"status\": \"\"\n  },\n  \"timestamp\": \"\",\n  \"process_id\": \"\"\n}\n\n ```\n\nThis endpoint is used to register a new user with the provided institution details.\n\n#### Request Body\n\n- `name`: (string) The name of the user or institution.\n    \n- `institutionId`: (string) The unique identifier for the institution.\n    \n- `institutionName`: (string) The name of the institution.\n    \n\n#### Response\n\nThe response will be a JSON object with the following schema:\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"status\": {\n            \"type\": \"string\"\n        },\n        \"message\": {\n            \"type\": \"string\"\n        },\n        \"data\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"name\": {\n                    \"type\": \"string\"\n                },\n                \"apiKey\": {\n                    \"type\": \"string\"\n                },\n                \"status\": {\n                    \"type\": \"string\"\n                }\n            }\n        },\n        \"timestamp\": {\n            \"type\": \"string\"\n        },\n        \"process_id\": {\n            \"type\": \"string\"\n        }\n    }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Tech Solutions\",\n    \"institutionId\": \"TSOL\",\n    \"institutionName\": \"Tech Solutions\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 06:35:02 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "280"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Connector created successfully.\",\n    \"data\": {\n        \"name\": \"Tech Solutions\",\n        \"apiKey\": \"3KCo8HF0S184PBvlQgDMMDQHStHB8wcdBWyuxIruhXc\",\n        \"status\": \"CREATED\"\n    },\n    \"timestamp\": \"2025-03-26T06:35:03.071785+00:00\",\n    \"process_id\": \"72ce430e0a0c11f091b0e880883aad51\"\n}"
+						},
+						{
+							"name": "error-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Tech Solutions\",\n    \"institutionId\": \"TSOL\",\n    \"institutionName\": \"Tech Solutions\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 06:35:29 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "200"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"message\": \"Invalid name\",\n    \"details\": {\n        \"name\": \"Connector Name already exists\"\n    },\n    \"timestamp\": \"2025-03-26T06:35:29.916548+00:00\",\n    \"process_id\": \"82d0ae4b0a0c11f09147e880883aad51\"\n}"
+						}
+					]
+				},
+				{
+					"name": "activate-workspace",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"if (globals['jsrsasign-js'] === undefined) {",
+									"    console.log(\"jsrasign library not already downloaded. Downloading now. \")",
+									"",
+									"    pm.sendRequest({",
+									"        url: \"http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js\",",
+									"        method: \"GET\",",
+									"        body: {}",
+									"    }, function (err, res) {",
+									"        postman.setEnvironmentVariable(\"jsrsasign-js\", res.text());",
+									"        doHttpSig();",
+									"    });",
+									"",
+									"} else {",
+									"    doHttpSig();",
+									"}",
+									"",
+									"function doHttpSig() {",
+									"    var navigator = {}; //fake a navigator object for the lib",
+									"    var window = {}; //fake a window object for the lib",
+									"    eval(postman.getGlobalVariable(\"jsrsasign-js\"));",
+									"    let pk = postman.getEnvironmentVariable(\"xdbc-privatekey\")",
+									"    let pks = pk.split(/\\\\n/)",
+									"    console.log(\"pkss Key\", pks);",
+									"    privateKey = \"\"",
+									"    for (let i = 0; i < pks.length; i++) {",
+									"        privateKey += pks[i] + \"\\n\"",
+									"    }",
+									"    var signature_algo = \"SHA256withECDSA\";",
+									"    var payload = request.data;",
+									"    var sig = new KJUR.crypto.Signature({",
+									"        \"alg\": signature_algo",
+									"    });",
+									"    sig.init(privateKey);",
+									"    var reqBody = JSON.parse(payload);",
+									"    pm.request.body.raw = JSON.stringify(reqBody)",
+									"    var payloadFmt = JSON.stringify(reqBody)",
+									"    // console.log(payloadFmt)",
+									"    sig.updateString(payloadFmt);",
+									"",
+									"    var sigValueHex = sig.sign();",
+									"    var sigBase64 = hextob64(sigValueHex);",
+									"",
+									"    var apiKey = postman.getEnvironmentVariable(\"xdbc-apikey\");",
+									"    pm.request.headers.add({ key: \"apiKey\", value: apiKey });",
+									"    pm.request.headers.add({ key: \"signature\", value: sigBase64 });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Tech Solutions\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/activate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"activate"
+							]
+						},
+						"description": "# Activate User Account\n\nThis endpoint is used to activate a user account.\n\n## Request Body\n\n- `name`: The name of the user to be activated.\n    \n\n## Response\n\n- `status`: The status of the activation process.\n    \n- `message`: A message related to the activation process.\n    \n- `data`: An object containing the apiKey and status of the activation.\n    \n- `timestamp`: The timestamp of the activation process.\n    \n- `processId`: The ID of the activation process."
+					},
+					"response": [
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Tech Solutions\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/activate",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"activate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 06:40:25 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "294"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"The signature has been verified, and the connector has been activated.\",\n    \"data\": {\n        \"apiKey\": \"3KCo8HF0S184PBvlQgDMMDQHStHB8wcdBWyuxIruhXc\",\n        \"status\": \"ACTIVATED\"\n    },\n    \"timestamp\": \"2025-03-26T06:40:26.366717+00:00\",\n    \"processId\": \"33825b6b0a0d11f0b54ee880883aad51\"\n}"
+						},
+						{
+							"name": "error-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Tech Solutions\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/activate",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"activate"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 06:42:24 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "175"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"message\": \"Connector already activated\",\n    \"details\": {},\n    \"timestamp\": \"2025-03-26T06:42:25.146157+00:00\",\n    \"processId\": \"7a4e41600a0d11f0a919e880883aad51\"\n}"
+						}
+					]
+				},
+				{
+					"name": "submit-user-public-key",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"if (globals['jsrsasign-js'] === undefined) {",
+									"    console.log(\"jsrasign library not already downloaded. Downloading now. \")",
+									"",
+									"    pm.sendRequest({",
+									"        url: \"http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js\",",
+									"        method: \"GET\",",
+									"        body: {}",
+									"    }, function (err, res) {",
+									"        postman.setEnvironmentVariable(\"jsrsasign-js\", res.text());",
+									"        doHttpSig();",
+									"    });",
+									"",
+									"} else {",
+									"    doHttpSig();",
+									"}",
+									"",
+									"function doHttpSig() {",
+									"    var navigator = {}; //fake a navigator object for the lib",
+									"    var window = {}; //fake a window object for the lib",
+									"    eval(postman.getGlobalVariable(\"jsrsasign-js\"));",
+									"    let pk = postman.getEnvironmentVariable(\"xdbc-privatekey\")",
+									"    let pks = pk.split(/\\\\n/)",
+									"    console.log(\"pkss Key\", pks);",
+									"    privateKey = \"\"",
+									"    for (let i = 0; i < pks.length; i++) {",
+									"        privateKey += pks[i] + \"\\n\"",
+									"    }",
+									"    var signature_algo = \"SHA256withECDSA\";",
+									"    var payload = request.data;",
+									"    var sig = new KJUR.crypto.Signature({",
+									"        \"alg\": signature_algo",
+									"    });",
+									"    sig.init(privateKey);",
+									"    var reqBody = JSON.parse(payload);",
+									"    pm.request.body.raw = JSON.stringify(reqBody)",
+									"    var payloadFmt = JSON.stringify(reqBody)",
+									"    // console.log(payloadFmt)",
+									"    sig.updateString(payloadFmt);",
+									"",
+									"    var sigValueHex = sig.sign();",
+									"    var sigBase64 = hextob64(sigValueHex);",
+									"",
+									"    var apiKey = postman.getEnvironmentVariable(\"xdbc-apikey\");",
+									"    pm.request.headers.add({ key: \"apiKey\", value: apiKey });",
+									"    pm.request.headers.add({ key: \"signature\", value: sigBase64 });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userKey\": \"9b5f195385b58b331c7390a1a013f00ad56130dfbeab59b860ef38a32fc18577\",\n    \"publicKey\":\"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUF6QmNPY1Vnd21YNUpMdkphSCsxMwpYcXEraGxKU0ZhSjNoM2JOMnd3azJwUjZFR3RqN2ExSXBScXpmVGtZSkZkaDdzMUo3dEFvdFJDOWNmN01tN3RYCklYYVljSmRoNElWZjRraERKY3hSSmNrYVNHRXpSTkZhZFkwUnFRWkJlTGVhNmV6WEVHOWtON3l6MkJFWE5QOXMKOFl5cDZBOWp0OVhqKzlZMm05eUdmRlNnRlgySmw1dXJmcFBuM2Z1S09WeWE1MklLSUxHZC9JbzhGTS9LL3FtWgpOUFNVUFVWY01xTFJML2w1ZlNLVHJzZllGaGppNEh4L3VncktlTWdLNHMyTm8yRktld0RWTksxM0Z2ZmZER2VICnJnK1FqVnNoTVQrRmdVT0M4WXVLT3lGSWgvVzhZcmRrdkI5djJCMXV3eHR6SE8vc0tFZDdjMUlVYW5ERzdGY2MKT3dJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t\",\n    \"apiKey\":\"s5Lh8TFKDRUH59FZ4LwqLu6GoZD6PRlqbD7XpQGS58\",\n    \"isDev\":true\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/submit-key",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"submit-key"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-user",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"if (globals['jsrsasign-js'] === undefined) {",
+									"    console.log(\"jsrasign library not already downloaded. Downloading now. \")",
+									"",
+									"    pm.sendRequest({",
+									"        url: \"http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js\",",
+									"        method: \"GET\",",
+									"        body: {}",
+									"    }, function (err, res) {",
+									"        postman.setEnvironmentVariable(\"jsrsasign-js\", res.text());",
+									"        doHttpSig();",
+									"    });",
+									"",
+									"} else {",
+									"    doHttpSig();",
+									"}",
+									"",
+									"function doHttpSig() {",
+									"    var navigator = {}; //fake a navigator object for the lib",
+									"    var window = {}; //fake a window object for the lib",
+									"    eval(postman.getGlobalVariable(\"jsrsasign-js\"));",
+									"    let pk = postman.getEnvironmentVariable(\"xdbc-privatekey\")",
+									"    let pks = pk.split(/\\\\n/)",
+									"    console.log(\"pkss Key\", pks);",
+									"    privateKey = \"\"",
+									"    for (let i = 0; i < pks.length; i++) {",
+									"        privateKey += pks[i] + \"\\n\"",
+									"    }",
+									"    var signature_algo = \"SHA256withECDSA\";",
+									"    var payload = request.data;",
+									"    var sig = new KJUR.crypto.Signature({",
+									"        \"alg\": signature_algo",
+									"    });",
+									"    sig.init(privateKey);",
+									"    var reqBody = JSON.parse(payload);",
+									"    pm.request.body.raw = JSON.stringify(reqBody)",
+									"    var payloadFmt = JSON.stringify(reqBody)",
+									"    // console.log(payloadFmt)",
+									"    sig.updateString(payloadFmt);",
+									"",
+									"    var sigValueHex = sig.sign();",
+									"    var sigBase64 = hextob64(sigValueHex);",
+									"",
+									"    var apiKey = postman.getEnvironmentVariable(\"xdbc-apikey\");",
+									"    pm.request.headers.add({ key: \"apiKey\", value: apiKey });",
+									"    pm.request.headers.add({ key: \"signature\", value: sigBase64 });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"James Watson\",\n    \"identification\": \"e5c6f5e2f6f5e8a8c8e8d8f5a5f8njknk55e24\",\n    \"identificationType\": \"UNIQUE_ID\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/create-profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"create-profile"
+							]
+						},
+						"description": "### Create Profile\n\nThis endpoint allows the user to create a profile with the provided name, identification, and identification type.\n\n#### Request Body\n\n- name: (string) The name of the user.\n    \n- identification: (string) The identification of the user.\n    \n- identificationType: (string) The type of identification.\n    \n\n#### Response\n\nThe response will be a JSON object with the following properties:\n\n- status: (string) The status of the response.\n    \n- message: (string) Any additional message related to the response.\n    \n- data: (object) An object containing the userkey, name, identification, and profileId.\n    \n    - userkey: (string) The user key.\n        \n    - name: (string) The name of the user.\n        \n    - identification: (string) The identification of the user.\n        \n    - profileId: (number) The ID of the created profile.\n        \n- timestamp: (string) The timestamp of the response.\n    \n- processId: (string) The process ID associated with the response.\n    \n\n#### JSON Schema\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"status\": { \"type\": \"string\" },\n    \"message\": { \"type\": \"string\" },\n    \"data\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"userkey\": { \"type\": \"string\" },\n        \"name\": { \"type\": \"string\" },\n        \"identification\": { \"type\": \"string\" },\n        \"profileId\": { \"type\": \"number\" }\n      }\n    },\n    \"timestamp\": { \"type\": \"string\" },\n    \"processId\": { \"type\": \"string\" }\n  }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"James Watson\",\n    \"identification\": \"e5c6f5e2f6f5e8a8c8e8d8f5a5f8njknk55e24\",\n    \"identificationType\": \"UNIQUE_ID\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/create-profile",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"create-profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 06:51:12 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "353"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"User registered successfully.\",\n    \"data\": {\n        \"userkey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n        \"name\": \"James Watson\",\n        \"identification\": \"e5c6f5e2f6f5e8a8c8e8d8f5a5f8njknk55e24\",\n        \"profileId\": 20\n    },\n    \"timestamp\": \"2025-03-26T06:51:13.089936+00:00\",\n    \"processId\": \"b4ba607f0a0e11f0bf26e880883aad51\"\n}"
+						},
+						{
+							"name": "error-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"James Watson\",\n    \"identification\": \"e5c6f5e2f6f5e8a8c8e8d8f5a5f8njknk55e24\",\n    \"identificationType\": \"UNIQUE_ID\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/create-profile",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"create-profile"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 06:51:52 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "219"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"message\": \"Invalid identification\",\n    \"details\": {\n        \"identification\": \"Identification already exists\"\n    },\n    \"timestamp\": \"2025-03-26T06:51:53.408641+00:00\",\n    \"processId\": \"cd0550820a0e11f09e24e880883aad51\"\n}"
+						}
+					]
+				},
+				{
+					"name": "register-llm",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"if (globals['jsrsasign-js'] === undefined) {",
+									"    console.log(\"jsrasign library not already downloaded. Downloading now. \")",
+									"",
+									"    pm.sendRequest({",
+									"        url: \"http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js\",",
+									"        method: \"GET\",",
+									"        body: {}",
+									"    }, function (err, res) {",
+									"        postman.setEnvironmentVariable(\"jsrsasign-js\", res.text());",
+									"        doHttpSig();",
+									"    });",
+									"",
+									"} else {",
+									"    doHttpSig();",
+									"}",
+									"",
+									"function doHttpSig() {",
+									"    var navigator = {}; //fake a navigator object for the lib",
+									"    var window = {}; //fake a window object for the lib",
+									"    eval(postman.getGlobalVariable(\"jsrsasign-js\"));",
+									"    let pk = postman.getEnvironmentVariable(\"xdbc-privatekey\")",
+									"    let pks = pk.split(/\\\\n/)",
+									"    console.log(\"pkss Key\", pks);",
+									"    privateKey = \"\"",
+									"    for (let i = 0; i < pks.length; i++) {",
+									"        privateKey += pks[i] + \"\\n\"",
+									"    }",
+									"    var signature_algo = \"SHA256withECDSA\";",
+									"    var payload = request.data;",
+									"    var sig = new KJUR.crypto.Signature({",
+									"        \"alg\": signature_algo",
+									"    });",
+									"    sig.init(privateKey);",
+									"    var reqBody = JSON.parse(payload);",
+									"    pm.request.body.raw = JSON.stringify(reqBody)",
+									"    var payloadFmt = JSON.stringify(reqBody)",
+									"    // console.log(payloadFmt)",
+									"    sig.updateString(payloadFmt);",
+									"",
+									"    var sigValueHex = sig.sign();",
+									"    var sigBase64 = hextob64(sigValueHex);",
+									"",
+									"    var apiKey = postman.getEnvironmentVariable(\"xdbc-apikey\");",
+									"    pm.request.headers.add({ key: \"apiKey\", value: apiKey });",
+									"    pm.request.headers.add({ key: \"signature\", value: sigBase64 });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"apiKey\":\"s5Lh8TFKDRUH59FZ4LwqLu6GoZD6PRlqbD7XpQGS58\",\n    \"model\":\"gpt-4\",\n    \"identifier\":\"ID123456789\",\n    \"key\":\"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\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/register-llm",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"register-llm"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This covers the complete suite of API requests for user management tasks. It includes creating new users, updating user details, retrieving user profiles, and deleting accounts. Use these requests to validate and test your user management endpoints, ensuring robust access control and streamlined onboarding/offboarding processes."
+		},
+		{
+			"name": "memories",
+			"item": [
+				{
+					"name": "create-memory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"if (globals['jsrsasign-js'] === undefined) {",
+									"    console.log(\"jsrasign library not already downloaded. Downloading now. \")",
+									"",
+									"    pm.sendRequest({",
+									"        url: \"http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js\",",
+									"        method: \"GET\",",
+									"        body: {}",
+									"    }, function (err, res) {",
+									"        postman.setEnvironmentVariable(\"jsrsasign-js\", res.text());",
+									"        doHttpSig();",
+									"    });",
+									"",
+									"} else {",
+									"    doHttpSig();",
+									"}",
+									"",
+									"function doHttpSig() {",
+									"    var navigator = {}; //fake a navigator object for the lib",
+									"    var window = {}; //fake a window object for the lib",
+									"    eval(postman.getGlobalVariable(\"jsrsasign-js\"));",
+									"    let pk = postman.getEnvironmentVariable(\"xdbc-privatekey\")",
+									"    let pks = pk.split(/\\\\n/)",
+									"    console.log(\"pkss Key\", pks);",
+									"    privateKey = \"\"",
+									"    for (let i = 0; i < pks.length; i++) {",
+									"        privateKey += pks[i] + \"\\n\"",
+									"    }",
+									"    var signature_algo = \"SHA256withECDSA\";",
+									"    var payload = request.data;",
+									"    var sig = new KJUR.crypto.Signature({",
+									"        \"alg\": signature_algo",
+									"    });",
+									"    sig.init(privateKey);",
+									"    var reqBody = JSON.parse(payload);",
+									"    pm.request.body.raw = JSON.stringify(reqBody)",
+									"    var payloadFmt = JSON.stringify(reqBody)",
+									"    // console.log(payloadFmt)",
+									"    sig.updateString(payloadFmt);",
+									"",
+									"    var sigValueHex = sig.sign();",
+									"    var sigBase64 = hextob64(sigValueHex);",
+									"",
+									"    var apiKey = postman.getEnvironmentVariable(\"xdbc-apikey\");",
+									"    pm.request.headers.add({ key: \"apiKey\", value: apiKey });",
+									"    pm.request.headers.add({ key: \"signature\", value: sigBase64 });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userKey\": \"f43d94a0935eb7eeb2323638b9d0af57c24975dc25c6e335e0d55b11025a9ebc\",\n    \"tag\": \"immigration\",\n    \"content\": \"Need to visit office wed and friday for PR ths is a must as per contracts\",\n    \"sessionId\": \"2025060400001\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/memory/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"memory",
+								"create"
+							]
+						},
+						"description": "### Create Memory\n\nThis endpoint allows you to create a new memory by submitting the required data via the request body.\n\n#### Request Body\n\n- `userKey`: The user key associated with the memory.\n    \n- `content`: The content of the memory.\n    \n- `tag`: The tag associated with the memory.\n    \n- `sessionId`: The session ID for the memory.\n    \n\nExample:\n\n``` json\n{\n  \"userKey\": \"fd4631e3b92d3f3ed5ad8f970269bd ...\",\n  \"content\": \"Suchitra Padmanabhan is the pr ...\",\n  \"tag\": \"\",\n  \"sessionId\": \"2025032602\"\n}\n#### Response\n- `status`: The status of the response.\n- `message`: Additional information or error message.\n- `data`: The data object containing the created memory.\n- `timestamp`: The timestamp of the response.\n- `processId`: The ID of the process.\nExample:\n```json\n{\n  \"status\": \"\",\n  \"message\": \"\",\n  \"data\": {},\n  \"timestamp\": \"\",\n  \"processId\": \"\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "error-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"content\": \"I would love to see the Northern Lights in Iceland.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/create",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"create"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 07:34:14 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "196"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"message\": \"Profile not found.\",\n    \"details\": {\n        \"userKey\": \"Profile not found\"\n    },\n    \"timestamp\": \"2025-03-26T07:34:14.663734+00:00\",\n    \"processId\": \"b7b0a5b20a1411f09f3ae880883aad51\"\n}"
+						},
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"content\": \"I would love to see the Northern Lights in Iceland.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/create",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 07:37:25 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "189"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Your memory has been recorded successfully.\",\n    \"data\": {},\n    \"timestamp\": \"2025-03-26T07:37:25.314532+00:00\",\n    \"processId\": \"295492e00a1511f0a7eee880883aad51\"\n}"
+						}
+					]
+				},
+				{
+					"name": "memory-status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"if (globals['jsrsasign-js'] === undefined) {",
+									"    console.log(\"jsrasign library not already downloaded. Downloading now. \")",
+									"",
+									"    pm.sendRequest({",
+									"        url: \"http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js\",",
+									"        method: \"GET\",",
+									"        body: {}",
+									"    }, function (err, res) {",
+									"        postman.setEnvironmentVariable(\"jsrsasign-js\", res.text());",
+									"        doHttpSig();",
+									"    });",
+									"",
+									"} else {",
+									"    doHttpSig();",
+									"}",
+									"",
+									"function doHttpSig() {",
+									"    var navigator = {}; //fake a navigator object for the lib",
+									"    var window = {}; //fake a window object for the lib",
+									"    eval(postman.getGlobalVariable(\"jsrsasign-js\"));",
+									"    let pk = postman.getEnvironmentVariable(\"xdbc-privatekey\")",
+									"    let pks = pk.split(/\\\\n/)",
+									"    console.log(\"pkss Key\", pks);",
+									"    privateKey = \"\"",
+									"    for (let i = 0; i < pks.length; i++) {",
+									"        privateKey += pks[i] + \"\\n\"",
+									"    }",
+									"    var signature_algo = \"SHA256withECDSA\";",
+									"    var payload = request.data;",
+									"    var sig = new KJUR.crypto.Signature({",
+									"        \"alg\": signature_algo",
+									"    });",
+									"    sig.init(privateKey);",
+									"    var reqBody = JSON.parse(payload);",
+									"    pm.request.body.raw = JSON.stringify(reqBody)",
+									"    var payloadFmt = JSON.stringify(reqBody)",
+									"    // console.log(payloadFmt)",
+									"    sig.updateString(payloadFmt);",
+									"",
+									"    var sigValueHex = sig.sign();",
+									"    var sigBase64 = hextob64(sigValueHex);",
+									"",
+									"    var apiKey = postman.getEnvironmentVariable(\"xdbc-apikey\");",
+									"    pm.request.headers.add({ key: \"apiKey\", value: apiKey });",
+									"    pm.request.headers.add({ key: \"signature\", value: sigBase64 });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userKey\": \"f43d94a0935eb7eeb2323638b9d0af57c24975dc25c6e335e0d55b11025a9ebc\",\n    \"tag\": \"fodd_preferences\",\n    \"content\": \"I like south indian food, especially idly and dosa which is homemade\",\n    \"sessionId\": \"2025060400001\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/memory/memory-status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"memory",
+								"memory-status"
+							]
+						},
+						"description": "### Create Memory\n\nThis endpoint allows you to create a new memory by submitting the required data via the request body.\n\n#### Request Body\n\n- `userKey`: The user key associated with the memory.\n    \n- `content`: The content of the memory.\n    \n- `tag`: The tag associated with the memory.\n    \n- `sessionId`: The session ID for the memory.\n    \n\nExample:\n\n``` json\n{\n  \"userKey\": \"fd4631e3b92d3f3ed5ad8f970269bd ...\",\n  \"content\": \"Suchitra Padmanabhan is the pr ...\",\n  \"tag\": \"\",\n  \"sessionId\": \"2025032602\"\n}\n#### Response\n- `status`: The status of the response.\n- `message`: Additional information or error message.\n- `data`: The data object containing the created memory.\n- `timestamp`: The timestamp of the response.\n- `processId`: The ID of the process.\nExample:\n```json\n{\n  \"status\": \"\",\n  \"message\": \"\",\n  \"data\": {},\n  \"timestamp\": \"\",\n  \"processId\": \"\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "error-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"content\": \"I would love to see the Northern Lights in Iceland.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/create",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"create"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 07:34:14 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "196"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"message\": \"Profile not found.\",\n    \"details\": {\n        \"userKey\": \"Profile not found\"\n    },\n    \"timestamp\": \"2025-03-26T07:34:14.663734+00:00\",\n    \"processId\": \"b7b0a5b20a1411f09f3ae880883aad51\"\n}"
+						},
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"content\": \"I would love to see the Northern Lights in Iceland.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/create",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 07:37:25 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "189"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Your memory has been recorded successfully.\",\n    \"data\": {},\n    \"timestamp\": \"2025-03-26T07:37:25.314532+00:00\",\n    \"processId\": \"295492e00a1511f0a7eee880883aad51\"\n}"
+						}
+					]
+				},
+				{
+					"name": "create-memory-with-image",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"if (globals['jsrsasign-js'] === undefined) {",
+									"    console.log(\"jsrasign library not already downloaded. Downloading now. \")",
+									"",
+									"    pm.sendRequest({",
+									"        url: \"http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js\",",
+									"        method: \"GET\",",
+									"        body: {}",
+									"    }, function (err, res) {",
+									"        postman.setEnvironmentVariable(\"jsrsasign-js\", res.text());",
+									"        doHttpSig();",
+									"    });",
+									"",
+									"} else {",
+									"    doHttpSig();",
+									"}",
+									"",
+									"function doHttpSig() {",
+									"    var navigator = {}; //fake a navigator object for the lib",
+									"    var window = {}; //fake a window object for the lib",
+									"    eval(postman.getGlobalVariable(\"jsrsasign-js\"));",
+									"    let pk = postman.getEnvironmentVariable(\"xdbc-privatekey\")",
+									"    let pks = pk.split(/\\\\n/)",
+									"    console.log(\"pkss Key\", pks);",
+									"    privateKey = \"\"",
+									"    for (let i = 0; i < pks.length; i++) {",
+									"        privateKey += pks[i] + \"\\n\"",
+									"    }",
+									"    var signature_algo = \"SHA256withECDSA\";",
+									"    var payload = request.data;",
+									"    var sig = new KJUR.crypto.Signature({",
+									"        \"alg\": signature_algo",
+									"    });",
+									"    sig.init(privateKey);",
+									"    var reqBody = JSON.parse(payload);",
+									"    pm.request.body.raw = JSON.stringify(reqBody)",
+									"    var payloadFmt = JSON.stringify(reqBody)",
+									"    // console.log(payloadFmt)",
+									"    sig.updateString(payloadFmt);",
+									"",
+									"    var sigValueHex = sig.sign();",
+									"    var sigBase64 = hextob64(sigValueHex);",
+									"",
+									"    var apiKey = postman.getEnvironmentVariable(\"xdbc-apikey\");",
+									"    pm.request.headers.add({ key: \"apiKey\", value: apiKey });",
+									"    pm.request.headers.add({ key: \"signature\", value: sigBase64 });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userKey\": \"4e984be16442a99515ca63a32d5ce28273a5b355a1027a4a8955d27e7d6c4129\",\n    \"content\": \"Testing XDB with Image version 3\",\n    \"tag\": \"\",\n    \"sessionId\": \"2025032602\",\n    \"imageData\":\"iVBORw0KGgoAAAANSUhEUgAABHQAAADwCAYAAABhYjNrAAABW2lDQ1BJQ0MgUHJvZmlsZQAAKJF1kL1LQmEUxn+WEZWERGOBSxRhIppBBJU5SNAgltDHdL2aBmq3642KhsaW/oWooamhloZoamgImiro409oaAhBipLbuVqpRQcOz4/nfd6X8x5osCualrED2ZyhR8MTrtm5eVfzE204cDJEj6LmtWAkMiURvrW+infYLL0dsN4qjF1dnB7ej789b257945u/ubrqjWRzKuiH9L9qqYbYOsTjqwZmsXrwp26DCW8Y3GqwvsWxyt8Us7MREPCl8JONa0khB+E3fEaP1XD2cyq+jWDNb0jmYtNi7ZLdxHDj48oAYaRCf7JDpazIZbR2EBniRRpDFwExdHIkBSeJIeKB7ewD690wNrx791VPSMMIy/WYdVb2ILja+jwVL1ep3x7FM5bNEVXfjZqK9rzi35fhR06NL2aZqEbms+gpJvm+65plg6g8VHurnwCnw9kLDOtMNIAAACWZVhJZk1NACoAAAAIAAUBEgADAAAAAQABAAABGgAFAAAAAQAAAEoBGwAFAAAAAQAAAFIBKAADAAAAAQACAACHaQAEAAAAAQAAAFoAAAAAAAAAkAAAAAEAAACQAAAAAQADkoYABwAAABIAAACEoAIABAAAAAEAAAR0oAMABAAAAAEAAADwAAAAAEFTQ0lJAAAAU2NyZWVuc2hvdOLMcfMAAAAJcEhZcwAAFiUAABYlAUlSJPAAAALYaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJYTVAgQ29yZSA2LjAuMCI+CiAgIDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+CiAgICAgIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiCiAgICAgICAgICAgIHhtbG5zOmV4aWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vZXhpZi8xLjAvIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDxleGlmOlBpeGVsWERpbWVuc2lvbj4xMTQwPC9leGlmOlBpeGVsWERpbWVuc2lvbj4KICAgICAgICAgPGV4aWY6VXNlckNvbW1lbnQ+U2NyZWVuc2hvdDwvZXhpZjpVc2VyQ29tbWVudD4KICAgICAgICAgPGV4aWY6UGl4ZWxZRGltZW5zaW9uPjI0MDwvZXhpZjpQaXhlbFlEaW1lbnNpb24+CiAgICAgICAgIDx0aWZmOlJlc29sdXRpb25Vbml0PjI8L3RpZmY6UmVzb2x1dGlvblVuaXQ+CiAgICAgICAgIDx0aWZmOllSZXNvbHV0aW9uPjE0NDwvdGlmZjpZUmVzb2x1dGlvbj4KICAgICAgICAgPHRpZmY6WFJlc29sdXRpb24+MTQ0PC90aWZmOlhSZXNvbHV0aW9uPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4K8+wthwAAQABJREFUeAHsnQXcJMXx95vLHe7ubiG4WwgQ3OWQIMHd3e3FCRY4XP9ISIKH4BIIdgQPIVhwCMHlIGgyb30r1DA7O7M707vPc8/zXNXnszsz7f1rr66uHu3VV19N/vOf/4TPP/88vPbaa2HNNdcMgwYNCk6OgCPgCDgCjoAj4Ag4Ao6AI+AIOAKOgCPgCDgCfROBwd99912AoQMTx359M6meKkfAEXAEHAFHwBFwBBwBR8ARcAQcAUfAEXAEHAEQGAwT57///a8ydWDsJEkSRhtttBSdSy+9NH3nZcstt2z49g9HwBHomwi89dZb4Y033gjTTjttmH766ftmIkdCqgY6LgM9f1WrzDvvvBMOO+ywMGLEiHDyySeH6aabrqpXd+cIDDgEvD0MuCL1DDkCjoAj4Ag4AorAYJg4MHD4/ehHP2pg5jhGzQj8+9//VozGGmusZstRyOTtt98Ol1xySZhsssnCDjvs0Os554jguOOO22vxsigce+yxtY3UiTTWX504ytxuvvnm4d577w3nnntuQxl98cUX4bTTTgvjjTde2GOPPcq8D1jzMlwGSob7S/4ef/zxcOutt4Yf//jHYf31128L/wsvvBDkiHD46KOPwpAhQ7Q9Lrfccvos8nzGGWeEiy66SK3op4YNG1bkTM3OOeec8OGHHzbZ77TTTmGSSSZpMneD1gjE4hnrr3Vq+r9tN3Cp0x76P2KeA0fAEXAEHAFHYBRC4KWXXkr4PfHEE8kNN9yQiLSOCOn8QLJoT/gNFCJ/wpRJvvnmm8pZkkV5suuuuybzzDNPIkwv/c0555zJzjvvnHz22WeVwxlIDu+///5EmkkCDr1F7777brLVVlslstOucctCK1l99dWTq666qkeSIMcRk0MPPTSZd955E5FkS4SBlKy44orJHXfc0TK+559/PpEFajL55JNrOgcPHqx1RxgrLf110/K5557TuIVpk1B/syQSHGo3xRRTZI1HifdWuAwEAPpT/mSBqfVwnXXWaQn9m2++mSy55JLqlj4n+yO/ZXTMMcekbk8//fQyZ2o+yyyzpG6z4T/zzDMt/Y0sS8avZZddNtluu+3SJDz44IPJMsssk1x44YWp2ch6icUz1t/IymdvxdsNXOq0h07zFTPP6jRO9+8IOAKOgCPgCIyqCAzmuBU/AaDpuJVMbAcc/eEPfwiygAjLL798uPvuu9vmj+MLKIp+6qmnwqKLLhp23HFHxemRRx4JZ599drj99tvDbbfdFmaddda2YbmDeATYmV9kkUXSXXRhloSPP/443Hzzzfp75ZVXwsEHHxwfQc7nt99+GzbbbLPw+9//Xm2QzkEq6M477wz33XdfECZSWG+99XK+QqBeyKIqyIJL7cYcc8zw1VdfBVkYat158cUXwymnnNLkr9sGSOVASGv0piRTt/PR7fAGOi4DMX/CtAgPPfRQmHjiicOqq66q/QBHhWmPU045ZWkVOeCAA8I000yj9X/ttdcudYcFR4sJz2ijjTYKwqy3zz73fPbZZ1X6Lpt/pPH+/Oc/h2233XakpzcWz1h/Iz3DPZyAbuBSpz10mp2686xO43P/joAj4Ag4Ao7AKI2ALDATfk8++eQoIaFz/fXX606siOpXYuKxe4x0xplnntnkXhbmarfuuus22Q10g96W0BEGnJbbwgsvrBJl4Pvll18mBx54YLqz3mq3vm55nHfeeRouEllIAAmDJyH8DTbYQM2FwZN8+umnDcGyKznzzDOr/RJLLKGSPPj761//mggjME2nMH0a/HX7Q45UJRNOOKHGR9x5GlUldNrhksepv333t/xVkdCRI8EJbU0G6USYq71WJEivEWdfldBBCof0/epXv0oxEQazmgmzJzXrKy+xeMb66yv57ql09HVc6s6zegonD9cRcAQcAUfAERgVEND7yU1Cx57d4nAhQYFkC9IT3KbVitBfgH6auhTrr0o8SIWw07TNNtsEOXLV5GXvvfdWaR+ZvISnn366yd4MpCIFFBJmd4DNrsrzk08+aYtfPhwkRIi3E6pTfp3E086vME7CPffco7qLfvvb36bSUEi/HH/88WHppZfWIJCeaUfo35CjW22xueCCCzSoI488Mmy88cZBjk0FOV4WZCGlkgLU1SuuuKIhOmH4aF3HUBiAQY5nqT85qhfQgbDggguq+3aSYbQV6hRSCTEERtSZpZZaKhB3VaIttWun+bDqtj90dpG2LNEuqrYN6uR7772X9V75PQaXTtrR+++/n0pqVU6kOIxp74RfJ3+dlkPdcid9SKrhr06/RDuzcQHJyr5OMfUzZnxA/xC00EILpZA89thjYZxxxtF+KjXs8ktMuXc5CZWCq9tuO20PdeOrlIk+4iimfvaRpHsyHAFHwBFwBByBUQKBQSzgGLBNMTKi7FXp5ZdfDrJT1PBjISw6ecIKK6ygC98FFlggyPlvXXjnw0Wx7i9+8Qv1P+mkk+pkdMYZZwwnnnhi+Prrr/PO0++6/lh4Ey4/E0d/4IEHUjOzE6mMNA5eEHOGybX11ls3mGc/TKns8OHDs8b6Dj4wA5hkTz311GH88cdXZoTsqhYuamA2IEJPelBcy41i3FA00UQTBZgXQ4cODRzZKSNuNEJBMccMcM8xIY4piW6FQi+dll9hoGK4++67a5mi7BTmSadEOlFMOv/882tdyof3k5/8RI1EGiVvpd8whFBuOtVUU2k4YEx9O+uss/R2t7wnGDMsjqAtttiiwZoy5NgHdPnllzfY0YZEYiiceuqpDQstc2TH8toxLxZbbDE9zgVD5rjjjjPvlZ8wjyDy3I5YiFCH55hjDsWEOsORMY50lFHd9jf77LNr+FdffbXWZ7CnLtP3bLLJJhovuJa1M9rCXnvtpbcUceyGPgcsjzrqKG2fZenMm1fFpW47+uCDD7TdzjfffNpv7bbbbpo+jgXS9mE4/u1vf8snR5X7dtLe8wG2y1+n5VC33C191157rTIWOfpH2ZOO888/36ybnv/4xz+0D6QfpA8xoswxy/5gumdJdO00jEc2PtGH9BTF1s+64wPxHH300frjqC/0xz/+Ub8PP/xwvdFujDHGCMcee2xXj3XGlntP4V0Wbt1222l7qBtfWbp70ryT9lC3fsbOs3oy/x62I+AIOAKOgCMwSiDAcSu5PSSRBWxyzTXXCG+nkVopRX7ttdcSYdjoDwW1Algii6z02Anf9sM8S4iFTzDBBGrPsRaU/pkYMX5QdiuLzawXfY/xJzed6BEUjqHI7VQapyy+UzPM+f36179uiE8Wm4ksIBvMECXmOI6R7FhqeHI+3Yz0KbvziVwVrXajjz56Iou6RBbN+k3+hPHS4J4PlP5ixxGvlVZaSd9RxMvPcJQFYCIST01+KQthGqXuhHmhypstPGFeFPqJLb+yI1d77rmnpoGyffTRR5vi7AkDlBaTz3wdIy6UVssCMMWFdzuOhB/KJU8ilaXu55577gYrjn/su+++aViyOG2wb/VBOoTRpn5vvPHGUqe0Qytrnvk0lHr83gLM8Se3+iQiEVHo3I5cobRZ9ASpe2GoJLIYTOOmPYukSJP/mPaHYma5lUjTJIzGNA6UupLWbLwiZdUQpyxiE1nUqzvCQDH5XHPNldB+8dtOoa4FVgUX3Ma0I5G+07SAJ30G6RImbNrX8E1dyePZSXu3fNmzSv46KYeYcidtHFUl//zo12h/Vt60PczzZYhSceuTqZfmnz7FzO2JQv8syUZCIoyf9Gf15O9//3vWWdt3G4vaHbmKrZ8x44Pox0mxMEzKnsJcbJvHKg5iyz0fdlU8Y/3FtNtO2kNMfPm8dfJdFc/Y9hBTP2PnWZ3g4H4dAUfAEXAEHAFHQCRzYOgwgRYR7gRmBYvWLLVi6GTdya60TjZtcS3HlBKRgklkdy/h9g3iyJJN5kVkPJFd1tTqyiuvTCf8F198cWpuL7H+zD95ZBIs0g9mVPr82c9+potJcyCi/2nasvmRXXhdyJk7nrJbrvGwyBMx/NTquuuuU3MWNbKzn5rzYgs80sdCBrfoZeFHuo0BJpIMDf74EKkYDXemmWZKGT5Mykx3C+XSiuqWXxFDB6YWaWei/PDDD7eKrmt2d911l8bJwo26nCdjwDABliNMag2jEKYKt0+RXjkC1eDN9OesvPLKqTkMmTXWWEPdG1OCOEWSLHWTf0HHD3p2aAc//elP1S/1F/Myor1YukhbEeOvzC/m1A387b///qXOjKGDOxbG1C0IhgM3cVn+Tj755KYwYtof9YG4RGm14mVMP8zQiyISS3o7D99yhK4hTtORhG6irI4kbhoz5qwoJW/wU/RRBRf8xbQjY+gYnsawo+xFYjHFUyS3GpLWSXtvCEg+quSvk3KIKXf6H+uzuB2O/ELU/1122UXrBJjlGTrq6Ps/6gZu+LVqN1k/2XdjcvcUQye2fsaMD/QNcqwuEWkcxYP+iZsp+XGrHhjJMWB1Q5/TDYop96J4qzIg8n6r+otpt520h5j48nnr5LsqLvk4qraHmPqZjavOPCvrz98dAUfAEXAEHAFHoD4CgYkuu3DG0MkHUZehw6RSjonkg2n4fv3113XyiWROljFijvbbbz+1ZxGcpVh/2TDqTDSQGkKKwOhf//qXpos8wtAwQhpmww03tE99HnbYYep2tdVWazDnA78sQlnwZSm7wMtLC+HOdrtZJOVJdMwkMMPyTA0WAeBMmlnIl5ExdKqUH2HkGTpHHHGExgFzK4tNWXzdMCc/NkGVIzmFQZqUVFaqyhzus88+CdJTSKlkSfTmaF6QtoBgOCIZAjYzzDBDInqh9J1v6mQRofgY++xvlVVWSeRYXZHzBjMYeUhosWj45z//2WDX6gPGIQpkYTSJuHyp0yxDR46+NLnbfvvtNd0wZbMU2/5s4WRYweAFF6SAYFZCcsxSzWDAZcmkq1i05sn6iXz55d1VxQV/Me0oy9ApqmdyzFPzlr1imrg6ae/4N6qav9hyiC13yoxyhmmYZ15T7jDzse/PDJ3Y+hkzPlh5y1FgxQ2l0kZyK5eaZZmeZhf7jC33ovhiGRBV/cW029j2QP5i4ivCJdasKi758G28bMfg7KR+EmedeVY+jf7tCDgCjoAj4Ag4AvUQECn4QYEfJJPsQt0ualnxTxbQQRbKLV0LA0nt5eiE6tbIO5Zbo9QIXTxZivWXDaPOOzoLZDFSx0vqVnY29R1dBzvvvHOQW8RSbLGT3VXVqZN6yL0UXYltZuiEkUVcgw+5tUv1kcw222xqzrXbuEFPiUz+1KyKMtkq5dcQsXygmBh9JtQjrhG3vGfdUbfQ6yMMlEo/MGtF6KERiZkgDI8gN18V6pqRHf3w5ptvajBrrbVWU3AigaI6T/K6cNArA8kRH9U/xHX1XDu++OKLh7/85S/BdPbgxtzyniV0p6BTRY5MBVk4qBV1AR0YZX7MP/Uft8LUU70/Zt7uedlll6kCWeqWSLS0c672sphucmeKlIWB2WDXSfsDD+oWhI4nCCXTwnzSd3RF5Yn2J4tKNZZbzvLWgToPtdOPUgeXTttR0fXYhqcwcJryYAbWtu2bp5kVtfesuzr5iymH2HKXo7yaTPoDdGBliXJfc801s0b97r2T+ml9ZMz48MQTTyhW6KczwgwdReiF6RbFlnu34q8TTmy7jWkPpCs2vjp5GpluO6mfIzPdHrcj4Ag4Ao6AIzAqIqAMHRbb/FiQ2wIrFgyRqtEFeyv/trCR3c1CZ2bOjRpZivWXDaPuu/DH2nrhhow8MeFDqTF2KCvlhiMWNSzWuTmrFVEOtujNupPdNb01CbMixbq/+c1v9GYlmFAwTlAgKxIlyvTIhtPqvUr5Zf2LhFWQozRqRB2So0lZ64Z36lbVX4PH3AfMKha73KBG/m666SZlFuWcpbdZgYUxtfJuir5RngxxaxaMBDk6osq7//SnPwUU3WbrpbnNhwPTh/TBCAKTW2+9VZkzp512WhAJmLzzrnzLcSkNp4oyZByCi+jaaYrbGFD5ut9J+yvqV4rMsokBZ0sDdVokzRp+Iv2mzmHqtaK6uMS2I9JXVM9YaEOWl3xaY9u7hVMnf0WYF5lZ2Dxjy936AmPkZcPkvcw8766vfndSP+uODzCB6Y/4iS4dhQSGEjfh0S+hSJq2zA16ZUrw6+IYW+514+mW+5h2W1T3i8yK0hgTX1E4fdGsbv3si3nwNDkCjoAj4Ag4AqMKAoOzt1xlGTuxAFSVDCD8somTmdszn5Z25mX2+XDafXPjDzdPtSIkCJB8yUpt4B7pDjmupteaM/FjEo7EgxxD0N+mm24a2FlnMZcn0l+WhzJzblfidjAIJgM3MXE7FotJbnOyq3/zceW/65Sf+WWxzW1aLDbkWIne6MNtNlkin0jMdEosirfaaiuNCwYZjBJuCioiW0C3wrPInzFpjFHA1eVypCx1CoMHgvHBDm8VkuNWQY5KBDlKpQwoY6BW8VvFzb333hu4nWu66aYLolC8ipdoN2V10MztGR1BziN1R46U5Ex/+ITJVkZ1cemkHcXmG39lfsvMLb9182f+Yp5laTFze+bDLjPPu+uv3zH1s+74wDXl9B1Zok/JkhwNVTdIhJXd+Jd1X/W9rPzM3J5Vw+sJd52025j09HZ8MWnsxE/d+tlJXO7XEXAEHAFHwBFwBDpDYDC7ykZFzAWzq/qsssAVHTAaHNd+FpEdk0HCJEux/rJh1HnnGIjox0i9wOABIxbjSFmwoLeJsx2PSB1//8IRDDuGgduzzz47iJ6NIPpugigGDUsssUTei0r1wPzJMypgHCGdAmVxRlqHq9AhrswWpbMNC0TiqsrQyYarAbb5g2Ek+gQCR704YiQ3cOnV6VxV3BMkyn4VO9J5yy23NFxrnI/PmEqiuFilbIqkUfJ++M4e/xGltulV9+b2vvvu01eYJ1kSRdCBY4IcAeM4YZ6WXXZZLReYhEjugFcZcRU2V3kjRVOFkAKDqJfZNl3Fb1U3vd3+rP3DmKMc6tZN8lUHl262o6qY4g4pvjrtPRt2nfxl/dV5jy13+kvI+vN8nKLLKW/Ur767UT+rjg8ssDmGygYCx1rpX+hPIDYL/va3vwUYPDDks0ex1EHkX2y5R0YX7a23221vxxcNTBc8Vq2fXYjKg3AEHAFHwBFwBByBSAQGsZgwyRzee2O3TZQNa3JFMV8oYuogdQHlpV5i/Wlg3//JDUL6xiKDfLciY+iYpAcMHBgmHPWYUY6LISGCtAi7p+hKyRJi73ITjzISzFxumgocj5BrmNXIROfNPvvEb57MjHhtMYEbdIhYXuS2m4YyhCFlkib58LrxDUYsIGDsIIECw0uU+oa8XppuxAX26L2BySFKFwO6bVoR5WVMHHRV5Omkk04K1Kn8ESgYMsasKdI7dM0112hQpuvJwqXMt9hiiyAKJc2o4Uk5WV3i+FwZiTLkgD1p5zhZO+JoBHiw6BMFvO2cR9t3o/3ViZw6hfQNmHGsJE8ceeGIiVz1nrfS77q4jMx2ZG07mxEzy7d3c1M3f+av7jO23OkjIdqFHb9Sg+//RDF89rPfvXdSP+uOD/RJSFoOHTpUceI4L9/80EUFwdTnu1t9QGy5a2J68a+3221vx9eLUKZR1a2fqcfvX+rMs/J+/dsRcAQcAUfAEXAE6iEwyBg47Op3Q0KnSvQwNhALRy8AE9OsThK5hjqVNskvmGP9ZdNkiwwYScOGDWt5DIjdTnbjSJPRHnvsoTukSIfwQ+IG/Th5QlEwymlROsuxNiO5hUqlOPhupcASkW4YRUYovZRrwfXz5z//uRnrc4455ghyhbO+/9///V9qB66//OUv0++efkH/jinElluzSnfmY9Jx1VVXBbkBSesozCK5BrlSMBtssIG6O+SQQ3QX2zyhe4JjVEgU2YLI7GgLMMYgFknoCTJCUTHHXGgr+YWTXB2szmBooSsHBqmR3DamzD++YVQao8ns7cligXqJJBaL4GOOOcasSp8XXXSRuqeu5aW6Sj1FWHSj/dWN1hawSJ3RdoyQOIOxusIKK4TTTz/djBuedXEZme2oTnu3TNbNn/mr+4wtd/opFKHTD9HPG1OHdnHooYeq/pe6aelr7mPrZ+z4YGNCdszBDGko2yjoFkax5d6t+KuG09vttrfjq4pDN93F1k9LQ515lvnxpyPgCDgCjoAj4AhEIsA1pyKuncjtPYlIHqTXCMuuuFK7a8s33njjhOuYRVJDr02dddZZ9RszfiNGjLCgGp6yKE6ECaF+5GhJsswyyyQygdQrlyUridwolMjEv8EPH7H+LCCRZEkWW2wxjZd4xhhjjGT++edPRMImueKKK8yZPkXRZCIL90QYSw3mVT5kdz2RXSqNR3TZJFxfvuSSS6ZmxCfMooagZMc9TRdX+gpjQTGRoznp1eMycU+ECdHgjw9ZWKR+Rbok4cp3cOV6U9EJo3bCFGryF1t++WvLLeCvvvpKsQRbWdA11SdzV+f52muv6fXihMlPJHQKf8IgawqWa9st/yLBkshCKBFlrClWcnQhkYVmkz+RzEmE0ZO6o85QTywNXJldRHaVNu6IR/TZJHJjSCILW/VLfZMFWJFXNZObZdI4CENuAip1iwVtRBRDqx+u0q1Cdm05OBaRSFppeNTZPMW0P5GUSkSaIQ2K8iRv4GIkxwLVLH9tOeVnV+2CoRwz0b7C+g7aFpjlKQYXwohpR3ZtOe29iITxonnLl2Un7T0mf52UQ0y5g4Vdf0x5y5G5RBj5el0930sttZTi0s1ry+mr6WftRx9KXPShZka9EyZ7Q1GV+WNMauUvtn7GjA8kWI7oan7k2KamX5hl+o15T1BsucfiGesvpt120h5i4uukfGJxKfPXrj3E1k/LY515lvnxpyPgCDgCjoAj4AjEIRBYDPEzhk4+mHYMHZE00Aklk+ain0088+HyLVISujjL+pNz+4noSUlEgW6RFzWL9WcBslgX6YpEbpJqSPOZZ55pTtKn6MZRN6SJSUodgukhovLKNLI8suiTYzkJi+o8ZRd4MJPkWm5lKOEXxhKT9qLFK+HASCFcYyKxkIEp9PTTT2saCENuXcpHmcSWn4hkKy4wRPIE4wjmCXGK7pO8de1v0TfTUE6GZf4pu4KFYYM1i0ZjquAPfDbffPOEBVkZUU9YdIoUWxo/jASR7CnzouYs4I3Jkk2j3BySFDHV8oHttddeyuxkMUm7bEVyJEvTBvOpKskRPPUDHkUkyrrVnvpXRHXbH20a5qKRSMdp+DBxjUQCS81oZ3mijGiHxsQBU8oEZhl1o4hicCGcmHYk+m807WUMMvpQ0iz6KBqS2kl7j8lfp+VQt9wtsyLlpoxlawsw/0844YTEmHiUbRnJTU6KHeVN2bQjmNkWT9mTsEQCriGoWH8EElM/8Vd3fMAPTIiZZpqJVyXR56X53XXXXc2o68+Yco/FM9ZfTLvtpD3ExNdJwcTiEuuPtMbUz2we68yzsv783RFwBBwBR8ARcATqITAaEjoy8Q2ffvppQEmlHRvBDEIvSpYQne82IYpP3DJZTXWXVIkj1l82bG5eQv+MLG4LlcmiawfFgE8++aQelRHJIdW7gmJbmcgHbrBqRxyf4biISGfoNdvoOikimQCl1x6jyBddMdyohMJU9BmYktEiv2YmE80gEhCKoymRlSqhekh660idpaWvPTmmY+UAnuBbhVBQjJ4WbvMSJpnqqqnij7Kj3lAOHOtCF0pVEgmMwvqY98+NVhz949gRxwF7k7rR/uqkl/JD6bQwLYMsalu2h05x6Y121El77zR/dXDPu40pd/pAFPrSh7XSH5WPqz9916mf2XxVHR+yfkbGe0y593Y6e6PdZvPU2/Fl4+6t927Uz3bzrN7Ki8fjCDgCjoAj4AgMRARG47gVC34mJlx7ajpHLLO9wdCxuPrqk4n6QQcdpApY0afCYlt2eVV/hyku7UbaixZ43QjXwxi4CKAoGl1UO+64ozKcBm5O6+WsP+DSSXvvD/mrV2Lu2hFwBBwBR8ARcAQcAUfAEXAE6iIwmtw0hT6BgERIEUOnboAD3T3MHRQli7i2Stx0M7+dLPC6mQ4PyxFwBHoeAW/vPY+xx+AIOAKOgCPgCDgCjoAj4AgMZATQ4qnSJkic8HNqjQBHBqocfWodSrEtR0lEyWtaHsWu3NQRcAQGAgLe3gdCKXoeHAFHwBFwBBwBR8ARcAQcgZGHwGD0x0A8Ye44jTwEJp544oBuHidHwBEY+Ah4ex/4Zew5dAQcAUfAEXAEHAFHwBFwBHoSgUFy24+Gj14YyBg8+uF/joAj4Ag4Ao6AI+AIOAKOgCPgCDgCjoAj4Ag4An0OgUEmmcMNSPz82FWfKyNPkCPgCDgCjoAj4Ag4Ao6AI+AIOAKOgCPgCDgCDQgoQwcTmDkoR3aGTgM+/uEIOAKOgCPgCDgCjoAj4Ag4Ao6AI+AIOAKOQJ9DQPg4gzRRHLni+JUfuepzZeQJcgQcAUfAEXAEHAFHwBFwBBwBR8ARcAQcAUegAYFBJpEDI4d3+25w5R+OgCPgCDgCjoAj4Ag4Ao6AI+AIOAKOgCPgCDgCfQaBQUjmwMQxSR2/6arPlI0nxBFwBBwBR8ARcAQcAUfAEXAEHAFHwBFwBByBQgT0vBVMHPsZY6fQtRs6Ao6AI+AIOAKOgCPgCDgCjkAUAl999VX49ttvo/y6J0egKgL//ve/g91gXNWPu3MEHIH+icBgIVWGTPJp+By9qsrUufLKK8P5558f5pxzznDeeecVIrDxxhuHd955J9x0001h/PHHL3Rz1VVXhXPPPVclhXA33njjFbpbb731wocffhjWXnvtsPfeeze5+eabb8Lqq68eeG655ZZhq622St0cffTR4a677kq/i14WXHDBcNpppxVZuZkj4Ag4Ao6AI9AvEWBcPfnkk0vTzph/zz33NBy5LvLDGD7XXHOFn/zkJ2GNNdYIE088cWmYbuEIOAI/IPDaa6+Fww8/PNx7773hrbfeCkOGDAnzzDNPWG655QLz0zHHHPMHx9+/FbXBrKOidnvbbbeF448/Puus9P13v/tdmHLKKVN7nyenUIy0l07WOST6n//8ZzjooIPC8OHDw0svvaT1aoEFFgjrr79+2GuvvRr6eNwX1bGq/XyRX8I0Kqqf2N18883hpJNOMmeFT/z+6U9/arCLjS+mXhfFVRWXhkT7hyPQSwgM5mYrGDk0HvtVjZsB6s9//rP+6IRWXnnlJq8PP/xweOONN8LXX3/dZGcGF1xwgYbB9y233BI22mgjs2p4Pvjgg+G9994LL7/8cthzzz2bGE+33npryrRZZpllGvw+++yzaRwNFpkP1x+UAcNfHQFHwBFwBAYEAm+//Xbb8Q8p3ewYWObnj3/8o2Iy9dRTh0svvTSsuOKKAwIjz4Qj0FMIPPHEE2GppZYKSOZAtDM2Hh9//HH9weS58cYbA20qS2VtMOumarvN+rF3JDiy5PPkLBoj572TdQ7rsaFDh4b3338/TfyXX34ZHnroIf3dfffdASbeuOOOm9qX1bEq/XyZ3zRwecnXT+yq+MuGYe9V/BXFF1Ovy+Kqgoul15+OQG8iMNhutkIyh19RY6iSoP33318ndjCF6tAHH3zQMNG89tprSxk6Fi4N7b777tOdDTPj+Zvf/Cb7Wfi+xRZbhG222abQzncbC2FxQ0fAEXAEHIF+jACbJEsssYTmgAXDLrvsojvz7OZDrTZz5p133jBs2DCdG7z++uvhmWeeCRdddJHuBLOJwwR3tdVW03D8zxFwBJoR2HTTTZWZM//884f99ttPNz/Z5KTtHHjggeGxxx4LxxxzTDj77LMbPMe027XWWqthTp0NkDn+ZpttphJCMGJnnnnmrHX67vPkFIqR9lJ3nQODkHKDmQNj8Jxzzgk//elPA2usSy65JJxwwgm6YY6k5pFHHtmUr5h+PqZ+ZiNGQu2ss87KGqXvRWvJTuOLqdcxuKSZ8BdHoBcRGGzSOcQJcye7Q1cnHX/961/DZZddpked6vhjV4I0LL300uGBBx4ISNmwi1EkfpoNl+NeiKoajRgxQkUH7bvsOdNMM2knV2bv5o6AI+AIOAKOwEBCYKKJJgr8IKRcIcbY+eabT99b/bHRwcIgS7vttltYZ511ApIHhxxySFh11VWj5w7ZcP3dERhoCHAE5vnnn9dssWGZZaJsv/324ZNPPgkHHHBAuP7665Vxml3IxrTbySabLPArojPOOEOZOag1QDK+jHyeXIZM75rXWedQnpyaoF/nZMT000+viaUOHXfccWGcccYJhx56aDj11FPD7rvv3nRcNqafj6mfWQTxnx9bsvb5907ji6nXMbjk0+3fjkBvIKDiNDBxkMwxCZ26EdvOH50F4n116LrrrlPnO++8c+Cc5+effx5uv/320iDGGmss3VlkYMwe47rhhhs0bhqskyPgCDgCjoAj4Aj0DALTTTed7gAT+lNPPaU6EXomJg/VEejfCLz55puaAebZRXokYY6iuxEp9+ycttu5RlUBulUg9JfMMMMM3Y7Cw+sSAjHrHDbDIXSHGjMnmxyYOBNOOGFg85vN8yrk/XwxSo5LMS5uOnIRGAQjBz06PKEYCR2UIy677LJ6LrKOUuFPP/1Udd6gmJkdPkRFIWPy6EfB3y9+8Qvd1UDfjpEdt8LOyRFwBBwBR8ARcAR6DoFFF11UJWuJ4cknn+y5iDxkR6AfI8BlGxNMMIHOsfNHqsgWi3d0QqKwlveeIOb3W2+9dUBnzvLLLx922GGHnojGw+wiAnXXOTDsINZiRYRUFnURMrdF7vJm3s/nEfnft+NSjIubjjwEBsHA4aiViXkaY6dukjiXSVic08wq5GoVDprOOfeJAmM4x8bQQbt42ZWOMJ8233xzDdaYOMTHDVYLL7xwmG222VpF6XaOgCPgCDgCjoAj0AUE5p57bg0F3TpOjoAj0IwAt1mZjqkjjjhCbxtC1QDS6L1F6MBCYS7KcNF/FbNx21tp9XiCbrLXXee8+uqrCl0rySuzM7dVsfZ+vhgpx6UYFzcdOQjokSuOWkGxR67wu9BCCwU4yojzHXXUURi1JY5NQcbI4cjVNNNMEz7++OOm6+osMBg6uOPqVBTKffbZZ+H3v/992gFi34pQBgYDq+iH9ncnR8ARcAQcAUfAEWiPAKLnELobnBwBR6AYgVNOOSXVV4UEOvqn0AfCzVfnn39++OKLL4o9dsEUaQwUL0MnnnhimHHGGfW91Z/Pk1uh0/N2ddc5rN3suB7SYGXExjmUv92szL2Z91Q/j+5V1n9Fv/yV5ZaWTp7drtc9hUsneXS/oy4Cg1BIjFQOHHt+JqkTA8mxxx4bxhhjjHDeeeeFF198sWUQdCh2w4YxdIh/zTXXVH/G7MkHQlrpvOBeozyZwRFJHY5tbbzxxsrYyfvJfo8++ugq/kqnl/+xk+LkCDgCjoAj4Ag4Au0RsDGzTKK2fQjuwhEY+AhMNdVUej05F4f8/Oc/D8xDWbRznTTHn9igRBdVt4n5Mre6Mt/mEpGddtqpUhQ+T64EU4856nSd0+2E9VQ/j0JwTmQU/d54441uZ0PbXX7dZ9+WxzqRmh8f/+qg5m57CoFBMEKQVoGxY5I6sZHB+UfBGwOV7QiUhQUzh0EGJXHclAEDhx9pgRBJLUsP4XMNJMwnlLuh0Z3rUyeffPK2DJ2DDz44fPTRR4W/9dZbryy5bu4IOAKOgCPgCDgCGQS4WhcqUsKZceavjsAojwBzWzYiUQ/AQhYltnwzj2Xxuu6666ZSFt0Ciyuh77vvPr3h6MILL6x81Mrnyd0qgfhw6qxz2Ay3tVOri2nMjo33OtRT/TxHlqifRT87plgnne3cdrte9xQu7fLh9o5AEQKDMTQJHToEmCidSOnQYC6++GK9gvHBBx8silPNTPExR6aGDh3a5O7dd98N+C+60o70Iur2s5/9LD2aZedNsXNyBBwBR8ARcAQcgZ5F4JVXXtEI2MxxcgQcgWoIoPx4lVVW0R8SO1tuuaUeW0TPzYorrlgtkDauaJu2sYpuy+x16W28unUfQKDOOgeGzrTTThvQZQZzELUURWRSL7itQz3Vz3MlODpU+yv1FC79FQ9P98hFQI9cIZ0DXXPNNR0xcwiDc8FcXw7tu++++sz/oQgZ/TcQ4qB77713w2/eeedVu7JjV2opf8bEQcrHjm2ZnT8dAUfAEXAEHAFHoGcQ4DpmOzY9++yz90wkHqoj0M8RGD58eLjkkkv0yFVRVpA2R7oc6pZycZgBzK3RzcPG5y677FIUtZv1AwSqrnNmmWUWzc3TTz9dmCvWec8884zamdtChzlD7+dzgHz/6bgU4+KmIw+BwSaqh1TN1VdfnUrrdJIkBo8zzzwzMJAV0d133x24snzKKacMF1xwQZMY6KWXXhq22morlfI5/fTTi4JQsw022EDPRBJOT133WBq5WzgCjoAj4Ag4AqMgAhwHOOCAA/Q2yqmnnjowFjs5Ao5AMwKPP/542HXXXVXaHAmcPCEVzyYnZLcQ5d3U/eZ69HvvvTeMPfbYfqtVXfD6mPuq65zFFlss3HPPPYGy33///cOYY47ZkBM27GFCcAKDG4GrkPfzxSg5LsW4uOnIRWAwjZvKOd544wWuvBrtu28rp+hH//2P+uEZvv3fgITn0UcTbfrHHB023nSzH8L6VsL93s2N14okkNisvfpqhfGtvtJKYcwfDQpviejgYw8/lHY+Q8QP/jScQaOFcccYPWy64fcTye/DHlSSpsGJHCUTr/m0EpyTI+AIOAKOgCMwKiAw2n++07FwSJDjyZlxO593Ed9Vd4M5xizu2PV/QxYEzz77bDj++OPDQ8MfUftDhbHDeN0qrHzY/u0IjCoIDF1n7bD/nnuEB++/Pxy4z95hF2HuTPf9kRduhd1t993DZ6JTZ8KxxgwLzzdfaTuq2m65ce7wAw/QtnnisceEWaaXm+hatPNsOfg8OYvGyHmPXefsLfpLzz9rWHhf1FWss/rq4YorrgiTTjqJZuL2O+4Iu+20o9aJLTfbNMw8nRy5sjVTl/r5qvWTBOXHlhik68QXU6/zafTxL6aUesnPkNF7KaK+Hc1oolk/UVG8Rx4O659wotxSpSyTSqn+7rtElCknooxrNLllSrg4Ofrmm//KJPB/hqMLlwdpIOjrr/93TfqQIdyq1ewPN+Y3G7b5G13SWOwraHpIV9Yf4X377X9FPxBv5SS8rTBkSPX8l4fkNo6AI+AIOAKOQN9AgHGacbEV5cf+Kn7y42yr8N3OERhVEbC5suWfqTC/7JyUOTTtKUtV2mC+3X733X9lHpwNpfw9Pwf3eXI5Vr1l08k6J19fdMkl3b71/NSuIZm1GHnK+ynKZ1k/X8Vvvn5m42T5N2T06muu2Phi6nWVuMpwKcLQzXoIAak/Q558norUQxH0n2AHm2b0OeecM4wBm+Rra/rtM4FG5cH4YfCQCWOeRs+yXVSA539uNB4cqzBQsz+sUr+ZsFN/LdLIHVk/KkjTkGxaiKCIYPi0CLvIi5s5Ao6AI+AIOAJ9GYF0XGyVyNzYV8lPZnxuFbTbOQKjMgLpXNlAYNqbn/p+J2Y5pmulNphrt8zJ9bYTi6vVMzcH93lyK7B6x66TdU5TfcnXMbKQWYvx2eQHwzyV9POV/ObqJ0Gn/khfgX0+evtO/ZlB0bMgvJh6XSmuElyKkuVmPYVAG0mNnoq2D4arSpE5w1t2RXgfTLMnyRFwBBwBR8ARcAQcAUfAEXAEHAFHwBFwBByBURqBQXYMavDgyjz9URowz7wj4Ag4Ao6AI+AIOAKOgCPgCDgCjoAj4Ag4AiMbAWXowNSxq8tHdoI8fkfAEXAEHAFHwBFwBBwBR8ARcAQcAUfAEXAEHIHWCAziqJVJ6bR26raOgCPgCDgCjoAj4Ag4Ao6AI+AIOAKOgCPgCDgCfQEBvbachCRZdft9IWWeBkfAEXAEHAFHwBFwBBwBR8ARcAQcAUfAEXAEHIFCBAabQuRBP0Knt5Mj4Ag4Ao6AI+AIOAKOgCPgCDgCjoAj4Ag4Ao5AX0dAJXQq3XA1hlyF+JcnwmhDhvT1PHn6HAFHwBFwBBwBR8ARcAQcAUfAEXAEHAFHoB8ikHzxefhukcX7Ycp7P8kqoYMOnSp6dEYbZ9wQhoze+6n0GB0BR8ARcAQcAUfAEXAEHAFHwBFwBBwBR2DAIzDagM9h9zKoSpEJLkmS7oXqITkCjoAj4Ag4Ao6AI+AIOAKOgCPgCDgCjoAj4Aj0GAKiOud/unP++5//9FgkHrAj4Ag4Ao6AI+AIOAKOgCPgCDgCjoAj4Ag4Ao5A9xAYhGSOXl0+aFD3QvWQHAFHwBHoMgLvvPNO2HbbbcNGG20U3nzzzS6H7sE5Ao6AI+AIOAKOgCPgCNRFwOdndRFz945AdxFIdegMcoZObWQff/zxcOutt4Yf//jHYf3110/9f/nll+GUU05RvUQHHXRQcGxTaPzFEYhG4IwzzggXXXSR+p9sssnCsGHDosPq7x7POeec8OGHHzZlY6eddgqTTDJJk7kbOAL9EYHPP/88jDuu6O7rJYqNb8SIEWHssccOJvHc08mNTWcn6XrhhRfCq6++Gj766KMwRC7HIL/LLbecPgnX5z2doFvNb2/Xs2+//TZ88803YZxxxqmWQHfVIwiMjPZeNyM+P6uLmLt3BLqLQHrL1X/62ZErJIu++uqrMHjwYJ1cdBeWaqE99NBD4bDDDgvrrLNOA0OHQRdzaL/99gujj+6KpKsh6q4cgXIEsgu72WabrdzhKGADw/jll19uyil9UU8ydPpCv9uU6QKD/pLOgqT3GaMbb7wxnHrqqZXS83//939hxhlnrOS2naP33nsvHHjggeGuu+5SSTzq8+KLLx4222yzsPHGGxd6P/fcc8NVV11VaGeGuGHzJU8x8REGc6Yjjzwy/OEPfwh/+9vflLGxxBJL6Ji/4oor5qPp+Ds2ndmIn3rqqbDHHnuo0XHHHReWWmqprHXh+1tvvaVSkcx38vTcc8+FOeecU4193pNHp/j7/vvvD8ccc4zOX/fee++w9tprFzv83hRG2iGHHBLwRx1gzks93mWXXcIOO+zQ0m+M5RdffBEOP/zwcM8994S///3vytCZeOKJdY7LfDY/9sLgW3fddZuimmCCCcJcc80VVlhhBf01OXCDlgh0o723jKDLlv1hfubzgi4XugfXtxB4+umnkyeeeCJ56M7bk2+mn778N9sMSfLN19Ie+gbdcMMNaHFOll9++ZGWIOFIaxpkEdWQhnfffVfNSd/XX/cdzBoS6R+OQD9DQHYLk0suuSS5+uqrE9k17Gep725yZXKfiHRg+ht//PG1z3nmmWe6G1EutL7Q7+aSVPjZX9JZmPg+YigScOk4xljW6sc8ohv0yiuvJMLASeOafPLJE5EGSb+PPfbYwmi22mqr1E1ZOoUh0eQ3Nj76nw033DCNU6RV0nfZwEmuvfbaprg6MYhNZzbOf//734kwAjSdq6yySiJH7bPWpe+4BVNZ1CebbrppcvrppyfMfYQhlHz88cepP5/3pFAUvnz22WfJzjvvnMiNsmldoY21ouHDhyfUJ6vTY445ZvqOmTCEWnmvbSfMo2T22WdviMPi5jnRRBMljzzySEO4wvArdW9+SSfjt1M1BLrR3qvF1D1X/WF+5vOC7pV3r4X0+WflfAl4Fn2MN9FruBREpLdc6bXl/ezIleRFxgoZYfx2LsXB/xyBgY4AO5NbbrllGDp06EiTyusrGC+99NJBFlrpb6yxxuqVpFl/a89eiTQiEkufPSOCGOW9IA3DseKy35lnnqkYcfRmmmmm6Qpe6MjiKOHCCy8cXnrppSBMgiALYZXYIQIkFZ5//vmmuHAHXXrppeEvf/lL4W/++edv8hcbnzCWw+9//3s9YoVk0KeffhqQVtlggw1UomHzzTfXdDdFGGkQm85sdPvss4+mcYoppghIVDHva0foV/zzn/+szpBwuuKKK1TCZ7fddgscJ59wwgnbBeH2ggBH83/yk5+Es88+W3HPSjOUAUTftckmm2h9QvLrjjvuCEhB/fWvfw077rijekOCjvreLdp1113Diy++GJCuoY7885//DB988EGgviMpJwy8IMxT1btZFCdtQJgRKrHGERzZcE3Tefvttxd5cbMCBLrR3guC7VGj/jA/s/mAPXsUEA/cEehtBJ588sn/SejcdUfXuGAiKlhbMkXENhN2eKrS9ddfr7sCcoa7qpeO3ckZ8UQGt3Rnq66EDn57epfiu+++a9g1I9MyCdBfFQDqlkOn8YGJiPhWSVqpG9JMPZYjKD2Ob2kiCizYAZUJUWXsC4KobBRbDrH+LGFIoFXd6TU/+WdfLT/SWbc95PNmYVSpn/QN1113XfLggw8WBdPSTBZp2h/WldCpW36d9rsxeMa0o07T2RLsAWApTJPkX//6V0dtF+lYma8kwihoi0iV+D755BMNDwmGf/zjH01hChNT7Rl387TQQgupHTvbVamT+IThpPEdffTRDdEJY0clWcDlrLPOarAr+qjSHjpJp8V50003pdgKY8CM2z6ZO5AXfu2kIsskdHpj3tM2IyPRwZ133pliiIQUkmKrr766mrWS0Hn22WdTf4899lhTDhZccEG1R1KqG/SnP/0pje/hhx9uCvLuu+9OpYt4N8pK6OQl0um7maNTf4RZZF782QKBbrT3FsG3tOp0Ptgy8DaWMevGNkE2WXc6L6jSX+cjjZm/5MOo+113Xkf4rMOoezHUjXVcabwuoVMKTd5iEFzVKjs10iE3kRRimHLKKcN8880XpAIFdm1mnXXWIGLSqkSNXWTOlpcRZ3X32muvMN100wXO6LJzhP+jjjqqcAeA3SHO6fODgw098MADqZnZnXfeeQ1RioioppPwOZefpz333FPjLjv3LuLTYZ555lHljJNOOmkQkdRw/vnn54Mp/CaPW2+9dZh++ukDfkVkVs8iswvSLSI9c8wxR5CjKGHaaafVeJBikM5Zd3iIV45kaDqK4qxbDp3G9/bbb4df/OIXijlpQ+EeZXfiiSdqPcqnEV0hlF32d8EFF+gOLuezqTsLLLBAmGWWWcLxxx+fehfxfPVTdkb9tddeU3vqMBr6u0Wkl91t8jX11FMr9tTrX/3qV4USZdaOaAdF9Lvf/U7TiXRKlmLLIdafxf3GG2/o2X125anP7NAvssgiQRgR5qThGVt+BLLkkks2lLvVAcJsRSjrNLdlT3Ygi6hue+gkf9n4F1tssbDeeuupXgv0W/QU1S2/2H7X0l8XT/NXtx11mk6Ld6A+kSJBafZUU02lu+30e/S/wnhQfTB18i2LP9WxQR+3//77F3qtGx/ljRQAkjT05XlCwgFCQiFPJqGDsvSqFBsfUgiywNZotthii4boGGdXXXVVNbv88ssb7OyjbnuITafFhy6ObbbZRj/RgVI2zzH3wkxL51RZnUOMYYzT2R9KkouIPPb0vKco3r5oBhYokUavIjqMkLapQszL0SWFFI4wLJu8UB4QCnO7QejMgRg70VmVJ6RtrA0KsylvXfhNHn7605+qHdI+Tu0R6LS9t4+h0UUn88GY+ZnNd+uuG81f3Xlyp/OCuv21oUs51lkHmL/YZ915ncVz4YUXqh608cYbTyUu0ZF12WWX6RqXufO+++5rThuedddxDZ79o2cQYOcY7v/we+6qLaEji2DlvHPOXURD9Z0ztiL+r++S4kQmjIVcP2kk6XluzsgLwyQRBWrpDkBeLw2cKLnhJhERX/1ZHOzmmZk9f/3rX+cZV4mdsZfJSIPExL333qtxCmMrefTRR5v8iVh5mhe5rSrB/xhjjKFmtmOYT2t2p0omd+pWJpoJPzDhJw0lqbOb2JSwjIE0RNUzQPjZM9bLLrusxmXpJV52i7IUUw6dxMeuk4jzarrkRpBEJu6KheHCzlV+J1AYL4kwbPRn+hWE6ZfMPPPMKZ7mH3MjznpjTrmxG52nk046Se2FGZG3iv5+//33E2HeabicfaeOCLMtTacoMWwK29oRdbCIqPfkY80112ywji2HWH9ETlkIkyrNjywOE8rRcC7alY4tP+IThl0iE9f0R3snLlHWiHUpUffpl/I/+if88wPXPMW0h07yZ/HTB1u6eM4999xmVelJf4K/dhI6MeXXSb8bgycZjmlHnaSzEsj92BH6Oxi7rI7xznhp3/RTdUiU6apfYeYUeut2fEQy77zzapzZPt4ip69lTgC9+eabiSh0Tn77299qPyHKi81ZrWdZfKIEWdORb6PEI5PfFFPmPnmKbQ/5cLLfZek0N+i9oZwZ55C4QaKiFcmRtnROZbq58M+4bXMse8qxuDSo3p73pBH38RcwEiZkQyqrSOg0eMh90L5kQ0XLlbreDbJ6Ikyk0uDk+F1y5ZVXJrJRm7ppJaGDo5VWWknT2UoaKQ3MX9oi0K69tw0g56CT+WDM/Mzmu3XXjeav7jy5k3lBbH8dM3/JFUutz5h5HREccMAB6XgFrjPNNFOqs04YsWonmwFNaYlZxzUFUtXAJXSqIpWw25XIGfnkoYgjV9bAGOwZ4G1gQexYJChS5oLsMDQliEEDfyzKZccrtUcc2Jg1t912W2qefzHROSaWVYg02YRWbgdQLygJZLFIOoomiTRKYz7IrlZ6JIyjV4SBP36tGDosIFFeasS7LSphMnWD6JBJx8EHH6xH3UTiKE2bnPNPZAcnWWaZZdRMJFgaoowph07iMyYYIvKyu5emhUmCMZ4uvvji1Dz/IlJgmg8b1OhsREorEW6xHlVhMpolY6YUMRqY4IJbkQh/Now673KdtIbJYJVVGMlRGuIij7LT0BCktaO6A1VsOcT6I9G777675oOO3xiStBM506/mlEsrqlt++bCMmdSOoZP3Z98Wv+ySNjEOcRPTHixsnhZ+1fppfqm/lD91hF8R48/cFj2rMnQ6Lb+6/W4snjHtKItL3XRm/Q7Ed2M0UE9MOTCMc8Zsq3fZYxStMGAMo46KHhBlvBW57WZ8hC+StRonDF2Rbm2IEjF40iMSR2n7s3bEk6MpdZU2t4pPJIA1vpVXXjlNBwvsNdZYQ81tU4W05o+gxLaHNKLcS6t04pS5nTHBRfIpVbALM+CXv/xlwxiVC1o/mTsYlsx7WlGWodMb855WaenrdjEMHfBnHst8xxZbzKfalUtVLETaQsu6aK7UKowsQ4eNM+Y9HDUnnSKJrWGyYcs8wakzBNq195jQO5kP5uOrMj+z+S79Sp11o/mrO0/OprHuvCC2v+50/pJNc5X3mHkdayUb+0WSSPsW4mIsMwENyqiIodPpOq5KnlI3ztBJoWj3EpDQ4ffw3XdGS+hQ6Exy8iTHorQz32677fJWKXMFreN5ErFg9SfXlOat0u+6DROP9913n0prMMFhpwHN+6RdjjoknB3Nk2lEp9PJL8I5F2nn9lsxdIoGR2vsMIu6QdYhv/766xocOjjIF9IspBOS40xqxkQ7S8bkqlMOsfGRPtKFREee8UKarNyZrJSRLZgJp8rZcbkeVOP82c9+1hAkzAjCoEPj7G63SMSqNdzVVlutKUhuJoJJyaQsS7EDVWw5xPojzSKWrTt0+UUVDAmT1Gm1A1y3/LI48V5lwpD3Y98iRqplw6KW9BZRTHvIhtNJ/mD6sZvJ4MyEuA5VZeh0Wn51+91YPGPaURavuunM+h2I7yY1WDROowMHCZdW420WE9MfI0pxs8YN792Mj/7E2r0c0W6Ihw/GEvpy+8FsFqXEutFim0Mw2G18bAogZ9AuPrmqXONi0guxMcGClfhnmGGGRI7VpGnJxxnbHnJJ1M926cTRz3/+8zQtzAdgOrG5YzcnIfman9tk44pl6MwAtPAAAEAASURBVPTGvCebzv72XpehY9LGVsd5cvsYzMxukbVrUSyeBgnTF31W+V92s4p6mE1X/h3Je+Y4Tp0hUKW9x8TQyXwwH5/106023Gy+Sz0pGo/K1o3mrzcZOrH9dafzlzyu7b5j5nV2+oTx8quvvmqIgo0IOwGRZ+h0Yx3XEFm7D2fotEMotR8kzA3VoSMm0r7iqUhPCXpnIDvfbqGLGFuQSqGfpgXf7HhyhhfiDGI3SSYyQZg4qseEs41y/abq/+CsuyxGm6KSKxzVTLiRerY/6wDc5AhM1qjwvQgXM5OFfZABWf0J40X1kchEK1T5yfWXDfGhywA9PZDdODLnnHOm+pHQrZOnTsohJj47dy0DvOr8yadn3XXXVSNuN2lH5JVbO9qRLFIUA2GmBNk9Sp1fc801+s5NQVm9C52WA3UF4kYHykiYpaneHOxkV1d16qijLvzFlAPRxvqjbXLzBudsIVHkqzdfoK9JmApqhs6GdlS1/NqFU9Ue3QUi9RJkMqC308jEo8lrJ+0hH1hM/qj/1Bs5Mqp6TvJhduO7W+VXJS2d4Nnb7ahKfvqrG9nBD3IMSZO/1lprNWXj5JNPVt1lZTpfsh6E8a/6Y2QRUHq2vpvxoR9EmBB62w43XxXplsrOL7gFS5j1qgNAmHrhiSeeUD1m9ElZ/WrZPGXfq8Qni1z1gl4U9IYtuuiiQY46qt4RbhwyPSM4Mre8d9Ie8J+lKukURlMQqSv1RrkznxLlyEE2toIcLw/CfNLxSRjI2aC78m5znGxgZpad92Tt/b0cAcZrdI7IMb9A24MYK0Qpd0MdKw8hzoYb7tDVk//JcfXCANG9g14V9MFRv5hXy+JezWw+XejRDVsiUKW9twygjWXsfLBNsG2trU/IOixbN2bd9MZ7J/11b89fYuZ1shGiMKLzTU4ONEDKGpS1URF1cx1XFL6bxSMwCEYOizFZdUaHQqdti7lsIHY1Y55ZxLWkZibSL9rpE4b9RLpBg+kJJWoisaGDImGzeGdgssVpNu28i+iZGhmjJG9fZm7uRHdLylwxM54opWRhCdFpGBlzrcrT/NgTP3kqMsu66aQcisIuMsvGZxNv4XpnjdN3Mydd7QhFe3Q67YhJBYw8yhrl1kYokIa4XjZP5KPqL++XjnXLLbdUJaMiiRVE3F+ZgSzWRfdC3nnH30WYF5nlIypyU2SW98f3b37zG1WsSdulDFBKDc512mvV8iuKv64ZTFPwZ6FJe6c+FFEn7SEfXm/mLx93u+9ulF+7OLDvBM/ebkdV8tNf3dDvMt7SVovG6ar5IozDDz9cncMEoN0XUbfig1mMknCYsfQvMCNQwp4nlCij0FWOkgXG9yyxqWFMoGz/n3Vj71XjY/yGRB+dXsssR0lUyT+KokUSSOu9hWlu+e6kPVh4PKumU46ZqTfShJJLkQhOg5EjoenFDnKMIzXvxkvdeU834hzoYcAkpB3AOGReyjXo1K3TTjstbL/99l3JPuUGZZmQcnQuiJRX+stufhVFCrMQJufw4cOD6PVQ5iptGOaiqEcIouagyJubtUCgantvEURbq6K5X5FZ24BqOKi7bqwRdFecdtJfj4z5S915Xez6tpvruK4UlAeSIjCYRgtz4dvvO/PUpsZLbMNnANloo41KY2Ii0m0iryKGnQbLIq8dxeavjj+wqJKWdmmNse/tcijDxczt2SovIg7YyrrBTnQF6K6k6BMKovtIJxfsUDLBze9Yd1oO7NpecsklQY7hKeNDjvapZBA72/xE8aBOromnP5KcKdbbyEg7E0q4+0z6YN6KmH3lCVud8usEJxh53KjG5JK+hlv12lE32kNv5a9dXvL23Sq/fLitvmPwHOjtqBVe3bazzRP61Sp9a1n83LbHgpKbnFpJR3YjPsIQHXPKNOHmKxaw3MpVRKSHCXQZmR2MFzZQ2I3OU534jEljDOwjjzwyHHHEEWmQxAMhSVEUV0x7sMDrpNNuA1t22WUbmDkWFjdEckMh0kvcusltN92gTupYN+IfFcJg91yORgU5oquMTsa5TucUSHEjYSbHkVMIuT01y/BD4ln0Hab27V7Y9GShyZN6hqQ0UspO1RCo096rhdh3XPWXfiKmv+7t+Usn8zr6jiKi7rWisvIzc3u2CsPtuouAiomUFWh3o/ohNNvZo8Jw/XTRpOcH191942psFvNMyuRMpl4liUQQx4DyxGQHMnH1vL2cac0bNXzLrRcah00AzRIOp0pFiUFv5t3it2dvl4PtEHK9XhEZzpauIjdmVgc3rnDfdddd9Yp7ytyOW2FetONrcXTyRJTUxEmZWJ999tlBzgvrZAimUtHVpdQJdsfykkfZo2KdpKlTv4j9cvU6xFWqony7YYHIRK/qDlyd8usk3YceemgQRet6DEJuO2gZlNW7bvRLsfnjak4WqPk60DLhFS27WX5VouwGnjHtqEraRiU3XE0Oybn4ALOh3S57ETaMZTAuINo9TNwy6kZ8XIVOf0I7uuWWW0L2+ux8vByr4ocbpADyRNohJtn8iqhOfNnjy8xfROdDQ5BIKUD563W70R7qpNMm1O0m5qS1m3PAvj7vIb/9gR5++OHA8XOOGhbNT2HUUcZIoMJo5UhWJyQ3jqp3uaSkNBjbnc9uipY6/t6C4xyEDUMHhpEzdNoh9oN9nfb+g6+B/dZb8+Ru9Ne9MX+JndfZHNXWXflaU7ZO6+Y6Lh+nf3eGwCAG3yoDfmfRNPpmNx/pG+JFTDlPiLpx9luu8s1bpd92ZInKWHUygsgqk1L8/vGPfwzsNogyqLDFFlukDJY0AnmZ8fujQYiQmnha1l4U3GY/C9+L3LDbCDHxtU6j0HMPG3ajHOok0SYMnKku6iwMl6wOgjrhl7llgUzHSj1B7B5JHajouFVZGFXNqSswEGyXFn+It5977rnpogSpnSxRB2x3reicOeH1BUIHg7W1rbfeuoGZA6PMdqz7QlpJAzo0TjjhBN2d5t0GsLL09XZ7yKeDYyzo9mHBzfGSblM3yq9Ov9sJnjHtKItXnXRm/Q3EdyRFjImD3o08cQyRvrnV0Y0rrrgi0DdxzLKdlFun8cEsRq8PTE3aLTpqWhH1Wi5eCDvttFPhXMbGFaQNihildeNjgW3MGhapebINA9MJZ/adtAfCqJtOjptB9957b/jkk0/0PfvHuAIDno2rbknnWPh9ed5jaezrT/pA5qaiYLUwqdR7m7sX6YQr9NTCUBRkqy1trmizUhQhp3Ny5jRVCX/M+SBRwFrV2yjvrm57H+iAdWOeXGde0El/3en8pU5Zxs7rTIqc8ZHNnizxbeNm1pz3kbWOy6fDvwsQ4DpPYXQkD95xW/QtV9JIZFxpJtkRR2YrEeXBTZaiMFbtpHIkMlFM7UUkOpEJnNrJ8ZTUPP8iOxLqhvBFiWjCFeStCK3ddhOF3c7B7Q7CWNJwiq4t5wpGu4JUJmfp7UTCIU5E+WIaf6tbrgjfroklfbzbjTRyBKRVkivbyQRar5A1D3K8RNMmirnMSG8mAqv8LVcx5dBJfFYGIgbfcLuG6CPQPJDGYcOGpenOv9gtQrJQz1u1/L755psVE+obcYhOhvQGsJYea1ra7RVcASpnn1Pf1HHaCXFzm1GepHNVO26usBvA8C8SJmqOv3w7ii2HWH9yJDCxW2Noc0a0IxHfT9Mpu+Vm1fSMLT8LqMotCriVXcaEfMoOZlJ0g5uFl3/GtIdsGLH54xYR0ko586MPrEPWp9AvllE3yq9uvxuLZ2w7srzXTaf5G6hPKwc5+pBk64hMPNMx7pRTTinMvkgNJtyEQb0sGieLPMXGJ8cztB0IgzuRI15FQTeZMWcQpoSmT6QfG+YC3GwpC4HStMfERwLkiJWGyQ2Y9DVGctGCmpN+br/Kk+FSd94Tk07au2waaXpoT9kbkbjOXJhSaifM+Xwy02/Z/VU3lD3htSKR3kjd9sa8p1Va+rqd9W+t5jp2EyfYy+K+4SZWbjwSBcSKt2yAdSW7zGuFCahhcsU9Y5IRNwwxNyEtskHWcDMoacGcH/NsI+YvXF0u0shqx1yaualTewRi2nv7UItdxM4Hi0KrMj+jLlFXYtaNMfPkbDrrzgti+2tr33XXAdm0Vn2PnddxUy3jFGWx4YYbJnZznTD/E9am1qbzt1yRrk7XcVXzpu78lqvKcAUYOlxb/tBdd/QqQ4drg63x09GL+Khep2kLRhHpTkSbdmlGRFJArxu3SidinQmDkNwCkMhuYpO/Aw44QCsoA1b2ijaR1lBzEcVOihaidv0c8cgOv1Zkrv/kW8S79VnG0KHDWmSRRXSCKrcEJPxs0cYElAG7G9RJhxxTDp3EJ7uFKVOAiQFXqMpuT4oLkxSRGmuCRW4l0wmFiLsr5mDJBMN+I0aMaPKTNWByYYteyu7ggw/OWnftXXY9U8YNdZjry+nUjZlD/WSSnCcYJFaXeTJJYzJOfeE6YcxGNkOHNMsxtTSdLAi4Yp5yBFs5Wqh2Re0otvxgpIKf/USRnsYh4uWpGYxLJqNZssku7hl8in6igyDrRd9j2gMeY/NnCaCvy5Z/vqzNnT3LcKEtGVZFuMSWn8Vbt9+NxTO2HcWm0/wN1CflYO2TsU6UtScwd6zOcbWwSKEWZl+kC9Ud/ZncUFToJm8YEx+LPZGgSdPEe9FPpEny0SUi0ZOOISKNlKy44oo6H7AJK+0iu9gkgE7iE8mcdPELhnKrj8ZneO63335NacQgpj10kk6uu7b5CswnrjFngW3jEeNpltGTT3QMQ6e35j35tPbVb+Y8jOXZn41jzHez5qKTriEb1COrU7RXFor067bRyLwX5ly3SCSr0rCZezDPYuwkHkuH3IbXEF2WoSN6rrSfYT5gecQfYbHB69QegU7ae/vQm110Mp8vm4e0mp91wtCJmSdnc9xf5i/ZNFd5j53XibRt2q5pr2x003/zY01O2y1i6MSu46rkpcmNM3SaICkz4Ox5Ikebohg6SLBQ4Ey6ikiUw6q9HHcpstbJjWjATxf41vEzaGV3EQs9iyGTKjm/nsg13WmlJIwzzzyzwQt5ZGLHLystY45IA/7ohIpI9IY0MAOYBCEhImf81R/+syTHbdQcBhBphOlgAzBpYELVilmVDavKu5xp1EW1uZXjTBo/zBKjq666Ss3kTK4ZpU8mmXXKodP4KAPSBub2I0zSVrYLyCTd3BY9W01KLaN77LFHGkZ2V9Xsu/UUxX+JiOU3TILoIEV8OmHyU0QwnGAeZidOckQgEd07idyOpenOt6PYcoj1R7phhpIP8kM5MAgstNBCCYxh8owZEn95ii0/20UuKnMzY7IIflmSm+vSsjZ3+SeLwCKq2x4IIzZ/2fgZXJngs/gUXQNZq6b3WFxiyy+bgKr9rvmJwRO/Me3I4uRZN51ZvwPxnb6HzQcbi2gPtF85eqpjcVGemQAb40dukCpyUmpWN77s7mm+rWa/5Sh0YZxyTDFlWpl7+inRn1bIrOo0PuoXmzr0PxYf7fcIkd5pRXXbQ6fpZK4hx2nS3VjSyjxElMUnzFVaEdJPuCeP2Y2wIj+9Pe8pSkNfNIM5bfWj3ZO5YZ5ghLDQyvtFyrlo8yTvv+439Y0xPR8fjFQYPnmSo9ZNbvHLpiUbU0jaix7BvDf/LkGg0/ZeEmypcSfzwZh5SCfrxph5cj7jdecFdftri6/T+YuFU+UZO69jfEf6z8qRtTwbgnILcHLsscdquy5i6JCmmHVclbw0uXGGThMkZQajfb/4Cl9++H5YeOtG5X7SKf9AY4wWhjz7omgWbH9V9A+eqr1xjhvlbzL50jO2nOmuS8IIUP0eMlnV68/r+m/nXjqS8Prrr+t585jzypxJFBFs1fYfk7926euGfTfKoU460Eskk369DUQ6lDpeo9yivBLFuLKbqtdqRgVSwxN1httDhEmj1+6WKeTMBonCNxF1VsW4MfUsG1ZPvssAEmQnSXVJmG4a6WT0TL8sFnoy6l4Lu7fbAxlDp5kssns8j90qvzr9biyeMe0oD2CddOb9DrRvysH6Jc7DyySuR7PY2/HJBDzIsdXA7VgoSqb/7UlCkTn6/tAvJAvhUsXL+TTEtod8OFW/RbpKL4RAN4RIXbTVKVY13Fbu+sO8p1X6+5IdevlEml7LDf1I1O+eJOoLFzowVqCUWTZOezI6D9sRqIxAt+bJdeYFsf11N+YvVYHpZF6HnjXWz/wgdOqh9F/UiwTZzClNQo+v474YEb6da+7S+EMP8ibKI+2bNqPBOafCff3RB2HhbbYrT6WDVo6N2/R5BLjZTHa/dMHM7SmbbLJJn0+zJ9ARcAQcAUfAEXAEHAFHwBFwBByBbiHABQlyekQv5hk+fHgQqfY0aBQtszkBUxcl/+uvv35q1+svztCpDPng9JYruf7QyREYaAhwW5oowdYdVCRI6KQ22GCDgZZNz48j4Ag4Ao6AI+AIOAKOgCPgCDgCLRGQi0z0RAwnR+TocBC9c0F0ZunN09zSJcexguii1BuCWwbkln0GgcG9Id7fZ3LrCRnlEOBae6RzIDowjlxVOfo0ygHlGXYEHAFHwBFwBBwBR8ARcAQcgQGNAGt/GDeiEzPcc889QW5WS/MrOtOCXMYSTjrpJFWFklr4S59GQCV04MTJHc59OqGeOEcgBgHR/h6WX375IDdJqP6jmDDcjyPgCDgCjoAj4Ag4Ao6AI+AIOAIDAQG5+TKI0vaALiFRxq16YuWGuiAXsgSeTv0LgcGW3B+JQmInR2CgIYACSH5OjoAj4Ag4Ao6AI+AIOAKOgCPgCDgC/0NAbmcMiy66qP4ck/6LwCBEq/j9V25XcXIEHAFHwBFwBBwBR8ARcAQcAUfAEXAEHAFHwBHo+wgM5rgVDJ1K9O03lZy5I0fAEXAEHAFHwBFwBBwBR8ARcAQcAUfAEXAE6iIg13DX9TLKuh88aNAgZehwA1BL+iYJ387f4i74lp7d0hFwBBwBR8ARcAQcAUfAEXAEHAFHwBFwBBwBR6BbCKiEDsycQaLxuiXB7/m6DdOnZQBu6Qg4Ao6AI+AIOAKOgCPgCDgCjoAj4Ag4Ao6AI9ANBERAZ1A3wvEwHAFHwBFwBBwBR8ARcAQcAUfAEXAEHAFHwBFwBHoJgUFI55hi5F6K06NxBBwBR8ARcAQcAUfAEXAEHAFHwBFwBBwBR8AR6ACBQShFhtrq0OkgEvfqCDgCjoAj4Ag4Ao6AI+AIOAKOgCPgCDgCjoAj0D0ERHXO/3Tn+LXl3QPVQ3IEHAFHwBFwBBwBR8ARcAQcAUfAEXAEHAFHoCcR0CNXeuzKden0JM4etiPgCDgCjoAj4Ag4Ao6AI+AIOAKOgCPgCDgCXUNAj1yhQ8eVI3cNUw/IEXAEHAFHwBFwBBwBR8ARcAQcAUfAEXAEHIGeReDJJ59MnnjiieT+++9PNltvneQ/n32SJJ9/Vut3w5WXJ4vOPVcy8eAfJWOLOp55Z505ufjMXyfnnPwr/d54rTUKw/v83X8lB+y6SzLHtNOoO/zOM8tMyXGHHNwyHXX9ffjm68nMU06ezDXD9Al+d9hsk2T2aabWOEnzpuuunbz41BOFaQSLl595Otli6PrJFOOMpX4mGDSapvO0Y49O/jvi01J/ddNpuMf4e+jO2zVtC845e1N69t1px2SmKSZLsHv3lX802Vu8VZ/gQXjZ3yXDzkheevrJZI3llk3LkvI84bBD0/hu+t1VyaRjDEmOPvCA5OuPPlDz9VddWd2fd+opqbt26Vh6gfnTOH515OGV/WXDve+WmzWMKccbO3nv1Zcbwnj+8UfT8N98/rkGO8LYZuON1H65xRZpsCMc8szvo7feSHb85WbJnNNNq9/Us03WWatlPcumz9/r9UGOl+PldaB1Hag7TtMPHr7v3smZJx7f0M8Zzr9cfz3t247cf99Ce3OXfbbqdzvpP20OMeJf71ROSzZdF5x+muZl7plnSr795KNKYcTgaeNDnXGl03Hzjef+nuy2zVbJbFNPlTB3mXzsMZNlFloweeiuOyrlM4tTq/Izd5QjcwPyeujee9aOw8IZiM869ezJB+5Ppp904mSp+ecrxHD3bbdWjHfZaotC+7r4MS+jzFZbdpnS8Jjn44a5vYX/9osvqBnmNq8zO57HHHSg2jP/yZr7e+v+Gnzq1BfDs7fa33yzzZLMP/usyXWXX5bMMtUUuv5jLUX/udWGGySTjTWG9jfMgy1t9lx+8UUb1g+2lmBtYW7yzw9ef1XXcYvPM3fy1YcfJPvsuIOuw6h3k4w+OFlhycWTZ/8yvMm/+WOMyIfJ9zX/d6mmhXVh1v6qiy7QNSPrRtoh8bB+4Tv7u+iM0xv8WRgx6zj8xq43Ld66z9jx4dKzzkwWmGO2ZKIfDVJsWPdfecF5uvanPA/eY7dCXOgvttxgaDpGgCt4nnL0UVquddOffD5CDhk5gUB46qmnlKHz5z//ORk6dGgiSpJrIXPmmWcmwnLSn0j5JDPOOGMyxhhj6PfSSy+tz3XWWacpzC+++CL58Y9/rPZDhgxJ5plnnmSuueZKRFqo1A+BxPh79913NUzSt9JKK+n7uOOOm/CztE855ZTJK6+80pTO999/P5l++unV3eijj56QpznmmCP1t8MOOzT5iU1nJ/5gyJGXOeecsyE9e+65p5pPMMEEyaOPPtpgF/vx2muvJQsssID+JplkEg3/qKOOSmaeeeYUF8MVc6OXXnop+etf/2qf+lx99dXVz7BhwxrMyz4ee+yxhjjmnnvuMqctzZdaaikNZ//9929y94c//EHt8mH/5z//Sfbdd980/kknnbTBr9Uz8r7qqququ8kmmyzhZ3hMMcUUhfWsISD/cAQcAUegiwjEjtNlSfjss8+SaaaZRvu1G2+8scxZk3mrfreT/pOxeayxxtL43nzzzYQ0/fa3v03+/ve/J/Tbrejrr79Ox/gLL7ywldPULgbP2HGlk3GTsXrqqadOx5+pppoqEb2J+s186KyzzkrzVOWlVfmZ/0033VTDX2SRRZIRI0Ykb731llmN0s+YetYKsHnnnVdxzs6xWrlvZ2flduCBB5Y6ZZ1w5ZVXJn/7299SN5SvzW/IY55szl11jpf3P6p+x9YXK8eebn/jjTdewtqN+e2YY46Z1oFll11W320dSN248847G4pxhRVWSGadddb0Z+s++usyeueddzTcySefPNlkk030faKJJtJ+3+ofc/JPPhGhhAyZv8GDB2dMf3i96KKLNKw111zzB0N5w3zCCSfUH2MLcZBOM7Pnr3/96wZ/fMSsU/EXu97EbwzFjg8HHHCA4gEm4DrTTDNpXeD7pz/9qdpts802TUl69tlnE9aiuGMcmmWWWRLWRHzzYz34zTffNPlzg2oIBKRzkNIBfABtN/nJBkvls8JZccUVEyZk0JdffpnssssuaSEVMXQYNIgPJsBzz4kUxPd0xx13pA30tttuM+P0GeMvO1Ecf/zxk+uuu04ZVzCvrr/++jQPW2+9dRqPvZxzzjmaTjqRjz/+2Iw1DNJPp/XBByJtkqOYdBJErL8iho41Ojrehx9+OJfC7nzutttuio9NLqhHDzzwQPL2228nDz74YPL888+3jKguQ4dw6UDAnl8ZQ61VpLfeeqv6haFHHc7Teeedp/Yrr7xyasUCZo011lBzG7zo3LMTmGw9Y6AhHiPeMSPNW221lRn70xFwBByBHkWgk3E6mzDG9U8//VT7d5u0scGBeRVq1+/G9p8fffSR9qtsyth4ZOMDzwUXXDB5+mnZ+S2h888/X/0zKf3222/V1S233JJsv/32DX24eY/FM3ZcsXizz6rj5u67757mzTasSP+OO+6o5ozbVald+RHO448/nm7KzT///AmMNsoA5t8vf/nLhjlU1XgHiru69axVvu+66y7FlTnIiy++2MppZbsll1xSw6zL5MsydP71r39pGf/zn//UfuIXv/iFhsmGbdFcq3LiRkGHMfWlN9sf6wra9sEHH6zzYNs8xuz3v/998vnnnyfLLLOMujn++ONblqAxnaswdAgfZoptJDAmXXDBBSlT6dRTT22IK5ahkw2EdSLxwtCuQrHruNj1ZpU0FbmJGR9Y09kabOONN9Y5AWGzRjJGG1gVMXRMyGOhhRZKXn311TRJMImNAXjxxRen5v5SDwFl6MDUgZlBIdShG264Qf3QuPJMDZglFBphFjF0kOTBjjDytN9++6ndZpuJqF6OYvxlJ4pF3FTbbYM5lafDDjtM07LaaqvlrfSYGkwnOpQ8xaSTMGL95Rk6RxxxhKZ7nHHG0XTm09et7+wE+rjjjqsdbNWJaTZgGHLs+tAZMXGoSwsvvLBic9BBBxV6PfLII9Wezgmi42FCQn2dYYYZEqTaeOf3+uuvp2Fk61nRpMg666J6lgbiL46AI+AIdBGBTsZpS8YjjzyS9nnW962yyioJzJSq1K7fje0/mWBamnjCmNl888113mE7q2zIZPtqSzMMHBtzWRQY/b//9/80zGOOOcaM0mcsnrHjShpx5qXquHnPPfeoREV+0c/GiEnqVJWgaVd+JO/nP/95WhZI77IJwqLOGDtI9ubniplsDdjXmHpWBgblZQvgvfbaq8xZbXMr30svvTT1y275P/7xj6ZfdnMzy9DJtkN7R/KeRbVTdQRi60tvtj9j6Fi/ygYuZU67t5MeJ554opoh2d6KrD5XZejAHM/Ttttuq3Ftt912DVYjg6FjY0rd9W3serMhwzU+YsYHWy8zzn711VcNsbHBbSc18gwd6gn1g3GnaKPf1v1sFjnFITBIOG1BuPxBuGKCdQjSEPVZ5e+FF15QZ8J1C9KIG7wQpoiwNZjZh4ijBSlc/Vx++eXNOH0ut9xy+v7yyy+nZrzE+ssGst5662U/9d3MhDETZKBqsCdv0O233x523nnnINJMcL3UDDuR4ggi9aPf9hebzlh/Fq89hRseRAxXFV3ffPPNwfJg9jwpZ5E0CTLRqvQj761IjqWFffbZp5WTrtmtu+66Wh7CnAsiQl4rXOlggxzbCjIYBRlkCv3KJEbNRZw0yCAVFl100fDMM8+ExRdfPPzlL38JP/nJT1J/5jY1+P5l7bXXzhsFM6OeyUKoyd4NHAFHwBHoNgKx43Q2HbIxEOabb74gx1C178SOMfHoo48OZX1g1n+Vfjfr3vrKIrN8/ymMoNTZIYccEkQSJVx22WVBdlXZsAqyWAjvvfdeYFzME+5E7DwIoz5sscUWeevC71g8DadOxpXCBLUwZC4lGxNhttlmU1eyUNQ5znfffRdE1F3NwKYdVSk/2fgId999twa11lprBeZvN910U7jvvvuCHPdWjJk/yUZMu+gGnH1MPSsCQaQegjDJgmxkBWHABNlEK3LWNTOR+AhyNKbpd9JJJxXGwRxJJH3CYostpuUti7cgi3Q1s3ZT6NENGxCIqS8jo/0xLjD3h0QKT5+i9kHXlHxMO+20atbtv6LxQTZdNZrseNDteKuE18k6ztZqddabVdJU5iZmfBBmjAYnaiWCSNU0BM16UjZ6GszsQ45b6asweIOoLTHj9Mm6DpIjxqmZv9RDYBADO4tUozq3XYmIlXqzBm1h2LPM/MMPP0yZIiLdE+j0sz+RhtEgGLSyFOvPwiBv1umYGU8mfDC2IAbMLFHht9xyyyBH0YJIWAQR31bmFZVPzsRnnabvsemM9ZdGLC80NhGBVCOYNlZGWTf2DtOt6s/8lD2Fq6qMoTL7vmAOI+7www/XpDCpnHjiiQuTZUwiOfcbYDiKqHAQ0eHwpz/9KchOb6CcjMytffMsq2e4tXpGp+/kCDgCjkBPI2BjQNl4XGaeTRdMbJFMVMY24cnxG2Wmn3baaUGOJmWdNr1X7XfNY93+U472BNlpDA899FAQiRoLRp8sLmzRe+211zbYMaabHWMmjJYqFIunjRWx40qVtBW5+c1vfhPkSHxgrsWEm3EPBlZ+flXkF7Oq5SfH2jQIxkgWpCKJmgYpR7uCHCHRbzkulJqPCi+x9SyPDcw4Nh9ph5QfzDI25bpFNvc3xiPhyjHxIFIf6U/0pbSMDuYdm2DDhw9XRinMVdIMs0GOq4R///vfLf27ZdC1Rky/NDLaH+uHPBWZ5d108s1a0ZjR2XBEhYJ+2oZ71q433ztZx8WsNzvNW93xIXb8M0bbjDPOWJhkM8+urwodumEpAoNpHFmiMdRtkHXdW3wMIBtttJF9Nj2ZGBRRrD/SWZbWMnMmeZdcckmQY2OBii9K4YKcEw7sWPETBWQ6ebHBMJve2HTG+rO4mbiJQrTAxFHED4MosAuiLMys9UkcovugwayTDxGz68R7r/j93e9+pwsSJKpaSRPZxNsmvCIqH+QIW5pGGDwQUj7sUOSprC7l3fm3I+AIOAK9hUA3+yV24S699NIgR191YcnmQdEYSN6q9ruGQ9100p8zES4js6PfhpFufTbjOVIk+EfagXHSSMT09VWOk6iUz9hjjx1gDmWpbjo7HVeycVd9F10OQY49qHPiZ1eVRTqLHzkWXGmBXbX85MIDjUeUojYwcyytogg1gCMSQXIELMw+++xmNaCfndYzwGFeLrr3dE6HNDwMVdEZ1VXckKZgc1eO46XhspOeZcCJGoQg+i5S+3YvMIvJP0/KXVQDqFR7O3+jsn1sfRlV2l/dfndk1aWYdVwn682YfHYyPpSd5mnHUCsrPzO3Z0x+RnU/g9k9QAzWqA6YDM6Q3Cph3hueTIaKyCQjKHg5t55OsIrcZs1i/VkY5BVmTH4gZKBh9wOyyZ75sScifibmR8d59tlnBznHqYObKIAOSyyxhDlNJT96O38kgIkau5WIWCMizw6JKA4O+d3JNLFdeinDrUvBNwUj5/B1Is6OYxWi7GHMQKK8TSe1+lHwlxUTpX7K2dwGV+xCQdNNN12DuX0QFwsCm8CbORxqJOKg3sbL0uBPR8ARGLUQiB2nRZG+ij/D7EBMOk8s3JkvcHyUI6mMN3mq0++a37r9J8eq+MmtmSoFYOHYk/AgJstZKRzRC6Tm7DiKvj99z/+de+65gR8LWxM1j8Wz03Eln7Z230gb/+pXv1JnoihUx73s/I6FeTuJiTrlZ2G3m9CToLLFQLs89Uf72HqWzavcxqlzTeYNorBb63rWvhvvcuOMBiOXlJQGZ7vsopuq1E3egmMZhM08G4YRagqcyhGIrS/e/soxxYa5N9Jn+TUDa8JuUqfrVNJSZ70Zm/bY8cHWLmXr/jfeeKMwSSaxWWZv4Rl+hYG4YUsEBtEJMGEzqjIYm1sTkULE0sSwzI6nKAzOfqbvMB2QviEujrHkCZErzmKj6yRLsf6yYcgtWtlPfTczdj7ylYm8YW9SGXhAfJhJHhNICKmdLMWmM9ZfNm4mjaJ4UBk77KDCJRYlwuHyyy/POuvX7xyX4pgc4r+IHVehK664InCGG+klUSTY0gvtwZg1TELydM0116iRnfnM2/NdVPfZVYOQlsrXM7XwP0fAEXAEuoxA7DjN2IdeGVHUWJgipFtsvkB/XER1+t2s/zr9J+lAEnWnnXZK05MNy/pdmDLZyTzHyJAwKvoZZixEsRfFvmmQZld33tONcSVNRIUXcDHGiVx60SCdzIaDSaC2CqpO+ZkE07333hvk6uCmYJlHwUCCITaqSOcAQmw9MwBhxp188slad9ELhU6/niDmjRBxFG3Gol/S5uTMgasS/tCjA4ki1areRll3sfXF219xlWGubdKjRXqcbP1X7Pt/pqYqAaaD9all7jtZx8WsN8vS0c48dnyw0xiMq6IEuSEavm28bbCQD2MY0xcUMXXMH/XfKRIBbriy6zQlCJmfVSeuKLQrnGVxm972JJzQRJQTojlYf0W3XImSXbWTQk6kkaWRikh0IgOW2slxptTcXmL8ya5CmhaRmkhkULLg9JpNmYyq/YYbbpia24vdJsGVjmieNyLN0sjVH7cu5SkmnYQR6y9/y5WlxzSHc7OSNCIz7trTbrk64YQTosI0fIcNG1bJPzcuCBMyLU/qSjsSrrzefEJ9FGXR7Zyrvd0SJgygRHasUj+nn366xi0DRCLnwlNzXrL1TBiWieh0SO15l3O/6leOGabm/uIIOAKOQE8iEDtOc821jeFcBcu4bsTNNqIAVe1lAmbGDc+6/W5s/8mcQZgEmhaRlk2EaZCmQ6QpE5nQq13Vvh/Phx56qPopum43Fk/CjRlX8JenKuMm18nbLV/Z2z25ZUqOP2n+KF/mgEVUt/yITzYrNFzSl70BjeuUZZNE7bhR1el/CLSqZ7iQ4zc632G+IUffehQ22rcwBbSMuHKeuZYRNwVxqx31RY4oJrLRZVYJfYH1E9xyY8R8+YEHHkhEel3tWSuIAnKz9mcEAq3qS2+3P265EuZFmgvKlnogin1TM66jxqybt1yx7iqiiy66SOOSy3iarO3mJeqw3bBE/TQ8SWORPwtIJFA1bNzRl2bHGHOTfcau46xfr7vezMZd9T12fODGRPojsGDNbDfeCRM/YW2DOb/8LVeky24LlmPQDbcdinoQrUv4q7oWrJrPUckdx62SCy+8MC0E4T7Wyr9ds0ZBiCiWFhjX1vEtStD0WcTQ4dpMY6TQ0Yv4tl5vaRMQOeediFbsprTE+MtOFLlKXfQGJbLDkIiIeHp1JxNCJrB5Eu5tyrghTVxfTmMzZo7c+pGI6FreWxKTTgKJ9VfG0OFaOdJIeXClYd3ybcrY9wYbb7yxDvAiEaRhy00I+k2HyW/EiBFNXmXnTid8TPrsR1mQNsrdzHjKWf8m/xhQJ3Bvv1adsAUg0lTqnvIrumLe3GWfTFhsckNccmtDwiTH4oVRlierZ9QN0WGkEzFw4WdMqLJ6lg/Lvx0BR8AR6BYCseO0bQjQ74kejIQJJxN228iR4xS6KVKUzrr9bif9p0gwpH2sSG4mogRY+2ubeDLeZxebRenNmtlEv4ihg7tYPGPGlU7GzaFDh6ZjFgwVroRlQc7mAptblGsZQ6du+YEL19vb/I/NEOYcLOhtvsR8Icvowc+oTK3qGQtkkShLy4/3op9IO3UNQpGMS9s2cxbmLizCaOc29xFp74b4sgwdUWeg9Yr6ZXM7/BEWC26nzhBoVV8IuTfbXycMHQQAWEfZz+oKazIzY5zJbiLAVKQuxTB0YMJY/eXJJgTrDOql6IVSu1ZrCdZNrAEsDNoD6wHWViLF2FSoseu42PVmUwIqGsSOD3LKIcWCshMl7VoulA1reXAqYugwltkan3FIJF91LW7rIzaJ5JhvxdS7szwCytBhQLeKGgOmnNNOpQ8Ih0EbiQ3jzoqW+3y8+k2lx84KGL8ULJNGOKJlVNefTRQJn10HufYx5TAy4WPCUcQ8svhhloi4dMOgRsUVcXTdnTB3+WfddJr/GH8iqqdlKLoOLJj0SfmK7gC1F50wqXknL0yarc4UPYsmbXRWRW6LzCiTMqIzoc4wSZcz2WXO1JyOmIUIccgNKC3d5i2ZfMOUtM6GMIiXXdYikmN5Gg+MTfzC2LKFT5V6VhSmmzkCjoAj0A0EYsdpFmJM2PL9NLtsZcyAmH630/5Tjt+mTApLK+P0rrvumsiR8FoQym2Iml9RKFzqLxbPuuNKJ+MmGzrMU8ABTJh8s6klN+LonAYzuTWpKY8x5WeBMJeS4zvpHIs4GP/kpsiEMnb6AYFW9SwrFWD1uegpRwB/CLALb8RLHcnHBeMIhk+e5Ohek1v8snnFwhlJe9E7mffm3xEItKovFlxvtT+k/lmUG3ECgHJnkW501VVXqZnogDIjfZq0Xr6OZb+Zd2dPRSAZiT1MzSKSy2vUXvTPNFkTDkz4LGNSjuAmogs1kduKS/1lA6LfFn2aidyUrO4trWeeeWbWWfoes47Dc+x6M424xksn4wNSu1aOlAmMuKuvvjo59thjFZ8ihg5J47QCdcTw40ldoo4gNeQUj8BoHD+ShqNn0GVyVngGXQBvS9Jgwuuvv67no8vO05cFwrlq7p6XSYeesZWBoMxpg3lVf9IQ02vuOOMnlU914kgHoef6qsZHHrmdQToFvTYyq2CxIWG5j6rpzHnT8+YxuOTDGYjfKGuUyWmvZA0FzJwdR/8OyjOrljuJo77J0Sy95aFqPeuVTHkkjoAjMMoh0Mk4jR45LlBAKSL6GtA519MU03/KRFoVGJM+9NwxXvcUdYJnJ+NK3fzIxD2IxIfqhjOlljJt1PmeMFvqBlfJvUjDhkcffVT1+YmUh18EUAm1vuOI8uMCEOoOStFlIdt3EucpaYuAt79miETiJ8imvl6oUnedmg1NGA+qS0c2bNuuQ2LXf7HrzWw6q753Mj6gLw0c+EHbb7+9XnYkaleCbKKXJgG9u+jq4rZgYQyVunOL6giMxu4Mzrm5Z4899ohm6FSPsvddFjF0ej8VHqMj4Ag4Ao6AI+AIOAKOgCPgCDgCjoAj0L8QuP3224OcPtCLXYYPH643KlsOULTMpjfMRC6PWX/99c3Kn72AwGDiYKeGQoALL6K2qUbwXojfo3AEHAFHwBFwBBwBR8ARcAQcAUfAEXAEHIE+ioAo1NeTNJw8EJUUQfTVBdG1pTdWc0sXPATRhaNXr/fRLAzYZA3m6AoMHQhuWk+J345MBDnKJQpx9dpOjpc5OQKOgCPgCDgCjoAj4Ag4Ao6AI+AIOAKOQHsEUHUB40Z0s4V77rknyE18qSfW16JkOpx00kmqQiW18JdeQWBwloHDeXOYOwON6SHXlgZR0tsrgHokjoAj4Ag4Ao6AI+AIOAKOgCPgCDgCjsBAQkBuSAyirD+gS0iUqKv+XLnZLoii6VRf7UDKb3/JizJ0UBQFIwfmzkBj5vSXgvB0OgKOgCPgCDgCjoAj4Ag4Ao6AI+AIOAJ9GQG59Tcsuuii+uvL6RxV0jbIjlzByOHsGz8nR8ARcAQcAUfAEXAEHAFHwBFwBBwBR8ARcAQcgb6LwGDOw5lUTvb4Vd9NsqfMEXAEHAFHwBFwBBwBR8ARcAQcAUfAEXAEHIFRG4FUKbJJ5xhzZ9SGxXPvCDgCjoAj4Ag4Ao6AI+AIOAKOgCPgCDgCjkDfRWCQMXC4CcoldPpuQXnKHAFHwBFwBBwBR8ARcAQcAUfAEXAEHAFHwBEwBJShA1MHXTquP8dg8acj4Ag4Ao6AI+AIOAKOgCPgCDgCjkBPIPDOO++EbbfdNmy00UbhzTff7IkoPExHYJRAYDBMHJPSIcfZ91ECAc9kAwKff/55GHfccRvMqnyMGDEijD322AGdTGXEFXennHKK1rGDDjrIJcLKgHJzR8ARcAQGEAJVxoduZjd2HCMNL7zwQnj11VfDRx99FIYMGaLj2nLLLafPsjR+8cUXaj9Q50+d4FmGmZvXR6C329G3334bvvnmmzDOOOPUT6z7GOkI9Id+6YwzzggXXXSRYjXZZJOFYcOGjXTcPAGOQH9EQE5ZDdKFNdeW96fJCOmFQcCA49QZAu+9917Yeuutw/TTTx/GG2+8MOmkk4Y11lgj/Pa3v20ZMFJdhx12WJhvvvnChBNOqL+VVlop3HnnnYX+mIzg/tBDDw3fffddoRs3dAQcAUfAEeg5BO6///6w8sorh5/97GfhxhtvLI0IO9xU+b322mtN4dQdHwjg3HPPbRvfc8891xQXBrHjmAX21ltvhaWWWirMOeecYdVVVw2bbrpp2HDDDXUsfOONN8xZ+nz//ffDdtttF2aZZRYdNyeaaCLF9fLLL0/dtHqpWg6twqhrd8kllyi+u+66a1uvneLZNoJR1EHdcofBOHTo0DDFFFOE8ccfP4w55phh3nnnDeedd16PIAgTYJ999gkLLLCAbu6xwTfJJJOE7bffPrz00ktNccL4LOoj1lprrXDggQeGu+66q8mPG7RGoJN+sNN+qXXKum+b3UCebbbZuh9BF0L09WYXQPQgeh6BJ554Inn88ceTBx98MLnyyiul3vYPuuGGGxJBJ1l++eX7R4L7aCpfeeWVRAZrxRI8J5988kR2JdPvY489tjDlsmuTyGQ3dSfSOen76KOPnlx77bVN/t59993Uzddff91k7waOgCPgCDgCPYPAZ599luy8886JbNyk/bDshpZGhh1jQpXf008/3RBOzPhAAFtttVXb+B566KGGuPiIHceyAa2yyioa98QTT5wIMyc5/fTTE9k9To477rjk448/zjrVOZNsfKRplUV2Iptj6fdRRx3V4D77Ubccsn47eZcNsGSqqabSNF566aUtg+oGni0jGAUtY8p9+PDhCfMpa4PUM3vnuffee3cVSWEeJbPPPntDHNn4hGmZPPLIIw1xCiO01L35JZ2y+drgzz/KEYjtB1nLxfZL5anpWRvqhTCak6uvvjph3OiL5OvNvlgqnqY8AuGpp57qlwyd66+/XgcREYXO58m/ayAAQ4xBd+GFF05k90V9MvGTnZV0kJYd0aYQZXdI7eWIVXLVVVfpYI27DTbYQM1h8Hz66acN/pyh0wCHfzgCjoAj0CsI3PL/2zsPOFmKag8X962CEXNCBZQLBlQMRAFBwYSoSEYQzKgYMCOKoqACKggISBARFMSACfGqICgKYkCCWeRixIzy5GF49jvfgdOvp6d7Zrpmdu/s7r9+v5nurq6qrv66u8KpU6c+//niPve5j5fNCB5sVNT3Bwl0/vjHP3rbgE5C0++oo44qy3rCVl1O/UD8Jz/5yZ4mAodLLrmk8XfDDTdUL+X7ufVYJGTaREUMSpx55pnh3bil02EaEp7Pdddd1zu4NnW9sGlJxTve8Y7CFpjwc4cffnhf/Jzn0JdIpgfCKep60yga2rkel2dmFhdstJznzjt1v/vdz5/ZxhtvXHzxi1/053b55ZcXe++9t/vzPOsClnEgbr311p7uqquuWpxyyinFb37zm4Jvmw53DPw96EEPKvhewlUFOrQBEQZeeeWVLgyN94h8fu5zn4so2g4hkFMOjlMuDcnOoj+t/uaifwXmBYB06aWXFmjpMOr1kY98ZKxMm6pmcd1112WnwSjYqFL8FfWBUblxn10cFTMVo0056hKtyI0Hw09+8pOudTXogjwrKlpGbH/2s5/1Bd100039PA3BukMARNy3ve1tPacQ4jDCybn3ve99PefaBDowHfW59ySoAxEQAREQgYEEbAqsl8eUyQ984AO9rt9mm23cb5BAZ2CidjI6azY9oy9oTv1AIo985CM9X3QKR3Xj1GNxDepm+PAbNkr8mc98xsPR6aUzW3dvfvOb/TwCtKqb5HNAw5X2wajuxhtvLFZbbTXP1wc+8IGB0SbBMy5g03EK6v3F7HKf+/e//31/XryT3/72t/sQPuIRj/DzaJBNwn3lK18pr3fRRRf1JXnuueeW2n3sh6sKdOqa17yjDLpyDzbNL6JoO4RATjmYWy4NycpIp82EQp8WI2Vq1z7PSBerBbKpoUX9vasFGftw3P5mTjmY2/8b52a71itca5x+f05/epz7W+hxl9hLY2WtlbZmk4ZfjjvxxBN93jn2V7ClwjzID33oQ+n444/3eb+vfvWre5Jlzu097nGPtMYaayTm6+61117p3ve+d2IOOvODmS/8k5/8pCcOB6eddprHIR5W0XEXXnhh6Yc/v0nPLf71r3+ddt11V78X7MtgII7rHHLIIck+AM9H099VV12VdtllFw9/r3vdy+c/r7XWWumwww4byDo3XuRhww03TM94xjPcHoBV9uHdt+U6zI1eb7313A5APcCDH/xg97IRoZ5T2DCwBob77bnnnj3nmOON/QHcIFsCPPew2wNTnvv222/f+Nx7LqADERABERCBkQlQ1mLcF/tlppGbbLR/5LhtAa3zl8477zyv21772tf2BBunfrDOv6eFccxRXW49ZoMYXo9Tl5ugq7wcdTR+1d/VZiQ5HAxx2AgxIUl4l1ub1ub7rNhiDdbSf9zngB2fF77whX5N6ksWIVh//fWTTZcvr9G2Y0KcRDvGND7SHnvs0RbM/XN5RqLc57777ptMoJVscMfbTTC1aWiLciXV3OeOTUts0LznPe9J1sEPvOUWpjgMVk/C8T3jMAC+0UYb9SVpAtwUbUITNvWdb/LgHjbbbDM/ZYOaTUHk10AgpxzMLZcaLj+Sl03NS+uss06yqVLef6MdT98N+5i77bab2+KkP0A7v+422WQTLxewC1X9Ufa0OcpS+o3Y7KTf9dKXvjTxDZiZCK+HbAA6mWZYX/SIR3nU5D760Y96HuiHVt24/c3cchAGOf3Gat677OfWK137/ZGn3P50xNd2AAGmXKGh89WvftU1dKqqlKNIs173ute59N0u4arGa665ZmmDxQpyP/fc5z63J6nQ1ED124zoehhUwEMNnLTsw3XVzWpEs4RemMDIf7e61a08Htol4Rfb9773vdVoY+0zSsJIHHliehHqylYA+TF+jHQ2jeiZYbLCjAx7OOZAo+1ihV8ZzxpmjfnKjReJMZJDvuKHSniuC7Xyuj2AGAmop827Y8K78trM5a26eO7kzYQ+Hs4a7gW/yC9su4zOVtPXvgiIgAiIQC8BptIyTaPqxtXQMePBXmabMKearO/n1g9Epq6kbseZQKQww8yFGecvfvCDH/RM8/AAI/611WM/+tGPyraDdTzKOoj6PtoSsY3pyFzyZS97mYc1oUVjDmgPhD2dqubrOM/BjE4XNihU5hFbOLRHqDe5Vl0btpoxRl2jLWKN8OqprP02niRmnRjXAiNf2OJ7yEMeUjBFh3Yafk9/+tOzrjmfI43z3NvuG3s8oXHFNzIJh90onhHT7dsc/QRsbTKlKtwgDR3CRBt/HG3AuNZi2eaUg7nlUi5TG8D3b5z2e9W20xZbbOHv0corr+xb3im01Kpuq622KkwYU/6ifKCcb3O2vLmnh51PExj5Pjadoi/Idehz1GeJRDymwjY5+pXE3XbbbXtOj9PfzC0Hx+3/9dzACAe59UpOv5/s5PanR7gVBTECPuWK+fGm6eINpy5qvDSIYr64SRRLmylUNvHB8aG0CXQ4R0OK6UFclx+qbSFAMclu60MKFTgalrPpYtoRKpA2SldeikotCqwmFeZjjz22LHyqBhW5V+6buKib1V1uvEjHpJ/lM+E6bYKjCN+2tZUJPJ8UtKYt1RMs7CPYSimlP8/cVsbyOFG4E5fGZLiqQIeC+JxzzolTvo8fecYgnJwIiIAIiMDsEBhHoEO5TTnNAAwN0LrLrR9QSyddBnNs9NX3OY4fU0zqxpfr164fD6rHqmGxfxPXwYbcIGcjtx7WtBgag9kqRn6ejgZTEQa5UZ9DdNYYMIsBD9iHLRWELG3ONKU9P8SNqc3YdLFVi3rq4Lb4Vf9hPMP2HrZfsKcSDvsv0fH6whe+EN6Ldjvqc68C4r1kSjtt9RgspX067H2tpjFo37Qm/D0ZJBxsil8V6Fx77bU+9QYTA+TTNNs9TQR7TWVFU3qL3S+3HJxkuTTKM0CgQ5n5hje8wdv5r3jFK/wYP+yQUaZuvvnm7odtsUEuhNWjCHRIH0F7CDL5Jk444YRSqGQabT2XyhXoVBPp2t/MLQfH7f9V8zzKfk69ktvvJz+5/elR7kVhTKCDMCds6FAgdHFhFJGGAnO0q46OfBh0GyTQadKmiXQR7LS5rh9YWzqD/K+55hovjBgJ4yWuu9e85jV+nsq17ky93c9h3KzuaPDRqKkbDSZcbrzqNRAaMSrCx0rF2tVRQUcB2zQK+Za3vMXvDaEdDkEXFTYF7eqrr16g9cU+PxiGqwp0mhoNUZgNeu6RlrYiIAIiIAJ5BHI6lHGlsI+z3377hVfPNrd+oI6NeoMt7QqbHuRaHSEMYHS2Wqf0XLh2MKweqwbvItChTo180lapOjpjNoXZz9vU5+qpxv1Rn4NNh3HNiPrgCgM4oanD/daG9fhaAABAAElEQVQdAhybOub5odMT7q1vfav7HXTQQeE1dDsKz7gWq8LUXbSXdt999/qpRXc86nMPMBg+jncutqzKxvs2KRffdXUFNLTN0DKr/6qDlLwXkaemLRpadKrlRiOQWw5OslwaJach0InymJWSef4Yzw7FADNL4X5o7g9y0d8YVaDDoEHdmRkOv9bzn//8nlMrQqCTWw5Oov/Xc/NDDnLqleifd+33j9OfHnIbOn0zAdPWXWLfYEo2XSZZw6DTHGcreDwuNlNM48T3489UBpNVOHHYusXWS92Fnwk8klUc9dOdjq1gcfss5GeUX8x/5yIxT9gqJJ8rWr/wdttt516mUls/lUwS6X7Lli1LpGnGp0u7OZwz7Ra3qVOPmBuvmg754romLEumml09NXSf+dimaZOsckhWwacmGzxWyXs62GVg/v4GG2yQrrjiCp93bSuTlPOsCRRh6xd+2tOeVvdK4cdzt4ZK33l5iIAIiIAIrDgC1lF3+2nYy6vbxotcRZnftX4wgX8kkfbff/9kmihui88Gb5INOiVr9CczgJlstLcM17YzSj3WFneYP3WqjUp7MOw4UF9i5wQ/m4bsdoo4aSs+Dktq5PPYNcEuBfYJcSao8bYR9iqwQYGDTd1hy9DU6pMNtKS6vbt62EHHo/DEZoQ12j0Z7K3UHfeAG2Qnox5HxzcRwG4jtkN4v/j2cLTxbFGK1jbWTTHH+7cBX7dTgq2S6u/QQw9tTBjbO9hHwY4j7xx9Cuuku58tid4YR569BHLLwRVRLvFe2nROv4GwJ/aABzwgmXa++2EbdTZc9BWqadugsh9W+VXPz9X+OOXgJPp/Xe4zp17J7feP05/uck+LOeyS+PBMwOMfYRyPAsWm2Xiw+KDrcdr8IxzCpCgEwo8tDTebyuVeNCTGddzTqL/qtaJgMGlr1bvcD/8//elPpV/s8KFgZAtBmWmeJFMXdwPECFvMxkAE69vmxutLKMODRiLCNIyrURl/9rOfdWFYPakQEtm82ETDzVRp3Wg0hjIxUFblEWGrabQ9d8LGc6dQlBMBERABEZgOArQRDjjgAM+MaX+6wdumnEWZ37V+wDg/hlltxc1kmiM9SdNJiMGFT3ziEz3n6gej1mP1eF2ODz74YBcsMZB19tlnJ1vpy4+pC3G0DWxVny5JDg1rq5AmW1baF55gcAqDw9TTDL40OdoewQxhEwK2HDcqT+p93hGcTYnwzjwd+viZtrKfa8uvn9RfIwGMEdMuY+CMdrdNe/TBusMPPzzZ1LnGOF09Y3A3BLLEZ6GSxz3uceVvmLHyCy64wAf5Lr74YhckIpSlTWla3L5Ixw033NA1W4su/Djl4FyXS039xSa/ST5EypMQYlfTtSnAfhhlUPXcXO6PUw6uiP5f13olt98/Tn96Lp/ffL7WDBosfIBRmIdgp8tNkUaTG/ZhhZClKe6kCgXuy+YYN11iZL+2vIR/bKsJ0ng6+eSTkxkBTHwwZkwu2fzixAgnPzNA56OPwT3i5saL+LlbnpXZrkk0wln5igYDFuWbXDTYo2FmKvbJlmotg0ajlpEkJPh118SrHkbHIiACIiAC00OA1UDoULJyCQKMNpdbP5AuDdo2F+eoXxD4N9UtXeqxtuuM6s8KRKzmxIqPaKYgxECLBg1TBCl1reVR020Kx7VYVRMHX7Si6WzTibHpy6mpo0y7A20YuKJtW10BxqYheFo2Xca1n1gxC6FZ3eXwpE2z884715Mqjxn0kRuPANrvH/zgB5NNrfeBN9rg9bZk1yugTYGGNavQhGMVI7ObFIfJpsslsx9ZHg/bYVCX95AtGmRmbsC104fFW8znxy0H57JcWhHPab70H3LKwbnu/+XUK/HMx+n3RxrVbTzX2FbPaX80Aq4GQ6XND9elUogGFctzNjmWQxvkGEFCyFEXHFDwMyqEi2sMSme2zpktF0+67T7ivhkpa3OoBoZ6IMt/H3PMMb6sOpXiS17yktYlZHPjRT5Yqo+KgZG8URxLz5IneJvBxJ5lXOvxq2qUNi+/XEI+wjFKg2tbJpDnToMyGv4RDwkuKuS4FfncIz/aioAIiIAI3DQlG8E9zoxfujDBDxr+cusHplXxYwlxW+ygL2XqDRyNXn5Nrks91hS/qx9CG/LKFBMzAOrCHDQaWHZ2Ug4t5cMOO8yTY2oX/KuNXurtJoGO2V3xOIyoNi17zcnjjjvOf3TcQ5XeI93814VntINoS9IuUB1eJdl9/6KLLkpM50cYx7T/uttiiy38PWB6OoJWpmSN42wFV49uxqxbk4lRdrNp1RqmfoJvhLRp1yMwwtyAXDuBSZSDc1Eutd/BdJ6hb4H2Wb1PRB90km4S5eC4/b9R7ie3XolyPfq/9Wu19Zcn0Z+uX0vHvQSWMMUlGgc0mNqkbr3Rbjoyo8e+gzaHGUHuCcIx/sOcrX7QFyT80BSJj6MeKKbm8FJ1yXM9nUHHUcExB7jpJY37Qx227rAtw32EtgrnbSUKbzzRYMWhtVN3ufGq6aAOz7Q11GOZNjXM0Uh817ve5QUd9gqwiTPI0cAIYU3TvP2Pf/zjHj1sDDWlZUah+7yDpy092Prc+yLJQwREQAREYFYJ2IIJCRsYaKGglTLI5dYPaJOYQcv0ohe9qBxgql4n6geED/VGOeG61mPVtMfdR9hFB5z2yimnnFK2qcZNl/hwiTaOrfzZkzYDI6EpW78W7RI0OJp+MV2cNg7nEUbVXVeeaAuhfYNAh+nXdcdUhHPPPdc1murndNxPgLYgdo/MUGr/SfPhvYiBWNp747qHP/zhngRtQDS36g57lmij4WjLjuqIRxsaZ4ZUR422aMONWw5Wwc1muVS9zjTvUyaHokKTHafobw66hy79zXHKwUn0/wbdR/Vcbr2S2+8fpz9dzbf2BxAwaXBhhXRhL1Jx+umnW/0wumPFBftQUO0pdtppJ1+ukNjXXXddYSq37s+5QatcmZaGXz+uyqpbVjmVaYZ/fWsjEmX6rJRlI1T1IBM5jtWbTN27Z5lxm5rky7Zyf0cffXTftWIVA5aCNG2j8rwVKOWy4qxGVXe58SIdViMwAV3JxoQzcapxa+qwHp7naCr1jWGaPG2KlV+D5QOry5MeccQR7k96rH5VdTa6U+aL1UrMVkJ5mn2bF+vneXfkREAEREAEZodA1DNNdVf9ijaq6StOUdcdeOCB9dONxzn1g02jKmzqj9cBpr3aU6eb1mdhDXM/15SH3HosMm+jlWXd1HUZaBNelO2gj33sY5HkSNtRngP5iVW+qquCmhZusdVWW5X5pi03qnvjG9/o8dqWE87laQtAeLrWeC9o64Tj2dIW4R2y6ebhvWi3ozx3lqeHFz8TrhWmYVDyYmUpM0Ds50xwV/qPs0P6Nu3O02SlNtqS4VgpiFW1yItpfhc2kBeniuoqV6xuG452L0uXb7zxxh5vlVVWKZYvXx6ntW0hME45WE1ynHKpmk7bPqtcmfCiPM2z5f0ww76ln2kPut8kV7ky4UqZfnXnpJNO8mttu+22VW/fjxWXeYdZRQzH+xnlIPluiucB7a9rfzO3HIxyoWu/MfLZZZtbr+T2+8lbbn+6y30t5rDpsssuKxCisJQ2H5+NBHXiwbLWfAz8zFhVYUb6XGDBR2cqoe4/SKBjqsAezyT+hamMlktw0rCjQmtz5JNlQePapmLoy4XaKgBF1+XX266B//nnn182pqjIbCSrIK8hNKFSNc2mviRM6lsKbmyue8Hy5XykcCHP5JNGZN3lxot0zJJ4yYTrDCqkKIBtpLMMz37Tb+21147kyy0VelT+XIdnEcu1cswSpXUXAh0YrL/++s7QVk4o+AXPYc+9nqaORUAEREAE2glQh5nWY8+PuppyGkFB9ZzZZulLyKbleFjqMbMP03e+ySOnfiAd0xQt6wLTMC3MCLDXKzFwRN1b7TQSZ5x6jPi4XIEOQhVb2MH5mA26mxJr+R/nOeywww5lPW3ascVmm23mHWsGQRgU41lOSqAzDk+WUY8BOTrwtAFpM4VAineINspicuM891jqnedrdmgKOnx0mGGLH+1e2u+TcqY5XaZNm4y2GZ0wrsP1+J166qk9l6sKdMx8gr+PvJdRxhCHtOhwy41GIKccrKbcpVyqxuuyP45Ax7T3vT9En4hfvCv0AcOP97wqxESoyLuUI9BBEB7vL1uEoNR7vJdmF8rPDeorde1v5paD4/b/ujw/wubWKzn9fq6X258mrtxwAsxZL2xJbZekn3HGGcNj1ELwojN6QCODDwWBAB8kI1Vmcd39Bgl0GAWwZT/LES4abkj0R6n0aTQ+73nPKxtU8cEeddRRtVyOd4j2CI2SSJ+tzQcsbH55MWg0DyGZqZ/3VIYURqZG66MabbnKjRfp8bHRgKLxa3OWw7tvW5U6V++tvm/q2X1x8YC/2Q8oG+DE47qMzjY5m37mDG0OpsdFWh4Nky7PvSlt+YmACIiACPQToJFYL9Pbjql7q476nY4k4W3lqeqpoftd64dI0KYJl0KKyCf1pq0aVZg9mAhWbsetx0iIUXGuRQP/xhtvLNMetmO2cjweGinXX3/9wODjPAfyRLsBDuSTDhCDYQzI0cbAz1ZBGnj96klbrczjmKHlqrfvj8uTzoytbFQKcYIrwgjSXmxunOcOKwQhDJTCsfpDa7yLEG9U7jwj3q3qtdhnYA+BT93ZlL++sIRncI6OMxpZZj+yHk3HQwh0LQeryXUpl6rxuuzTB2KQO5yZpfD3gL5SOGZ98C7QV6q66C/W37HqMWVxdXaD2brxtOhjNjlbhMbPm/2ZvtOkY1MXe/piNnW3MJumha063BqvmlDX/mZuOThu/6+a52H7ufVKTr8/8pLbn4742rYTWAlhjn04yRojCXs0GPPjOMfZVCtf5to66R6d5RQxjrf//vv3LENqH0a57By2duwDdVszGKdinp1VBJ0vb4IVn2fOta2x0zn+KBEwLsjcYlZvChsyo8SzwiSZmpqvemEVc6tBx3paufFIB3tIs8Whnk8MMDO3GvsKGF9sM1hZj8cxz//qq6/2VRBynntTmvITAREQARGYDgK59YM1iN1QL7b0sDuHoc/F7qwBnkyDxtsfYZzSmnduS8UGRaYKD4aaMeprQii3naL6fbzHgz1Ga6+7sWlWJOO7mE3Ham0s5ME7h1Fm00Sbzcsp7RYCKgdbwGR4YxjZlAh8wZhx7E516W/mloPj9P+6ohmnXhm131/PU25/up6Ojv+fwEpI+E3a5qskIKzYdddd///skL1ly5Yllk/E6NTFF1+cli5dWsbA4BKdeyoFjORuv/325bkmgU55UjsiIAIiIAIiIAIiIAIiIAIiIAIiIAJTQSC33z8VmV/gmZhBG4cRFEZ32Ge0Z1QNHTPI5yMvaFiwdKfNd08259ZXOMBaN4IiszFTLtu9wFnq9kRABERABERABERABERABERABERgQRFQv396H+cMWUPwEtsuAh2m9MTSiuedd16ylRE8Hf4QCpmxqXTooYe6wKg8YTsIkMw4nocZVXhUja99ERABERABERABERABERABERABERCB2SeQ2++f/ZzpCiuxZDlCFebQXXPNNZ2mXFXxMafQjKl5GmbhPpnBqdJOTjWc9kVABERABERABERABERABERABERABOYfAfX7p+uZrcTKCGQJA0VmpTyZRfrpyqFyIwIiIAIiIAIiIAIiIAIiIAIiIAIiIAIi0EPAl0VgmhU2dFCliulXPaF0IAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiMDUEZljeGoFOuGlb+jLypa0IiIAIiIAIiIAIiIAIiIAIiIAIiIAIiMBNBGaqAhwEO12MIguiCIiACIiACIiACIiACIiACIiACIiACIjA3BMwec4Sn2YV06606tTcPwRdUQREQAREQAREQAREQAREQAREQAREQAS6EFgSU64Q5GA/RzZ0uuBTWBEQAREQAREQAREQAREQAREQAREQARGYewIzGEIOrZzq9Ku5z8r8uOJ///d/p9ve9rbzI7OzlEuWqnv3u9/t781+++3nBrVn6VJKVgREQAREYMIE/vrXv6Zb3vKW6Va3utWEU5695L7zne+kc845Jz3wgQ9M22+/fXmh2aqP2q5XXngCO9dff3269a1v7QtSTCC5qUtiPr5nUwdxHmboX//6V/rnP/+ZbnOb28zD3CvLVQJzUQ5Wr6d9ERCBPAIrffe737XZVkX6+9//nn71q1+lXXbZpRTw5CW58GL9/ve/T69//evTl7/85fTLX/4y3fnOd04bbbRR2n333Z3XJO/4uOOOS6effvrAJAlDo3Zc9+lPfzq95z3vGSmZU045Ja2xxhoeFh53v/vdff8f//iHdwxGSkSBREAEREAEVgiBX/ziF+lNb3pTWrZsWfrd737nebjPfe6T9tprr7T//vunlVdeeWi+Tj755PTBD34wPeQhD0lHH310a/jZqMeOOuqo9LKXvSw9/elPT2eddVZ57dmqj9quV144cwet6Le85S3pM5/5TLryyitdoLPxxhun17zmNWnrrbfOTHV2o4363MnFJN6z2b2bFZ96F55dc5vbrut6nXp4+hAHHHBAOu+889IPfvADF+jc6U53cuEr7/bSpUt7ovz5z39O2223XY8fB6uuump60IMelLbaaiv/9QVY4B4r6vm1YZ2tcrDtevIXARHIIzCDdg4CnZmZGWlaNDC8+uqr0/rrr5/+9Kc/+dm73e1u6S9/+Us6++yz/ffzn/88veENb2iImed1ySWXpK9+9asDI1933XUDz496EgHesGtFWn/7299iV1sREAEREIF5ROAnP/mJ12NRjjNyfuONN/oAxdve9rb07W9/24Ukg4Q6hEfw89vf/jY95znPGXj3c1mPDczIlJ1Ec4GBoDPPPNNzhnYOWr9f+tKX0gUXXOCDOc94xjOmKtddnvsk3rOpuvlZyEwXnjmXXxHtOp77tttum9hWHUKbE044IX384x9PX/jCF9IGG2xQnkazrq39+dnPfjYdcsgh6ZWvfKVv6Z8sFrcint9iYav7FIGFTMAFOgh1GDWS/Zz+R/285z3PhTmPetSjvLG11lpreUP4wAMPTO985zu9gUsD7AEPeEB/5AyfGDllFJRRiia37rrrNnl39kMbi5HBNveNb3wjvfSlL/URxNVWW60tmPxFQAREQASmmMALXvCChDDnwQ9+cHr729+envCEJ/gxHS06TUxlOumkk9KLX/zi1rugY4Yw5/73v3965jOf2RqOE3NZjw3MyJSdRDMDYQ5T3U877bS0ww47pJ/97Geu2fCxj30s7bHHHq6V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yum0E0NJAsGN2fRJtlJzspWSyyzTv959992T2Z11UyHlCe2IwAQIrHTppZf6lCvmcqP+xZSrSQp1JpBHJSECIiACIiACIiACIiACIiACIjCPCdhKVOnPf/5zustd7jLVtk/HRWxGjJMZC3f7sraaV1pnnXUSWzkRmA0CMzHNisQnraEzGxlWmiIgAiIgAiIgAiIgAiIgAiIgAvOLwG1ve9vEb6E7W70wbbDBBv5b6Peq+1vxBGbqQhwEPNLQWfEPRjkQAREQAREQgRVBwJYJz7rs61//+qx4iiQCIiACIiACIiACIpBHoGd98qq2Tl5yiiUCIiACIiACIiACIiACIiACIiACIiACIjDbBJZgFBlBTrglS3pkPOGtrQiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIwJQQWDIzM6MpVlPyMJQNERABERABERABERABERABERABERABERiFQI86DrZz/vOf/4wST2FEQASmnMCvfvWr9I1vfCP94he/mPKczm32FjqXhX5/o74tv/3tb9Pznve8tPPOOyeWSZUTAREQAREQAREQAREQgYVGYEZTrro90htuuME1mrBevpjdr3/963TyySenu971rumFL3zhnKNg2cO5tJJ//fXX+/KK//Vf/9XpXnPjdbpIS+A99tgjnX/++em4447reUZ///vf0+GHH55ud7vbpZe//OUtsReudxuXhXLH8+X+vvOd76RzzjknPfCBD0zbb7/9UPw//vGP09VXX+3Lnd7iFrfw73HLLbdsXfb0yCOPTCeddJKnSzl19NFHt17j2GOPTX/605/6zr/oRS9Kd77znfv85SECIiACIiACIiACIiAC00DATOYsSeuvv77n5Qc/+EGPPZ1pyOCk84C9oP/5n/9J//rXv0ZOGuHBS1/60vTQhz403f72t/eOMJ2Ql7zkJYkO+2J0dKze9KY3pSOOOGLObv/3v/99es5znpPue9/7+jO4y13ukp7ylKekM844Y1bygLCTe3zYwx6W7nCHO/jv8Y9/fPrSl7408Hp0PHfYYYd097vf3d+XVVZZxd+d97///QPjTfLkj370IxfmILR55jOf2ZP0dddd5/f1jne8o8d/MRwM4rIQ7n8+3R/aY3xfp5122kD0aBw9+tGPTg94wAPSk570JH+fd9ppJ//2B2mfVQW+S5cuHXiNd7/73Z4X8lP9oeUz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994ucFq4d9rtzuYDl3G+9/lwf92emEJPEwEJdKbpaSgvIiACIiACIiACItBOYAZhDsKJ0N5Ak0MCnV5gjCpjDBeHcAfhF0v5onEjJwIrksArX/nKFXn5qb32Quey0O9val8sZUwEREAEREAEREAEREAEpojADHmJKTnsh2CHfbl+Agh3Rpn61B9zuA9TSczIqwvUJFQbzkshRGA+E9D3Pp+fnvIuAiIgAiIgAiIgAiIgAiuegPUpZsrllZlKhMaOhDor5sHc6U53StjmkRMBEVj4BPS9L/xnrDsUAREQAREQAREQAREQgdkkMGPLt5ZCHAQ5EubMJm6lLQIiIAIiIAIiIAIiIAIiIAIiIAIiIALjE5ix5Zt9yhWaOfxkQ2d8qEpBBERABERABOYrAa1WNV+fnPItAiIgAiIgAiKw2AgsYZoVWjnYbEG4I9sti+0V0P2KgAiIgAiIgAiIgAiIgAiIgAiIgAjMNwJLEODwQzMnNHTm200ovyIgAiIgAiIgAiIgAiIgAiIgAiIgAiKwmAjMIMhBS4ctTho6i+nx615FQAREQAREQAREQAREQAREQAREQATmIwHX0GGlq5h2FYKd+XgzyrMIiIAIiIAIiIAIiIAIiIAIiIAIiIAILAYCS7hJplrFVgIdR6E/ERABERABERABERABERABERABERABEZhaAm4UGSFO2NLRsuVT+6yUMREQAREQAREQAREQAREQAREQAREQARFwAjbbasZ3sKMTmjpiIwIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiML0EfMoVGjpo5rBsuYQ60/uwlDMREAEREAEREAEREAEREAEREAEREAERgMBMdYUrPDTlCgpyIiACIiACIiACIiACIiACIiACIiACIjC9BGaqAhw0dcKezvRmWTkTAREQAREQAREQAREQAREQAREQAREQgcVNwOQ5S3yaVUy7wjiynAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIwPQS6FnlCvs5sqEzvQ9LORMBERABERABERABERABERABERABERABCMxgCDm0cqrTr4RHBERABERABERABERABERABERABERABERgOgmURpFDOyeEO9OZXeVKBERABERABERABERABERABERABERABERgSQhwZmZmtMKV3gcREAEREAEREAEREAEREAEREAEREAERmAcEXKCDUIfly2U/Zx48MWVRBERABERABERABERABERABERABERg0RNYghAntHSgUd1f9HQEQAREQAREQAREQAREQAREQAREQAREQASmkMAMhpAR4rBsuYQ5U/iElCUREAEREAEREAEREAEREAEREAEREAERqBFwDZ1///vf6aqrrkof/ehHa6d1KAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiMG0EZr785S+nZcuWpeXLl6d//vOf05Y/5UcEREAEREAEREAEREAEREAEREAEREAERKBGYKWlS5fabKvCp1wh0PnFL35RC6JDERABERABERABERABERABERABERABERCBaSKwBGGOnAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIwPwh4MuWk90Q7Gjp8vnz8JRTERABERABERABERABERABERABERCBxUlgSdw2K1zFL/y0FQEREAEREAEREAEREAEREAEREAEREAERmD4CPVOu0NLR0uXT95CUIxEQAREQAREQAREQAREQAREQAREQARGoEuiZcrX66qsnTbmq4tG+CIiACIiACIiACIiACIiACIiACIiACEwfgXLK1aqrrpr22msvaehM3zNSjkRABERABERABERABERABERABERABESgh4BPuWKa1aabbppue9vblsaRe0LpQAREQAREQAREQAREQAREQAREQAREQAREYGoIuIYOtnMuvfTSdO2116YlS0qlnanJpDIiAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiLw/wRWWrp0acHh//7v/6Z//etfafny5RLq/D8f7YmACIiACIiACIiACIiACIiACIiACIjA1BGYQTsHF6tbSUNn6p6RMiQCIiACIiACIiACIiACIiACIiACIiACPQR6VrniTAh4ekLpQAREQAREQAREQAREQAREQAREQAREQAREYGoIlEaR0dCJ39TkThkRAREQAREQAREQAREQAREQAREQAREQARHoI9CjoYN2jjR0+hjJQwREQAREQAREQAREQAREQAREQAREQASmikBpQydyFbZ04lhbERABERABERABERABERABERABERABERCB6SLgGjox1YqtNHSm6wEpNyIgAiIgAiIgAiIgAiIgAiIgAiIgAiJQJ7AEjxDiaMpVHY+ORUAEREAEREAEREAEREAEREAEREAERGD6CLhR5Gq2tGx5lYb2RUAEREAEREAEREAEREAEREAEREAERGD6CJRTrkJLZ/qyqByJgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAhUCZRTrsIY8n/+85/qee2LgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAhMGQFNuZqyB6LsiIAIiIAIiIAIiIAIiIAIiIAIiIAIiMAwAuWUqwioqVdBQlsREAEREAEREAEREAEREAEREAEREAERmE4C5ZQrBDmxfPl0ZlW5EgEREAEREAEREAEREAEREAEREAEREAERgEA55QphDkId2dDRiyECIiACIiACIiACIiACIiACIiACIiAC001gyf3vf3/XzCGbYRh5urOs3ImACIiACIiACIiACIiACIiACIiACIjA4ibwf2vcB34EOZ6BAAAAAElFTkSuQmCC\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/memory/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"memory",
+								"create"
+							]
+						},
+						"description": "### Create Memory\n\nThis endpoint allows you to create a new memory by submitting the required data via the request body.\n\n#### Request Body\n\n- `userKey`: The user key associated with the memory.\n    \n- `content`: The content of the memory.\n    \n- `tag`: The tag associated with the memory.\n    \n- `sessionId`: The session ID for the memory.\n    \n\nExample:\n\n``` json\n{\n  \"userKey\": \"fd4631e3b92d3f3ed5ad8f970269bd ...\",\n  \"content\": \"Suchitra Padmanabhan is the pr ...\",\n  \"tag\": \"\",\n  \"sessionId\": \"2025032602\"\n}\n#### Response\n- `status`: The status of the response.\n- `message`: Additional information or error message.\n- `data`: The data object containing the created memory.\n- `timestamp`: The timestamp of the response.\n- `processId`: The ID of the process.\nExample:\n```json\n{\n  \"status\": \"\",\n  \"message\": \"\",\n  \"data\": {},\n  \"timestamp\": \"\",\n  \"processId\": \"\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "error-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"content\": \"I would love to see the Northern Lights in Iceland.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/create",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"create"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 07:34:14 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "196"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"message\": \"Profile not found.\",\n    \"details\": {\n        \"userKey\": \"Profile not found\"\n    },\n    \"timestamp\": \"2025-03-26T07:34:14.663734+00:00\",\n    \"processId\": \"b7b0a5b20a1411f09f3ae880883aad51\"\n}"
+						},
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"content\": \"I would love to see the Northern Lights in Iceland.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/create",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 07:37:25 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "189"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Your memory has been recorded successfully.\",\n    \"data\": {},\n    \"timestamp\": \"2025-03-26T07:37:25.314532+00:00\",\n    \"processId\": \"295492e00a1511f0a7eee880883aad51\"\n}"
+						}
+					]
+				},
+				{
+					"name": "health",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"if (globals['jsrsasign-js'] === undefined) {",
+									"    console.log(\"jsrasign library not already downloaded. Downloading now. \")",
+									"",
+									"    pm.sendRequest({",
+									"        url: \"http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js\",",
+									"        method: \"GET\",",
+									"        body: {}",
+									"    }, function (err, res) {",
+									"        postman.setEnvironmentVariable(\"jsrsasign-js\", res.text());",
+									"        doHttpSig();",
+									"    });",
+									"",
+									"} else {",
+									"    doHttpSig();",
+									"}",
+									"",
+									"function doHttpSig() {",
+									"    var navigator = {}; //fake a navigator object for the lib",
+									"    var window = {}; //fake a window object for the lib",
+									"    eval(postman.getGlobalVariable(\"jsrsasign-js\"));",
+									"    let pk = postman.getEnvironmentVariable(\"xdbc-privatekey\")",
+									"    let pks = pk.split(/\\\\n/)",
+									"    console.log(\"pkss Key\", pks);",
+									"    privateKey = \"\"",
+									"    for (let i = 0; i < pks.length; i++) {",
+									"        privateKey += pks[i] + \"\\n\"",
+									"    }",
+									"    var signature_algo = \"SHA256withECDSA\";",
+									"    var payload = request.data;",
+									"    var sig = new KJUR.crypto.Signature({",
+									"        \"alg\": signature_algo",
+									"    });",
+									"    sig.init(privateKey);",
+									"    var reqBody = JSON.parse(payload);",
+									"    pm.request.body.raw = JSON.stringify(reqBody)",
+									"    var payloadFmt = JSON.stringify(reqBody)",
+									"    // console.log(payloadFmt)",
+									"    sig.updateString(payloadFmt);",
+									"",
+									"    var sigValueHex = sig.sign();",
+									"    var sigBase64 = hextob64(sigValueHex);",
+									"",
+									"    var apiKey = postman.getEnvironmentVariable(\"xdbc-apikey\");",
+									"    pm.request.headers.add({ key: \"apiKey\", value: apiKey });",
+									"    pm.request.headers.add({ key: \"signature\", value: sigBase64 });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ping\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/memory/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"memory",
+								"health"
+							]
+						},
+						"description": "### Create Memory\n\nThis endpoint allows you to create a new memory by submitting the required data via the request body.\n\n#### Request Body\n\n- `userKey`: The user key associated with the memory.\n    \n- `content`: The content of the memory.\n    \n- `tag`: The tag associated with the memory.\n    \n- `sessionId`: The session ID for the memory.\n    \n\nExample:\n\n``` json\n{\n  \"userKey\": \"fd4631e3b92d3f3ed5ad8f970269bd ...\",\n  \"content\": \"Suchitra Padmanabhan is the pr ...\",\n  \"tag\": \"\",\n  \"sessionId\": \"2025032602\"\n}\n#### Response\n- `status`: The status of the response.\n- `message`: Additional information or error message.\n- `data`: The data object containing the created memory.\n- `timestamp`: The timestamp of the response.\n- `processId`: The ID of the process.\nExample:\n```json\n{\n  \"status\": \"\",\n  \"message\": \"\",\n  \"data\": {},\n  \"timestamp\": \"\",\n  \"processId\": \"\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "error-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"content\": \"I would love to see the Northern Lights in Iceland.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/create",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"create"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 07:34:14 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "196"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"message\": \"Profile not found.\",\n    \"details\": {\n        \"userKey\": \"Profile not found\"\n    },\n    \"timestamp\": \"2025-03-26T07:34:14.663734+00:00\",\n    \"processId\": \"b7b0a5b20a1411f09f3ae880883aad51\"\n}"
+						},
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"content\": \"I would love to see the Northern Lights in Iceland.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/create",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 07:37:25 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "189"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Your memory has been recorded successfully.\",\n    \"data\": {},\n    \"timestamp\": \"2025-03-26T07:37:25.314532+00:00\",\n    \"processId\": \"295492e00a1511f0a7eee880883aad51\"\n}"
+						}
+					]
+				},
+				{
+					"name": "chat",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"if (globals['jsrsasign-js'] === undefined) {",
+									"    console.log(\"jsrasign library not already downloaded. Downloading now. \")",
+									"",
+									"    pm.sendRequest({",
+									"        url: \"http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js\",",
+									"        method: \"GET\",",
+									"        body: {}",
+									"    }, function (err, res) {",
+									"        postman.setEnvironmentVariable(\"jsrsasign-js\", res.text());",
+									"        doHttpSig();",
+									"    });",
+									"",
+									"} else {",
+									"    doHttpSig();",
+									"}",
+									"",
+									"function doHttpSig() {",
+									"    var navigator = {}; //fake a navigator object for the lib",
+									"    var window = {}; //fake a window object for the lib",
+									"    eval(postman.getGlobalVariable(\"jsrsasign-js\"));",
+									"    let pk = postman.getEnvironmentVariable(\"xdbc-privatekey\")",
+									"    let pks = pk.split(/\\\\n/)",
+									"    console.log(\"pkss Key\", pks);",
+									"    privateKey = \"\"",
+									"    for (let i = 0; i < pks.length; i++) {",
+									"        privateKey += pks[i] + \"\\n\"",
+									"    }",
+									"    var signature_algo = \"SHA256withECDSA\";",
+									"    var payload = request.data;",
+									"    var sig = new KJUR.crypto.Signature({",
+									"        \"alg\": signature_algo",
+									"    });",
+									"    sig.init(privateKey);",
+									"    var reqBody = JSON.parse(payload);",
+									"    pm.request.body.raw = JSON.stringify(reqBody)",
+									"    var payloadFmt = JSON.stringify(reqBody)",
+									"    // console.log(payloadFmt)",
+									"    sig.updateString(payloadFmt);",
+									"",
+									"    var sigValueHex = sig.sign();",
+									"    var sigBase64 = hextob64(sigValueHex);",
+									"",
+									"    var apiKey = postman.getEnvironmentVariable(\"xdbc-apikey\");",
+									"    pm.request.headers.add({ key: \"apiKey\", value: apiKey });",
+									"    pm.request.headers.add({ key: \"signature\", value: sigBase64 });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userKey\": \"f43d94a0935eb7eeb2323638b9d0af57c24975dc25c6e335e0d55b11025a9ebc\",\n    \"statement\": \"where should I give blood sample\",\n    \"existing_tags\": [ \"XBD_Changes\",\n            \"food_preferences\",\n            \"banking\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/memory/chat",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"memory",
+								"chat"
+							]
+						},
+						"description": "### Create Memory\n\nThis endpoint allows you to create a new memory by submitting the required data via the request body.\n\n#### Request Body\n\n- `userKey`: The user key associated with the memory.\n    \n- `content`: The content of the memory.\n    \n- `tag`: The tag associated with the memory.\n    \n- `sessionId`: The session ID for the memory.\n    \n\nExample:\n\n``` json\n{\n  \"userKey\": \"fd4631e3b92d3f3ed5ad8f970269bd ...\",\n  \"content\": \"Suchitra Padmanabhan is the pr ...\",\n  \"tag\": \"\",\n  \"sessionId\": \"2025032602\"\n}\n#### Response\n- `status`: The status of the response.\n- `message`: Additional information or error message.\n- `data`: The data object containing the created memory.\n- `timestamp`: The timestamp of the response.\n- `processId`: The ID of the process.\nExample:\n```json\n{\n  \"status\": \"\",\n  \"message\": \"\",\n  \"data\": {},\n  \"timestamp\": \"\",\n  \"processId\": \"\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "error-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"content\": \"I would love to see the Northern Lights in Iceland.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/create",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"create"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 07:34:14 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "196"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"message\": \"Profile not found.\",\n    \"details\": {\n        \"userKey\": \"Profile not found\"\n    },\n    \"timestamp\": \"2025-03-26T07:34:14.663734+00:00\",\n    \"processId\": \"b7b0a5b20a1411f09f3ae880883aad51\"\n}"
+						},
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"content\": \"I would love to see the Northern Lights in Iceland.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/create",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 07:37:25 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "189"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Your memory has been recorded successfully.\",\n    \"data\": {},\n    \"timestamp\": \"2025-03-26T07:37:25.314532+00:00\",\n    \"processId\": \"295492e00a1511f0a7eee880883aad51\"\n}"
+						}
+					]
+				},
+				{
+					"name": "list-memories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"if (globals['jsrsasign-js'] === undefined) {",
+									"    console.log(\"jsrasign library not already downloaded. Downloading now. \")",
+									"",
+									"    pm.sendRequest({",
+									"        url: \"http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js\",",
+									"        method: \"GET\",",
+									"        body: {}",
+									"    }, function (err, res) {",
+									"        postman.setEnvironmentVariable(\"jsrsasign-js\", res.text());",
+									"        doHttpSig();",
+									"    });",
+									"",
+									"} else {",
+									"    doHttpSig();",
+									"}",
+									"",
+									"function doHttpSig() {",
+									"    var navigator = {}; //fake a navigator object for the lib",
+									"    var window = {}; //fake a window object for the lib",
+									"    eval(postman.getGlobalVariable(\"jsrsasign-js\"));",
+									"    let pk = postman.getEnvironmentVariable(\"xdbc-privatekey\")",
+									"    let pks = pk.split(/\\\\n/)",
+									"    console.log(\"pkss Key\", pks);",
+									"    privateKey = \"\"",
+									"    for (let i = 0; i < pks.length; i++) {",
+									"        privateKey += pks[i] + \"\\n\"",
+									"    }",
+									"    var signature_algo = \"SHA256withECDSA\";",
+									"    var payload = request.data;",
+									"    var sig = new KJUR.crypto.Signature({",
+									"        \"alg\": signature_algo",
+									"    });",
+									"    sig.init(privateKey);",
+									"    var reqBody = JSON.parse(payload);",
+									"    pm.request.body.raw = JSON.stringify(reqBody)",
+									"    var payloadFmt = JSON.stringify(reqBody)",
+									"    // console.log(payloadFmt)",
+									"    sig.updateString(payloadFmt);",
+									"",
+									"    var sigValueHex = sig.sign();",
+									"    var sigBase64 = hextob64(sigValueHex);",
+									"",
+									"    var apiKey = postman.getEnvironmentVariable(\"xdbc-apikey\");",
+									"    pm.request.headers.add({ key: \"apikey\", value: apiKey });",
+									"    pm.request.headers.add({ key: \"signature\", value: sigBase64 });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userKey\": \"f43d94a0935eb7eeb2323638b9d0af57c24975dc25c6e335e0d55b11025a9ebc\",\n    \"tokens\": [],\n    \"query\": \"where should I give blood sample\",\n    \"require_llm_summary\":false,\n    \"suggestedTokens\":{\n            \"high\": [\n                {\n                    \"token\": \"blood\",\n                    \"synonyms\": [\n                        \"hemoglobin\",\n                        \"plasma\",\n                        \"red blood cells\",\n                        \"blood components\",\n                        \"blood\"\n                    ]\n                },\n                {\n                    \"token\": \"sample\",\n                    \"synonyms\": [\n                        \"specimen\",\n                        \"test\",\n                        \"sample\",\n                        \"sample specimen\",\n                        \"sample\"\n                    ]\n                }\n            ],\n            \"low\": [\n                \"give\",\n                \"where\"\n            ]\n        }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/memory/list",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"memory",
+								"list"
+							]
+						},
+						"description": "### API Request Description\n\nThis POST request is used to retrieve a list of memories from the API.\n\n#### Request Body\n\n- { \"userKey\": \"fd4631e3b92d3f3ed5ad8f970269bd ...\", \"tokens\": \\[\\], \"query\": \"\"}\n    \n\n### API Response\n\nThe response of this request can be represented as a JSON schema:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"status\": {\n      \"type\": \"string\"\n    },\n    \"message\": {\n      \"type\": \"string\"\n    },\n    \"data\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"memories\": {\n          \"type\": \"array\",\n          \"items\": {\n            \"type\": \"object\",\n            \"properties\": {\n              \"memory\": {\n                \"type\": \"string\"\n              },\n              \"language\": {\n                \"type\": [\"string\", \"null\"]\n              },\n              \"transactionNumber\": {\n                \"type\": \"string\"\n              },\n              \"date\": {\n                \"type\": \"string\"\n              },\n              \"docId\": {\n                \"type\": [\"string\", \"null\"]\n              },\n              \"fileID\": {\n                \"type\": [\"string\", \"null\"]\n              },\n              \"notesKey\": {\n                \"type\": [\"string\", \"null\"]\n              },\n              \"tokens\": {\n                \"type\": \"array\",\n                \"items\": {\n                  \"type\": \"string\"\n                }\n              }\n            },\n            \"required\": [\"memory\", \"transactionNumber\", \"date\", \"tokens\"]\n          }\n        }\n      },\n      \"required\": [\"memories\"]\n    },\n    \"timestamp\": {\n      \"type\": \"string\"\n    },\n    \"processId\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\"status\", \"message\", \"data\", \"timestamp\", \"processId\"]\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"tokens\": [],\n    \"query\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/list",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"list"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 07:41:41 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "427"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Request processed successfully.\",\n    \"data\": {\n        \"memories\": [\n            {\n                \"memory\": \"See Northern Lights in Iceland\",\n                \"language\": null,\n                \"transactionNumber\": \"XD17429746496666580248165:0\",\n                \"date\": \"03/26/2025 13:07:30\",\n                \"docId\": null,\n                \"fileID\": null,\n                \"notesKey\": null,\n                \"tokens\": [\n                    \"Northern Lights\",\n                    \"Iceland\"\n                ]\n            }\n        ]\n    },\n    \"timestamp\": \"2025-03-26T07:41:42.584187+00:00\",\n    \"processId\": \"c28825860a1511f0b82de880883aad51\"\n}"
+						},
+						{
+							"name": "error-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"tokens\": [],\n    \"query\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/list",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"list"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 07:42:39 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "196"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"message\": \"Profile not found.\",\n    \"details\": {\n        \"userKey\": \"Profile not found\"\n    },\n    \"timestamp\": \"2025-03-26T07:42:40.243399+00:00\",\n    \"processId\": \"e512d4c20a1511f098cee880883aad51\"\n}"
+						}
+					]
+				},
+				{
+					"name": "summarize-memory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"if (globals['jsrsasign-js'] === undefined) {",
+									"    console.log(\"jsrasign library not already downloaded. Downloading now. \")",
+									"",
+									"    pm.sendRequest({",
+									"        url: \"http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js\",",
+									"        method: \"GET\",",
+									"        body: {}",
+									"    }, function (err, res) {",
+									"        postman.setEnvironmentVariable(\"jsrsasign-js\", res.text());",
+									"        doHttpSig();",
+									"    });",
+									"",
+									"} else {",
+									"    doHttpSig();",
+									"}",
+									"",
+									"function doHttpSig() {",
+									"    var navigator = {}; //fake a navigator object for the lib",
+									"    var window = {}; //fake a window object for the lib",
+									"    eval(postman.getGlobalVariable(\"jsrsasign-js\"));",
+									"    let pk = postman.getEnvironmentVariable(\"xdbc-privatekey\")",
+									"    let pks = pk.split(/\\\\n/)",
+									"    console.log(\"pkss Key\", pks);",
+									"    privateKey = \"\"",
+									"    for (let i = 0; i < pks.length; i++) {",
+									"        privateKey += pks[i] + \"\\n\"",
+									"    }",
+									"    var signature_algo = \"SHA256withECDSA\";",
+									"    var payload = request.data;",
+									"    var sig = new KJUR.crypto.Signature({",
+									"        \"alg\": signature_algo",
+									"    });",
+									"    sig.init(privateKey);",
+									"    var reqBody = JSON.parse(payload);",
+									"    pm.request.body.raw = JSON.stringify(reqBody)",
+									"    var payloadFmt = JSON.stringify(reqBody)",
+									"    // console.log(payloadFmt)",
+									"    sig.updateString(payloadFmt);",
+									"",
+									"    var sigValueHex = sig.sign();",
+									"    var sigBase64 = hextob64(sigValueHex);",
+									"",
+									"    var apiKey = postman.getEnvironmentVariable(\"xdbc-apikey\");",
+									"    pm.request.headers.add({ key: \"apikey\", value: apiKey });",
+									"    pm.request.headers.add({ key: \"signature\", value: sigBase64 });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userKey\": \"4e984be16442a99515ca63a32d5ce28273a5b355a1027a4a8955d27e7d6c4129\",\n    \"memories\": [\n        {\n                \"memory\": \"I love Italian food\",\n                \"language\": null,\n                \"transactionNumber\": \"XD93BDB752BE4E11F0BC396A2E821FB445:0\",\n                \"date\": \"11/10/2025 11:02:04\",\n                \"docId\": null,\n                \"fileID\": null,\n                \"notesKey\": null,\n                \"isEncrypted\": false,\n                \"keyUUID\": null,\n                \"conversationId\": null,\n                \"userkey\": \"4e984be16442a99515ca63a32d5ce28273a5b355a1027a4a8955d27e7d6c4129\",\n                \"wpskey\": \"nPXVdh2CBNW13ZSQ9yn4FAv3aQvpIZ2ROjGPcVCZAc\",\n                \"tokens\": [\n                    \"Italian\",\n                    \"food\",\n                    \"love\"\n                ]\n            },\n            {\n                \"memory\": \"Added Google auth to the XDB Space\",\n                \"language\": null,\n                \"transactionNumber\": \"XD3083D9F0B34F11F09CC56A2E821FB445:0\",\n                \"date\": \"10/27/2025 12:08:44\",\n                \"docId\": null,\n                \"fileID\": null,\n                \"notesKey\": \"XBD_Changes\",\n                \"isEncrypted\": false,\n                \"keyUUID\": null,\n                \"conversationId\": null,\n                \"userkey\": \"72c9aa457fb6ed7aa69c74fbcae8c969e1566a1f30fe9e6dbaf2d57cf1cdaa64\",\n                \"wpskey\": \"X0RyAIg5lnfGmLOx1mKF6jzGR5oxFuYqPet51zoE5zo\",\n                \"tokens\": [\n                    \"Google auth\",\n                    \"XDB Space\"\n                ]\n            },\n            {\n                \"memory\": \"Dailmgmt meeting call link https://meet.google.com/zms-sudd-fgs\",\n                \"language\": null,\n                \"transactionNumber\": \"XD67BC44C6B34E11F09CC56A2E821FB445:0\",\n                \"date\": \"10/27/2025 12:03:08\",\n                \"docId\": null,\n                \"fileID\": null,\n                \"notesKey\": null,\n                \"isEncrypted\": false,\n                \"keyUUID\": null,\n                \"conversationId\": null,\n                \"userkey\": \"72c9aa457fb6ed7aa69c74fbcae8c969e1566a1f30fe9e6dbaf2d57cf1cdaa64\",\n                \"wpskey\": \"X0RyAIg5lnfGmLOx1mKF6jzGR5oxFuYqPet51zoE5zo\",\n                \"tokens\": [\n                    \"Dailmgmt\",\n                    \"meeting\",\n                    \"call\",\n                    \"link\",\n                    \"https://meet.google.com/zms-sudd-fgs\"\n                ]\n            }\n            ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/memory/summarize-memory",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"memory",
+								"summarize-memory"
+							]
+						},
+						"description": "### API Request Description\n\nThis POST request is used to retrieve a list of memories from the API.\n\n#### Request Body\n\n- { \"userKey\": \"fd4631e3b92d3f3ed5ad8f970269bd ...\", \"tokens\": \\[\\], \"query\": \"\"}\n    \n\n### API Response\n\nThe response of this request can be represented as a JSON schema:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"status\": {\n      \"type\": \"string\"\n    },\n    \"message\": {\n      \"type\": \"string\"\n    },\n    \"data\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"memories\": {\n          \"type\": \"array\",\n          \"items\": {\n            \"type\": \"object\",\n            \"properties\": {\n              \"memory\": {\n                \"type\": \"string\"\n              },\n              \"language\": {\n                \"type\": [\"string\", \"null\"]\n              },\n              \"transactionNumber\": {\n                \"type\": \"string\"\n              },\n              \"date\": {\n                \"type\": \"string\"\n              },\n              \"docId\": {\n                \"type\": [\"string\", \"null\"]\n              },\n              \"fileID\": {\n                \"type\": [\"string\", \"null\"]\n              },\n              \"notesKey\": {\n                \"type\": [\"string\", \"null\"]\n              },\n              \"tokens\": {\n                \"type\": \"array\",\n                \"items\": {\n                  \"type\": \"string\"\n                }\n              }\n            },\n            \"required\": [\"memory\", \"transactionNumber\", \"date\", \"tokens\"]\n          }\n        }\n      },\n      \"required\": [\"memories\"]\n    },\n    \"timestamp\": {\n      \"type\": \"string\"\n    },\n    \"processId\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\"status\", \"message\", \"data\", \"timestamp\", \"processId\"]\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"tokens\": [],\n    \"query\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/list",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"list"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 07:41:41 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "427"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Request processed successfully.\",\n    \"data\": {\n        \"memories\": [\n            {\n                \"memory\": \"See Northern Lights in Iceland\",\n                \"language\": null,\n                \"transactionNumber\": \"XD17429746496666580248165:0\",\n                \"date\": \"03/26/2025 13:07:30\",\n                \"docId\": null,\n                \"fileID\": null,\n                \"notesKey\": null,\n                \"tokens\": [\n                    \"Northern Lights\",\n                    \"Iceland\"\n                ]\n            }\n        ]\n    },\n    \"timestamp\": \"2025-03-26T07:41:42.584187+00:00\",\n    \"processId\": \"c28825860a1511f0b82de880883aad51\"\n}"
+						},
+						{
+							"name": "error-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"tokens\": [],\n    \"query\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/list",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"list"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 07:42:39 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "196"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"message\": \"Profile not found.\",\n    \"details\": {\n        \"userKey\": \"Profile not found\"\n    },\n    \"timestamp\": \"2025-03-26T07:42:40.243399+00:00\",\n    \"processId\": \"e512d4c20a1511f098cee880883aad51\"\n}"
+						}
+					]
+				},
+				{
+					"name": "forget-memory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"if (globals['jsrsasign-js'] === undefined) {",
+									"    console.log(\"jsrasign library not already downloaded. Downloading now. \")",
+									"",
+									"    pm.sendRequest({",
+									"        url: \"http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js\",",
+									"        method: \"GET\",",
+									"        body: {}",
+									"    }, function (err, res) {",
+									"        postman.setEnvironmentVariable(\"jsrsasign-js\", res.text());",
+									"        doHttpSig();",
+									"    });",
+									"",
+									"} else {",
+									"    doHttpSig();",
+									"}",
+									"",
+									"function doHttpSig() {",
+									"    var navigator = {}; //fake a navigator object for the lib",
+									"    var window = {}; //fake a window object for the lib",
+									"    eval(postman.getGlobalVariable(\"jsrsasign-js\"));",
+									"    let pk = postman.getEnvironmentVariable(\"xdbc-privatekey\")",
+									"    let pks = pk.split(/\\\\n/)",
+									"    console.log(\"pkss Key\", pks);",
+									"    privateKey = \"\"",
+									"    for (let i = 0; i < pks.length; i++) {",
+									"        privateKey += pks[i] + \"\\n\"",
+									"    }",
+									"    var signature_algo = \"SHA256withECDSA\";",
+									"    var payload = request.data;",
+									"    var sig = new KJUR.crypto.Signature({",
+									"        \"alg\": signature_algo",
+									"    });",
+									"    sig.init(privateKey);",
+									"    var reqBody = JSON.parse(payload);",
+									"    pm.request.body.raw = JSON.stringify(reqBody)",
+									"    var payloadFmt = JSON.stringify(reqBody)",
+									"    // console.log(payloadFmt)",
+									"    sig.updateString(payloadFmt);",
+									"",
+									"    var sigValueHex = sig.sign();",
+									"    var sigBase64 = hextob64(sigValueHex);",
+									"",
+									"    var apiKey = postman.getEnvironmentVariable(\"xdbc-apikey\");",
+									"    pm.request.headers.add({ key: \"apikey\", value: apiKey });",
+									"    pm.request.headers.add({ key: \"signature\", value: sigBase64 });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userKey\": \"4e984be16442a99515ca63a32d5ce28273a5b355a1027a4a8955d27e7d6c4129\",\n    \"queryHash\": \"e881b06effd5e07a26551cad1008c5177b78b07f9bf17271fb275f8dc9508d6a\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/memory/forget",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"memory",
+								"forget"
+							]
+						},
+						"description": "### Request\n\nThis is a POST request to `{{base_url}}/api/memory/forget` to forget a specific memory associated with a user. The request body should be in JSON format and include the following parameters:\n\n- `userKey`: (string) The key associated with the user's memory to be forgotten.\n    \n- `transactionNumber`: (string) The transaction number of the memory to be forgotten.\n    \n\n### Response\n\nThe response for this request is a JSON object with the following schema:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"status\": {\n      \"type\": \"string\"\n    },\n    \"message\": {\n      \"type\": \"string\"\n    },\n    \"data\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"profileId\": {\n          \"type\": \"integer\"\n        },\n        \"status\": {\n          \"type\": \"string\"\n        }\n      }\n    },\n    \"timestamp\": {\n      \"type\": \"string\"\n    },\n    \"processId\": {\n      \"type\": \"string\"\n    }\n  }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"transactionNumber\": \"XD17429770219728368663227:0\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/forget",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"forget"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 10:16:54 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "213"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Request processed successfully.\",\n    \"data\": {\n        \"profileId\": 20,\n        \"status\": \"SUCCESS\"\n    },\n    \"timestamp\": \"2025-03-26T10:16:55.862800+00:00\",\n    \"processId\": \"71bb009b0a2b11f0bea7e880883aad51\"\n}"
+						}
+					]
+				},
+				{
+					"name": "list-tags",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"if (globals['jsrsasign-js'] === undefined) {",
+									"    console.log(\"jsrasign library not already downloaded. Downloading now. \")",
+									"",
+									"    pm.sendRequest({",
+									"        url: \"http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js\",",
+									"        method: \"GET\",",
+									"        body: {}",
+									"    }, function (err, res) {",
+									"        postman.setEnvironmentVariable(\"jsrsasign-js\", res.text());",
+									"        doHttpSig();",
+									"    });",
+									"",
+									"} else {",
+									"    doHttpSig();",
+									"}",
+									"",
+									"function doHttpSig() {",
+									"    var navigator = {}; //fake a navigator object for the lib",
+									"    var window = {}; //fake a window object for the lib",
+									"    eval(postman.getGlobalVariable(\"jsrsasign-js\"));",
+									"    let pk = postman.getEnvironmentVariable(\"xdbc-privatekey\")",
+									"    let pks = pk.split(/\\\\n/)",
+									"    console.log(\"pkss Key\", pks);",
+									"    privateKey = \"\"",
+									"    for (let i = 0; i < pks.length; i++) {",
+									"        privateKey += pks[i] + \"\\n\"",
+									"    }",
+									"    var signature_algo = \"SHA256withECDSA\";",
+									"    var payload = request.data;",
+									"    var sig = new KJUR.crypto.Signature({",
+									"        \"alg\": signature_algo",
+									"    });",
+									"    sig.init(privateKey);",
+									"    var reqBody = JSON.parse(payload);",
+									"    pm.request.body.raw = JSON.stringify(reqBody)",
+									"    var payloadFmt = JSON.stringify(reqBody)",
+									"    // console.log(payloadFmt)",
+									"    sig.updateString(payloadFmt);",
+									"",
+									"    var sigValueHex = sig.sign();",
+									"    var sigBase64 = hextob64(sigValueHex);",
+									"",
+									"    var apiKey = postman.getEnvironmentVariable(\"xdbc-apikey\");",
+									"    pm.request.headers.add({ key: \"apiKey\", value: apiKey });",
+									"    pm.request.headers.add({ key: \"signature\", value: sigBase64 });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userKey\": \"4e984be16442a99515ca63a32d5ce28273a5b355a1027a4a8955d27e7d6c4129\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/memory/list-tag",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"memory",
+								"list-tag"
+							]
+						},
+						"description": "This endpoint allows you to retrieve a list of tags associated with memory notes. The HTTP POST request should be sent to {{base_url}}/api/memory/list-tag.\n\n### Request Body\n\n- userKey (string, required): The user key for authentication.\n    \n\n### Response\n\n- status (string): The status of the response.\n    \n- message (string): A message related to the response status.\n    \n- data (object): Contains the list of notes tags.\n    \n    - notesTag (array): An array of tags associated with memory notes.\n        \n- timestamp (string): The timestamp of the response.\n    \n- processId (string): The process ID associated with the response."
+					},
+					"response": [
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/list-tag",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"list-tag"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 20:00:31 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "233"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Request processed successfully.\",\n    \"data\": {\n        \"notesTag\": [\n            \"goal 2030\",\n            \"bucket list\",\n            \"30s wishlist\"\n        ]\n    },\n    \"timestamp\": \"2025-03-26T20:00:31.733227+00:00\",\n    \"processId\": \"f8d617630a7c11f0adf4e880883aad51\"\n}"
+						}
+					]
+				},
+				{
+					"name": "add-tag",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"if (globals['jsrsasign-js'] === undefined) {",
+									"    console.log(\"jsrasign library not already downloaded. Downloading now. \")",
+									"",
+									"    pm.sendRequest({",
+									"        url: \"http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js\",",
+									"        method: \"GET\",",
+									"        body: {}",
+									"    }, function (err, res) {",
+									"        postman.setEnvironmentVariable(\"jsrsasign-js\", res.text());",
+									"        doHttpSig();",
+									"    });",
+									"",
+									"} else {",
+									"    doHttpSig();",
+									"}",
+									"",
+									"function doHttpSig() {",
+									"    var navigator = {}; //fake a navigator object for the lib",
+									"    var window = {}; //fake a window object for the lib",
+									"    eval(postman.getGlobalVariable(\"jsrsasign-js\"));",
+									"    let pk = postman.getEnvironmentVariable(\"xdbc-privatekey\")",
+									"    let pks = pk.split(/\\\\n/)",
+									"    console.log(\"pkss Key\", pks);",
+									"    privateKey = \"\"",
+									"    for (let i = 0; i < pks.length; i++) {",
+									"        privateKey += pks[i] + \"\\n\"",
+									"    }",
+									"    var signature_algo = \"SHA256withECDSA\";",
+									"    var payload = request.data;",
+									"    var sig = new KJUR.crypto.Signature({",
+									"        \"alg\": signature_algo",
+									"    });",
+									"    sig.init(privateKey);",
+									"    var reqBody = JSON.parse(payload);",
+									"    pm.request.body.raw = JSON.stringify(reqBody)",
+									"    var payloadFmt = JSON.stringify(reqBody)",
+									"    // console.log(payloadFmt)",
+									"    sig.updateString(payloadFmt);",
+									"",
+									"    var sigValueHex = sig.sign();",
+									"    var sigBase64 = hextob64(sigValueHex);",
+									"",
+									"    var apiKey = postman.getEnvironmentVariable(\"xdbc-apikey\");",
+									"    pm.request.headers.add({ key: \"apiKey\", value: apiKey });",
+									"    pm.request.headers.add({ key: \"signature\", value: sigBase64 });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userKey\": \"9b5f195385b58b331c7390a1a013f00ad56130dfbeab59b860ef38a32fc18577\",\n    \"sessionId\": \"2025032602\",\n    \"tag\": \"things to do in 30s\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/memory/add-tag",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"memory",
+								"add-tag"
+							]
+						},
+						"description": "This endpoint allows you to add a tag to a user's memory. The request should be sent as an HTTP POST to {{base_url}}/api/memory/add-tag. The request body should be in raw format and include the following parameters:\n\n- userKey: (string) The key identifying the user.\n    \n- sessionId: (string) The session ID for the memory.\n    \n- tag: (string) The tag to be added to the memory.\n    \n\nThe response will include the updated memory details after adding the tag."
+					},
+					"response": []
+				},
+				{
+					"name": "get-by-tag",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"if (globals['jsrsasign-js'] === undefined) {",
+									"    console.log(\"jsrasign library not already downloaded. Downloading now. \")",
+									"",
+									"    pm.sendRequest({",
+									"        url: \"http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js\",",
+									"        method: \"GET\",",
+									"        body: {}",
+									"    }, function (err, res) {",
+									"        postman.setEnvironmentVariable(\"jsrsasign-js\", res.text());",
+									"        doHttpSig();",
+									"    });",
+									"",
+									"} else {",
+									"    doHttpSig();",
+									"}",
+									"",
+									"function doHttpSig() {",
+									"    var navigator = {}; //fake a navigator object for the lib",
+									"    var window = {}; //fake a window object for the lib",
+									"    eval(postman.getGlobalVariable(\"jsrsasign-js\"));",
+									"    let pk = postman.getEnvironmentVariable(\"xdbc-privatekey\")",
+									"    let pks = pk.split(/\\\\n/)",
+									"    console.log(\"pkss Key\", pks);",
+									"    privateKey = \"\"",
+									"    for (let i = 0; i < pks.length; i++) {",
+									"        privateKey += pks[i] + \"\\n\"",
+									"    }",
+									"    var signature_algo = \"SHA256withECDSA\";",
+									"    var payload = request.data;",
+									"    var sig = new KJUR.crypto.Signature({",
+									"        \"alg\": signature_algo",
+									"    });",
+									"    sig.init(privateKey);",
+									"    var reqBody = JSON.parse(payload);",
+									"    pm.request.body.raw = JSON.stringify(reqBody)",
+									"    var payloadFmt = JSON.stringify(reqBody)",
+									"    // console.log(payloadFmt)",
+									"    sig.updateString(payloadFmt);",
+									"",
+									"    var sigValueHex = sig.sign();",
+									"    var sigBase64 = hextob64(sigValueHex);",
+									"",
+									"    var apiKey = postman.getEnvironmentVariable(\"xdbc-apikey\");",
+									"    pm.request.headers.add({ key: \"apiKey\", value: apiKey });",
+									"    pm.request.headers.add({ key: \"signature\", value: sigBase64 });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userKey\": \"4e984be16442a99515ca63a32d5ce28273a5b355a1027a4a8955d27e7d6c4129\",\n    \"tag\": [\"XBD_Changes\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/memory/by-tag",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"memory",
+								"by-tag"
+							]
+						},
+						"description": "### POST /api/memory/by-tag\n\nThis endpoint is used to retrieve memories by tag for a specific user.\n\n#### Request Body\n\n- userKey (string): The unique key of the user.\n    \n- tag (string): The tag for which memories are to be retrieved.\n    \n\n#### Response\n\nThe response will be a JSON object with the following properties:\n\n- status (string): The status of the response.\n    \n- message (string): Any additional message related to the response.\n    \n- data (object): The data object containing an array of memories.\n    \n    - memories (array): An array of memory objects.\n        \n        - memory (string): The memory content.\n            \n        - language (string): The language of the memory.\n            \n        - transactionNumber (string): The transaction number associated with the memory.\n            \n        - date (string): The date of the memory.\n            \n        - docId (string): The document ID of the memory.\n            \n        - fileID (string): The file ID of the memory.\n            \n        - notesKey (string): The key for the notes related to the memory.\n            \n        - tokens (array): An array of tokens associated with the memory.\n            \n- timestamp (string): The timestamp of the response.\n    \n- processId (string): The process ID associated with the response.\n    \n\n#### Example\n\n``` json\n{\n  \"status\": \"\",\n  \"message\": \"\",\n  \"data\": {\n    \"memories\": [\n      {\n        \"memory\": \"\",\n        \"language\": null,\n        \"transactionNumber\": null,\n        \"date\": \"\",\n        \"docId\": null,\n        \"fileID\": null,\n        \"notesKey\": \"\",\n        \"tokens\": [\"\"]\n      }\n    ]\n  },\n  \"timestamp\": \"\",\n  \"processId\": \"\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"tag\": \"bucket list\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/by-tag",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"by-tag"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 20:08:51 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "938"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Request processed successfully.\",\n    \"data\": {\n        \"memories\": [\n            {\n                \"memory\": \"Learning a new language is high on my to-do list\",\n                \"language\": null,\n                \"transactionNumber\": null,\n                \"date\": \"03/26/2025 19:23:06\",\n                \"docId\": null,\n                \"fileID\": null,\n                \"notesKey\": \"30s wishlist\",\n                \"tokens\": [\n                    \"Learning\",\n                    \"new language\",\n                    \"high\",\n                    \"to-do list\"\n                ]\n            },\n            {\n                \"memory\": \"Starting own business soon\",\n                \"language\": null,\n                \"transactionNumber\": null,\n                \"date\": \"03/26/2025 19:23:19\",\n                \"docId\": null,\n                \"fileID\": null,\n                \"notesKey\": \"30s wishlist\",\n                \"tokens\": [\n                    \"Starting\",\n                    \"own\",\n                    \"business\",\n                    \"soon\"\n                ]\n            },\n            {\n                \"memory\": \"Trying out extreme sports like skydiving is thrilling\",\n                \"language\": null,\n                \"transactionNumber\": null,\n                \"date\": \"03/26/2025 19:23:35\",\n                \"docId\": null,\n                \"fileID\": null,\n                \"notesKey\": \"30s wishlist\",\n                \"tokens\": [\n                    \"Extreme sports\",\n                    \"Skydiving\",\n                    \"Thrilling\"\n                ]\n            }\n        ]\n    },\n    \"timestamp\": \"2025-03-26T20:08:52.488861+00:00\",\n    \"processId\": \"234ca27f0a7e11f090c5e880883aad51\"\n}"
+						}
+					]
+				},
+				{
+					"name": "change-tag",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"if (globals['jsrsasign-js'] === undefined) {",
+									"    console.log(\"jsrasign library not already downloaded. Downloading now. \")",
+									"",
+									"    pm.sendRequest({",
+									"        url: \"http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js\",",
+									"        method: \"GET\",",
+									"        body: {}",
+									"    }, function (err, res) {",
+									"        postman.setEnvironmentVariable(\"jsrsasign-js\", res.text());",
+									"        doHttpSig();",
+									"    });",
+									"",
+									"} else {",
+									"    doHttpSig();",
+									"}",
+									"",
+									"function doHttpSig() {",
+									"    var navigator = {}; //fake a navigator object for the lib",
+									"    var window = {}; //fake a window object for the lib",
+									"    eval(postman.getGlobalVariable(\"jsrsasign-js\"));",
+									"    let pk = postman.getEnvironmentVariable(\"xdbc-privatekey\")",
+									"    let pks = pk.split(/\\\\n/)",
+									"    console.log(\"pkss Key\", pks);",
+									"    privateKey = \"\"",
+									"    for (let i = 0; i < pks.length; i++) {",
+									"        privateKey += pks[i] + \"\\n\"",
+									"    }",
+									"    var signature_algo = \"SHA256withECDSA\";",
+									"    var payload = request.data;",
+									"    var sig = new KJUR.crypto.Signature({",
+									"        \"alg\": signature_algo",
+									"    });",
+									"    sig.init(privateKey);",
+									"    var reqBody = JSON.parse(payload);",
+									"    pm.request.body.raw = JSON.stringify(reqBody)",
+									"    var payloadFmt = JSON.stringify(reqBody)",
+									"    // console.log(payloadFmt)",
+									"    sig.updateString(payloadFmt);",
+									"",
+									"    var sigValueHex = sig.sign();",
+									"    var sigBase64 = hextob64(sigValueHex);",
+									"",
+									"    var apiKey = postman.getEnvironmentVariable(\"xdbc-apikey\");",
+									"    pm.request.headers.add({ key: \"apiKey\", value: apiKey });",
+									"    pm.request.headers.add({ key: \"signature\", value: sigBase64 });",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"currentTag\": \"things to do in 30s\",\n    \"updatedTag\": \"30s wishlist\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/memory/change-tag",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"memory",
+								"change-tag"
+							]
+						},
+						"description": "### Change Memory Tag\n\nThis endpoint allows the user to update the tag associated with a specific memory.\n\n#### Request Body\n\n- `userKey` (string): The unique key of the user.\n    \n- `currentTag` (string): The current tag associated with the memory.\n    \n- `updatedTag` (string): The new tag to be associated with the memory.\n    \n\n#### Response\n\n- `status` (string): The status of the response.\n    \n- `message` (string): Additional information or message related to the response.\n    \n- `data`\n    \n    - `profileId` (number): The profile ID associated with the memory.\n        \n    - `status` (string): The status of the operation.\n        \n    - `updatedCount` (number): The count of memories updated.\n        \n- `timestamp` (string): The timestamp of the response.\n    \n- `processId` (string): The process ID associated with the response."
+					},
+					"response": [
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userKey\": \"c0312641aade88080be0c7f0801bc4dc6edbeb2752cb1530ae0483728e6a4f81\",\n    \"currentTag\": \"things to do in 30s\",\n    \"updatedTag\": \"30s wishlist\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/memory/change-tag",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"memory",
+										"change-tag"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 26 Mar 2025 20:00:10 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "232"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Request processed successfully.\",\n    \"data\": {\n        \"profileId\": 20,\n        \"status\": \"SUCCESS\",\n        \"updatedCount\": 3\n    },\n    \"timestamp\": \"2025-03-26T20:00:11.010976+00:00\",\n    \"processId\": \"ec72366a0a7c11f09a11e880883aad51\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
