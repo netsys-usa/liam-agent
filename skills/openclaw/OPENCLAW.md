@@ -2,7 +2,7 @@
 
 xd-memory is a skill that gives OpenClaw persistent, searchable cloud memory. Once installed, the agent stores and retrieves memories automatically.
 
-> **Before you begin:** See [README.md](liam-python-sdk/README.md) for account setup and configuration instructions.
+> **Before you begin:** See [README.md](../../liam-python-sdk/README.md) for account setup and configuration instructions.
 
 ---
 
