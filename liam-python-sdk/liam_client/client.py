@@ -225,6 +225,65 @@ class LIAMClient:
         
         return data
     
+    # ==================== User Management ====================
+
+    def create_workspace(
+        self,
+        name: str,
+        institution_id: str,
+        institution_name: str
+    ) -> Dict[str, Any]:
+        """
+        Register a new workspace/institution.
+
+        Args:
+            name: Display name of the institution
+            institution_id: Short unique identifier (e.g. "TSOL")
+            institution_name: Full institution name
+
+        Returns:
+            API response containing ``data.apiKey`` and ``data.status``
+        """
+        payload = {
+            "name": name,
+            "institutionId": institution_id,
+            "institutionName": institution_name
+        }
+        return self._make_request("auth/register", payload)
+
+    def activate_workspace(self, name: str) -> Dict[str, Any]:
+        """
+        Activate a previously registered workspace.
+
+        Args:
+            name: Name of the workspace to activate
+
+        Returns:
+            API response containing ``data.apiKey`` and ``data.status``
+        """
+        return self._make_request("auth/activate", {"name": name})
+
+    def workspace_submit_key(
+        self,
+        api_key: str,
+        public_key: str
+    ) -> Dict[str, Any]:
+        """
+        Associate a public key with a workspace.
+
+        Enables signed/encrypted API operations at the workspace level.
+        Pass the key as a base64-encoded PEM string.
+
+        Args:
+            api_key: The workspace API key
+            public_key: Base64-encoded PEM public key
+
+        Returns:
+            API response with status confirmation
+        """
+        payload = {"apiKey": api_key, "publicKey": public_key}
+        return self._make_request("auth/submit-key", payload)
+
     # ==================== Memory Operations ====================
     
     def create_memory(

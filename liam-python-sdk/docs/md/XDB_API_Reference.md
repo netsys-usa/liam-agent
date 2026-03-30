@@ -219,25 +219,7 @@ Stores a new memory entry for a user.
 
 ---
 
-### 2.3 Create Memory with Image
-
-**POST** `/api/memory/create`
-
-Same endpoint as **Create Memory** but accepts an additional base64-encoded image payload.
-
-**Request Body**
-
-| Field | Type | Required | Description |
-|---|---|---|---|
-| `userKey` | string | ✅ | User's unique key |
-| `content` | string | ✅ | Memory text |
-| `tag` | string | ✅ | Category tag |
-| `sessionId` | string | ✅ | Session identifier |
-| `imageData` | string | ✅ | Base64-encoded image (PNG/JPEG) |
-
----
-
-### 2.4 Memory Status
+### 2.3 Memory Status
 
 **POST** `/api/memory/memory-status`
 
@@ -264,7 +246,7 @@ Checks the processing status of a previously submitted memory.
 
 ---
 
-### 2.5 List Memories
+### 2.4 List Memories
 
 **POST** `/api/memory/list`
 
@@ -310,7 +292,7 @@ Retrieves memories for a user, optionally filtered by tokens or a natural-langua
 
 ---
 
-### 2.6 Chat (Query Memories with LLM)
+### 2.5 Chat (Query Memories with LLM)
 
 **POST** `/api/memory/chat`
 
@@ -335,7 +317,7 @@ Sends a natural language statement/question and retrieves a context-aware answer
 
 ---
 
-### 2.7 Summarize Memory
+### 2.6 Summarize Memory
 
 **POST** `/api/memory/summarize-memory`
 
@@ -370,7 +352,7 @@ Generates an LLM summary from a provided set of memory objects.
 
 ---
 
-### 2.8 Forget Memory
+### 2.7 Forget Memory
 
 **POST** `/api/memory/forget`
 
@@ -400,7 +382,7 @@ Permanently deletes a specific memory entry identified by its query hash.
 
 ---
 
-### 2.9 List Tags
+### 2.8 List Tags
 
 **POST** `/api/memory/list-tag`
 
@@ -427,7 +409,7 @@ Returns all tags associated with a user's stored memories.
 
 ---
 
-### 2.10 Add Tag
+### 2.9 Add Tag
 
 **POST** `/api/memory/add-tag`
 
@@ -452,7 +434,7 @@ Adds a tag to all memories belonging to a given session.
 
 ---
 
-### 2.11 Get Memories by Tag
+### 2.10 Get Memories by Tag
 
 **POST** `/api/memory/by-tag`
 
@@ -477,7 +459,7 @@ Retrieves all memories associated with one or more tags.
 
 ---
 
-### 2.12 Change Tag
+### 2.11 Change Tag
 
 **POST** `/api/memory/change-tag`
 
@@ -521,7 +503,6 @@ Renames a tag across all memories for a user.
 | Register LLM | POST | `/api/user/register-llm` |
 | Health Check | POST | `/api/memory/health` |
 | Create Memory | POST | `/api/memory/create` |
-| Create Memory w/ Image | POST | `/api/memory/create` |
 | Memory Status | POST | `/api/memory/memory-status` |
 | List Memories | POST | `/api/memory/list` |
 | Chat (LLM Query) | POST | `/api/memory/chat` |
