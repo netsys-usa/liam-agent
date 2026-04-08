@@ -202,12 +202,24 @@ class LIAMClientAsync:
         user_key: str,
         content: str,
         tag: Optional[str] = None,
+        additional_tags: Optional[str] = None,
         session_id: Optional[str] = None
     ) -> Dict[str, Any]:
-        """Create a new memory asynchronously."""
+        """
+        Create a new memory asynchronously.
+
+        Args:
+            user_key: The user's unique key
+            content: The memory content to store
+            tag: Primary tag for categorization
+            additional_tags: Comma-separated secondary tags (e.g. "SUB_TAG1, SUB_TAG2")
+            session_id: Optional session identifier
+        """
         payload = {"userKey": user_key, "content": content}
         if tag:
             payload["tag"] = tag
+        if additional_tags:
+            payload["additionalTags"] = additional_tags
         if session_id:
             payload["sessionId"] = session_id
         return await self._make_request("memory/create", payload)
@@ -348,8 +360,8 @@ class LIAMClientAsync:
             
         Example:
             memories = [
-                {"content": "Memory 1", "tag": "work"},
-                {"content": "Memory 2", "tag": "personal"},
+                {"content": "Memory 1", "tag": "work",     "additional_tags": "DEADLINES, URGENT"},
+                {"content": "Memory 2", "tag": "personal", "additional_tags": None},
             ]
             results = await client.create_memories_batch("user_key", memories)
         """
@@ -361,6 +373,7 @@ class LIAMClientAsync:
                     user_key=user_key,
                     content=memory["content"],
                     tag=memory.get("tag"),
+                    additional_tags=memory.get("additional_tags"),
                     session_id=memory.get("session_id")
                 )
         

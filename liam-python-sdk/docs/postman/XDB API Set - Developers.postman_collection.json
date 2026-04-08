@@ -830,7 +830,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userKey\": \"f43d94a0935eb7eeb2323638b9d0af57c24975dc25c6e335e0d55b11025a9ebc\",\n    \"tag\": \"immigration\",\n    \"content\": \"Need to visit office wed and friday for PR ths is a must as per contracts\",\n    \"sessionId\": \"2025060400001\"\n}",
+							"raw": "{\n    \"userKey\": \"f43d94a0935eb7eeb2323638b9d0af57c24975dc25c6e335e0d55b11025a9ebc\",\n    \"tag\": \"immigration\",\n    \"additionalTags\":\"SUB_TAG1, SUB_TAG2, SUB_TAG3\",\n    \"content\": \"Need to visit office wed and friday for PR ths is a must as per contracts\",\n    \"sessionId\": \"2025060400001\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2375,7 +2375,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userKey\": \"4e984be16442a99515ca63a32d5ce28273a5b355a1027a4a8955d27e7d6c4129\",\n    \"tag\": [\"XBD_Changes\"]\n}",
+							"raw": "{\n    \"userKey\": \"4e984be16442a99515ca63a32d5ce28273a5b355a1027a4a8955d27e7d6c4129\",\n    \"tag\": [\"SUB_TAG1\",\"SUB_TAG2\"]\n}",
 							"options": {
 								"raw": {
 									"language": "json"

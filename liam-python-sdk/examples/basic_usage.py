@@ -53,7 +53,7 @@ def example_setup_workspace():
     NAME             = "Tech Solutions"
     INSTITUTION_ID   = "TSOL"
     INSTITUTION_NAME = "Tech Solutions"
-    BASE_URL         = "https://web.askbuddy.ai/devspacexdb/api"
+    BASE_URL         = "https://weave-sb.askbuddy.ai/devspace/api"
 
     # ── Step 1: Create workspace ──────────────────────────────────────────
     print("\n[1/4] Creating workspace...")
@@ -186,22 +186,25 @@ def example_create_memories():
     
     client = get_client()
     
+    # Each entry: (content, primary_tag, additional_tags or None)
     memories = [
-        ("I prefer morning meetings before 10am", "FOOD_PREFERENCES"),
-        ("My favorite coffee is a flat white with oat milk", "FOOD_PREFERENCES"),
-        ("Project deadline is next Friday", "WORK"),
-        ("Doctor appointment on Monday at 2pm", "HEALTH"),
-        ("Need to buy: milk, eggs, bread, cheese", "SHOPPING"),
+        ("I prefer morning meetings before 10am",             "PREFERENCES",     "WORK, SCHEDULE"),
+        ("My favorite coffee is a flat white with oat milk",  "FOOD_PREFERENCES", "DRINKS, DAIRY_FREE"),
+        ("Project deadline is next Friday",                   "WORK",            "DEADLINES, URGENT"),
+        ("Doctor appointment on Monday at 2pm",               "HEALTH",          None),
+        ("Need to buy: milk, eggs, bread, cheese",            "SHOPPING",        None),
     ]
-    
-    for content, tag in memories:
+
+    for content, tag, additional_tags in memories:
         result = client.create_memory(
             user_key=USER_KEY,
             content=content,
-            tag=tag
+            tag=tag,
+            additional_tags=additional_tags
         )
         status = "[OK]" if result.get('status') == 'Success' else "[FAIL]"
-        print(f"  {status} [{tag}] {content[:40]}...")
+        extra = f" | sub-tags: {additional_tags}" if additional_tags else ""
+        print(f"  {status} [{tag}]{extra} {content[:40]}...")
     
     print(f"\nCreated {len(memories)} memories")
 

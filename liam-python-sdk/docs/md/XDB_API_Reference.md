@@ -204,7 +204,8 @@ Stores a new memory entry for a user.
 |---|---|---|---|
 | `userKey` | string | ✅ | User's unique key |
 | `content` | string | ✅ | The memory text to store |
-| `tag` | string | ✅ | Category tag for the memory (can be empty string) |
+| `tag` | string | ✅ | Primary category tag for the memory (can be empty string) |
+| `additionalTags` | string | ❌ | Comma-separated list of secondary tags (e.g. `"SUB_TAG1, SUB_TAG2, SUB_TAG3"`) |
 | `sessionId` | string | ✅ | Session identifier string (e.g. `"2025060400001"`) |
 
 **Example Request**
@@ -212,6 +213,7 @@ Stores a new memory entry for a user.
 {
   "userKey": "f43d94a0935eb7eeb2323638b9d0af57c24975dc25c6e335e0d55b11025a9ebc",
   "tag": "immigration",
+  "additionalTags": "SUB_TAG1, SUB_TAG2, SUB_TAG3",
   "content": "Need to visit office wed and friday for PR, this is a must as per contracts",
   "sessionId": "2025060400001"
 }

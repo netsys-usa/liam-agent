@@ -291,6 +291,7 @@ class LIAMClient:
         user_key: str,
         content: str,
         tag: Optional[str] = None,
+        additional_tags: Optional[str] = None,
         session_id: Optional[str] = None
     ) -> Dict[str, Any]:
         """
@@ -299,7 +300,8 @@ class LIAMClient:
         Args:
             user_key: The user's unique key
             content: The memory content to store
-            tag: Optional tag for categorization
+            tag: Primary tag for categorization
+            additional_tags: Comma-separated secondary tags (e.g. "SUB_TAG1, SUB_TAG2, SUB_TAG3")
             session_id: Optional session identifier
             
         Returns:
@@ -308,6 +310,8 @@ class LIAMClient:
         payload = {"userKey": user_key, "content": content}
         if tag:
             payload["tag"] = tag
+        if additional_tags:
+            payload["additionalTags"] = additional_tags
         if session_id:
             payload["sessionId"] = session_id
         return self._make_request("memory/create", payload)
