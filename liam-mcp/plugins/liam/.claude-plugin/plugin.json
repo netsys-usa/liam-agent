@@ -1,0 +1,13 @@
+{
+  "name": "liam",
+  "version": "0.1.0",
+  "description": "Personal memory assistant — capture memories, contacts, recipes, and daily food & receipt logs, then recall them by tag, organization, or full-text search.",
+  "author": {
+    "name": "NetXD",
+    "url": "https://netxd.com"
+  },
+  "homepage": "https://web.askbuddy.ai",
+  "repository": "https://github.com/NetXD/liam-mcp",
+  "license": "MIT",
+  "keywords": ["mcp", "memory", "assistant", "notes", "contacts", "crm", "recipes", "food-log", "receipts", "oauth"]
+}

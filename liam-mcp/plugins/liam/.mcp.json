@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "liam": {
+      "type": "http",
+      "url": "https://web.askbuddy.ai/memory/mcp"
+    }
+  }
+}
