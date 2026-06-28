@@ -7,7 +7,7 @@
     "url": "https://netxd.com"
   },
   "homepage": "https://web.askbuddy.ai",
-  "repository": "https://github.com/NetXD/liam-mcp",
+  "repository": "https://github.com/netsys-usa/liam-agent",
   "license": "MIT",
   "keywords": ["mcp", "memory", "assistant", "notes", "contacts", "crm", "recipes", "food-log", "receipts", "oauth"]
 }

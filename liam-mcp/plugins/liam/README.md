@@ -47,7 +47,7 @@ From the official directory (once approved):
 Directly from this repo while testing or self-hosting:
 
 ```
-/plugin marketplace add NetXD/liam-mcp
+/plugin marketplace add netsys-usa/liam-agent
 /plugin install liam@liam
 ```
 

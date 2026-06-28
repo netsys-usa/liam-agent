@@ -4,48 +4,49 @@ A Claude Code / Cowork plugin that wraps the **LIAM** remote MCP server — a
 personal memory assistant (memories, contacts, recipes, food & receipt logs)
 served over HTTP with Google OAuth.
 
-This repo is both the **plugin source** and a small **development marketplace**,
-so you can install and test the plugin straight from the repo before submitting it
-to the public directory.
+The plugin itself lives in [`plugins/liam/`](./plugins/liam). The repo's
+**development marketplace** is the `.claude-plugin/marketplace.json` at the
+`liam-agent` **repo root**, which lists this plugin — so you can install and test
+straight from the repo before submitting it to the public directory.
 
 ## Layout
 
 ```
-liam-mcp/
+liam-agent/                          # repo root (github.com/netsys-usa/liam-agent)
 ├── .claude-plugin/
-│   └── marketplace.json        # dev marketplace catalog (lists the plugin)
-├── plugins/
-│   └── liam/
-│       ├── .claude-plugin/
-│       │   └── plugin.json      # plugin manifest (required)
-│       ├── .mcp.json            # remote HTTP MCP server config
-│       └── README.md            # user-facing docs / directory listing
-├── LICENSE
-└── README.md                    # you are here
+│   └── marketplace.json             # marketplace catalog → source: ./liam-mcp/plugins/liam
+└── liam-mcp/
+    ├── plugins/
+    │   └── liam/
+    │       ├── .claude-plugin/
+    │       │   └── plugin.json       # plugin manifest (required)
+    │       ├── .mcp.json             # remote HTTP MCP server config
+    │       └── README.md             # user-facing docs / directory listing
+    ├── LICENSE
+    └── README.md                     # you are here
 ```
 
 ## Test it locally
 
-1. Set the real server URL in `plugins/liam/.mcp.json`.
-2. Validate the structure:
+1. Validate the plugin structure (run from the repo root):
    ```
-   claude plugin validate plugins/liam --strict
+   claude plugin validate liam-mcp/plugins/liam
    ```
-3. Register this repo as a marketplace and install:
+2. Register this repo as a marketplace and install:
    ```
-   /plugin marketplace add ./           # or NetXD/liam-mcp once pushed to GitHub
+   /plugin marketplace add netsys-usa/liam-agent
    /plugin install liam@liam
    ```
-4. Confirm the server connects:
+3. Authenticate and confirm the server connects:
    ```
-   /mcp
+   /mcp        # choose liam → Authenticate, complete Google sign-in
    ```
 
 ## Submit to the Claude plugin directory
 
-1. Fill in every `REPLACE ME` field (description, author, repo URL, security notes).
-2. Push to a **public** GitHub repo.
-3. Submit via one of the in-app forms:
+1. Push to the **public** `netsys-usa/liam-agent` repo (the `.claude-plugin/marketplace.json`
+   must be readable at the repo root).
+2. Submit via one of the in-app forms:
    - claude.ai: `https://claude.ai/admin-settings/directory/submissions/plugins/new` (Team/Enterprise)
    - Console: `https://platform.claude.com/plugins/submit` (individual authors)
    Or start from `https://claude.com/plugins`.

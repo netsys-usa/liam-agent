@@ -1,0 +1,16 @@
+{
+  "name": "liam",
+  "owner": {
+    "name": "NetXD"
+  },
+  "metadata": {
+    "description": "Marketplace for the LIAM personal memory assistant plugin."
+  },
+  "plugins": [
+    {
+      "name": "liam",
+      "source": "./liam-mcp/plugins/liam",
+      "description": "Personal memory assistant — capture memories, contacts, recipes, and daily food & receipt logs, then recall them on demand."
+    }
+  ]
+}
