@@ -1,7 +1,7 @@
 {
   "name": "liam",
   "version": "0.1.0",
-  "description": "Personal memory assistant — capture memories, contacts, recipes, and daily food & receipt logs, then recall them by tag, organization, or full-text search.",
+  "description": "LIAM (Large Intelligent Agentic Memory) — give Claude a persistent personal memory: save & recall notes, contacts, recipes, and food/receipt logs, by text or photo. Sign in with Google.",
   "author": {
     "name": "NetXD",
     "url": "https://netxd.com"
@@ -9,5 +9,5 @@
   "homepage": "https://web.askbuddy.ai",
   "repository": "https://github.com/netsys-usa/liam-agent",
   "license": "MIT",
-  "keywords": ["mcp", "memory", "assistant", "notes", "contacts", "crm", "recipes", "food-log", "receipts", "oauth"]
+  "keywords": ["mcp", "memory", "second-brain", "notes", "contacts", "crm", "recipes", "food-log", "nutrition", "receipts", "expenses", "personal-assistant", "oauth"]
 }

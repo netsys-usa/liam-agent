@@ -10,7 +10,7 @@
     {
       "name": "liam",
       "source": "./liam-mcp/plugins/liam",
-      "description": "Personal memory assistant — capture memories, contacts, recipes, and daily food & receipt logs, then recall them on demand."
+      "description": "LIAM (Large Intelligent Agentic Memory) — give Claude a persistent personal memory: save & recall notes, contacts, recipes, and food/receipt logs, by text or photo. Sign in with Google."
     }
   ]
 }

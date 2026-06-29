@@ -1,8 +1,13 @@
-# LIAM
+# LIAM — Large Intelligent Agentic Memory
 
-> Your personal memory assistant in Claude — capture memories, contacts, recipes, and daily food & receipt logs, then recall them on demand.
+> Give Claude a persistent personal memory: save & recall notes, contacts, recipes, and food/receipt logs — by text **or by uploading a photo**. By [NetXD](https://netxd.com).
 
 This plugin connects Claude Code (and Cowork) to the LIAM MCP server over HTTP, so its tools are available automatically once installed — no manual MCP setup. The server is protected by **Google OAuth**; the first time you use it, Claude walks you through sign-in.
+
+You can type a request, or just drop in a photo — a receipt, meal, business card, or
+handwritten note is read and filed to the right place automatically (a restaurant
+receipt is logged as both an expense **and** a meal). Only the extracted text/values are
+stored — never the raw image.
 
 ## What you get
 
@@ -83,7 +88,19 @@ OAuth 2.0 flow that Claude runs via `/mcp`. Never add a long-lived secret here.
   (identity + email only — no access to Gmail, Drive, or other Google data).
 - **Data handled:** the notes, contacts, recipes, and food/receipt entries you
   create are sent to and stored on the LIAM server (`web.askbuddy.ai`) under your
-  account. Tools like `ForgetMemory` let you delete data you've stored.
+  account. When you upload an image, only the **extracted text/values** are stored —
+  not the raw image. Tools like `ForgetMemory`, and the XD Brain web app, let you
+  view and delete your data.
+- **Policies:** see the [Privacy Policy](https://web.askbuddy.ai/brain/#/privacy-policy/sh)
+  and [Terms of Service](https://web.askbuddy.ai/brain/#/terms/sh).
+
+## Links
+
+- **Website:** https://web.askbuddy.ai
+- **Manage your data (XD Brain):** https://web.askbuddy.ai/brain/#/login
+- **Support / contact:** https://web.askbuddy.ai/contact/
+- **Privacy Policy:** https://web.askbuddy.ai/brain/#/privacy-policy/sh
+- **Terms of Service:** https://web.askbuddy.ai/brain/#/terms/sh
 
 ## License
 
