@@ -1,0 +1,8 @@
+# Vendored deps are restored via `npm install` (package-lock.json is committed)
+node_modules/
+
+# Built bundle — distribute via a hosted URL / GitHub Release, not the repo
+liam.mcpb
+
+*.log
+.DS_Store

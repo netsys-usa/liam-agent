@@ -1,0 +1,56 @@
+{
+  "manifest_version": "0.2",
+  "name": "liam",
+  "display_name": "LIAM — Large Intelligent Agentic Memory",
+  "version": "0.1.0",
+  "description": "Give Claude a persistent personal memory: notes, contacts, recipes, and food/receipt logs, by text or photo. Sign in with Google.",
+  "long_description": "LIAM turns Claude into your personal second brain. It gives Claude a persistent, private memory tied to your account, plus contacts, recipes/routines, and food & receipt logging — by text or by uploading a photo (a restaurant receipt logs as both an expense and a meal). This extension connects Claude Desktop to the hosted LIAM MCP server; sign in with Google on first use. Only extracted text/values are stored, never raw images.",
+  "author": {
+    "name": "NetXD",
+    "email": "support@netxd.com",
+    "url": "https://web.askbuddy.ai"
+  },
+  "homepage": "https://web.askbuddy.ai",
+  "documentation": "https://github.com/netsys-usa/liam-agent",
+  "support": "https://web.askbuddy.ai/contact/",
+  "license": "MIT",
+  "privacy_policies": ["https://web.askbuddy.ai/brain/#/privacy-policy/sh"],
+  "keywords": ["memory", "second-brain", "notes", "contacts", "recipes", "food-log", "receipts", "personal-assistant"],
+  "server": {
+    "type": "node",
+    "entry_point": "node_modules/mcp-remote/dist/proxy.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/node_modules/mcp-remote/dist/proxy.js", "https://web.askbuddy.ai/memory/mcp"]
+    }
+  },
+  "tools": [
+    { "name": "WhoAmI", "description": "Show the signed-in account" },
+    { "name": "CreateMemory", "description": "Save a note/memory, optionally tagged" },
+    { "name": "ListMemory", "description": "List or search saved memories" },
+    { "name": "GetMemoryByTag", "description": "Recall memories filed under a tag" },
+    { "name": "ListTags", "description": "List all tags in use" },
+    { "name": "ForgetMemory", "description": "Delete a memory" },
+    { "name": "CreateContact", "description": "Save a new contact" },
+    { "name": "UpdateContact", "description": "Update an existing contact" },
+    { "name": "GetContactById", "description": "Get a contact by ID" },
+    { "name": "ListContacts", "description": "List saved contacts" },
+    { "name": "ListContactsByOrganization", "description": "Filter contacts by organization" },
+    { "name": "ListContactsByIndustry", "description": "Filter contacts by industry" },
+    { "name": "SearchContactByFullText", "description": "Full-text search across contacts" },
+    { "name": "CreateRecipe", "description": "Save a multi-step recipe or routine" },
+    { "name": "ListRecipe", "description": "List or search saved recipes" },
+    { "name": "LogFood", "description": "Log a meal or food item" },
+    { "name": "GetDailyFoodSummary", "description": "Daily nutrition summary" },
+    { "name": "LogReceipt", "description": "Log a purchase receipt" },
+    { "name": "GetDailyReceiptSummary", "description": "Daily spending summary" },
+    { "name": "GetHelpDocumentation", "description": "Built-in help and tool catalog" }
+  ],
+  "tools_generated": false,
+  "compatibility": {
+    "platforms": ["darwin", "win32"],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  }
+}
